@@ -1,0 +1,10 @@
+pelican/plugins/photos/SourceCodePro-Bold.otf,sha256=719MfK9HTO--c4Mb92kQpy46JQdRm7KB1m66d4pvGT0,143932
+pelican/plugins/photos/SourceCodePro-Regular.otf,sha256=LkG_JlHaXOo3lhyUdu5FfUfQuIkAeUHC-rTIFXMncuw,140088
+pelican/plugins/photos/__init__.py,sha256=C-Mq3EfFsSXVXku0q0eCgAVPEpJCRrHnLOaez09-q9Y,30
+pelican/plugins/photos/licenses.json,sha256=ltBNjDSweHxaOzPAATf_9dyQabbDbBQgIGssoRf1EXQ,2165
+pelican/plugins/photos/photos.py,sha256=ivVABb6-Db_pTTEFk3E9n6s4leLDoKfFQfMGJrCVZ7w,78946
+pelican/plugins/photos/test_photos.py,sha256=jrqWp_0Dkaemsk3rXMIa6Gm5FgQWX9NUeNf6zn-yqYQ,7883
+pelican_photos-1.6.2.dist-info/METADATA,sha256=t8gyeIbiXLnxe6ZYulXQghH8qOHJV2xhUMtjU13jUw4,16654
+pelican_photos-1.6.2.dist-info/WHEEL,sha256=thaaA2w1JzcGC48WYufAs8nrYZjJm8LqNfnXFOFyCC4,90
+pelican_photos-1.6.2.dist-info/entry_points.txt,sha256=6OYgBcLyFCUgeqLgnvMyOJxPCWzgy7se4rLPKtNonMs,34
+pelican_photos-1.6.2.dist-info/RECORD,,
