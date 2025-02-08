@@ -1,0 +1,30 @@
+Metadata-Version: 2.1
+Name: ksearch
+Version: 3.0.0
+Summary: Fast, pure-Python full text indexing, search, and spell checking library.
+Home-page: http://bitbucket.org/mchaput/whoosh
+Author: Pavel Questov
+Author-email: pasan3090@gmail.com
+License: Two-clause BSD license
+Keywords: index search text spell
+Classifier: Development Status :: 5 - Production/Stable
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: BSD License
+Classifier: Natural Language :: English
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python :: 2.5
+Classifier: Programming Language :: Python :: 3
+Classifier: Topic :: Software Development :: Libraries :: Python Modules
+Classifier: Topic :: Text Processing :: Indexing
+Requires-Dist: cached-property
+
+# KSearcH
+**KSearcH** — это библиотека для быстрого и эффективного поиска по текстовым данным. Она позволяет индексировать и искать информацию с минимальными затратами ресурсов.
+
+## Установка
+
+Чтобы установить библиотеку, выполните команду:
+
+```bash
+pip install ksearch
+```
