@@ -1,0 +1,15 @@
+README.md
+pyproject.toml
+setup.cfg
+setup.py
+baseapp_notifications/__init__.py
+baseapp_notifications.egg-info/PKG-INFO
+baseapp_notifications.egg-info/SOURCES.txt
+baseapp_notifications.egg-info/dependency_links.txt
+baseapp_notifications.egg-info/top_level.txt
+testproject/__init__.py
+testproject/graphql.py
+testproject/settings.py
+testproject/setup.py
+testproject/urls.py
+testproject/wsgi.py
