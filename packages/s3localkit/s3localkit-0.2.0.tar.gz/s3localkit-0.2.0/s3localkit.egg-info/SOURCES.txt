@@ -1,0 +1,12 @@
+LICENSE
+MANIFEST.in
+README.md
+setup.py
+s3localkit/__init__.py
+s3localkit/utils.py
+s3localkit.egg-info/PKG-INFO
+s3localkit.egg-info/SOURCES.txt
+s3localkit.egg-info/dependency_links.txt
+s3localkit.egg-info/requires.txt
+s3localkit.egg-info/top_level.txt
+tests/test_utils.py
