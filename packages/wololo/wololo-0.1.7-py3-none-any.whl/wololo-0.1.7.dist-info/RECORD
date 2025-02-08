@@ -1,0 +1,13 @@
+wololo/__init__.py,sha256=JFehBYxjUB5w8QMwEuYXsdarKmfQT324uq1hD4bqNZA,670
+wololo/adapters.py,sha256=14VQ4x0bal07RSR_tbz6OnmkxA9ei8oWyO7GSRjeCPU,6927
+wololo/converters.py,sha256=A2mNv4fMHQXqdPgaqzKJu905K5EnBGKS6ACn_IcjF8M,12585
+wololo/tracers.py,sha256=aAQo65YRee9Ce9JoXZrzd6RevfjZRsRfubDs7Ue4UtM,4634
+wololo/transformers.py,sha256=Ggo8DtROMyN5RBLLFlhlUNzeLbQGj6XaGWi_15oi4VQ,3055
+wololo/algorithms/__init__.py,sha256=89uqnXw0hUmaeiI_EAwr1UecsEM7U__r-GHljEImMjA,376
+wololo/algorithms/bbvi.py,sha256=C48k_WgJWHB18tUMljq2yRocx2yi4YsHJkW9ES5PswE,966
+wololo/algorithms/sensitivity.py,sha256=mCcGZwYTKb2OpXP6SqccPVmHVoJ47X-Ai_ohOON5yfc,8936
+wololo/algorithms/svgd.py,sha256=TuRHcSY2MQmqPRqaImeUXDqREkW4P5qBV4tEEkF3K_0,4252
+wololo-0.1.7.dist-info/METADATA,sha256=5pD6xigHxcLHxY_njD8MdxUYePHCutSJW4Sl0jR2TVI,299
+wololo-0.1.7.dist-info/WHEEL,sha256=PZUExdf71Ui_so67QXpySuHtCi3-J3wvF4ORK6k_S8U,91
+wololo-0.1.7.dist-info/top_level.txt,sha256=BCEqqZHCXMC1Hjzcf_-IANtdVcEQjoFUOOb_5TXGO8Q,7
+wololo-0.1.7.dist-info/RECORD,,
