@@ -1,0 +1,5 @@
+numpy<3,>=1.25.0
+scipy
+pyparsing
+packaging
+netCDF4
