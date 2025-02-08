@@ -1,0 +1,36 @@
+Metadata-Version: 2.2
+Name: taskman-sv
+Version: 0.1.1
+Summary: A secure task management and note-taking application
+Author-email: Shreedhar <shreedharv16@gmail.com>
+Project-URL: Homepage, https://github.com/shreedharv16/taskman
+Project-URL: Repository, https://github.com/shreedharv16/taskman.git
+Keywords: task,management,notes,productivity
+Classifier: Development Status :: 3 - Alpha
+Classifier: Intended Audience :: End Users/Desktop
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Programming Language :: Python :: 3.10
+Classifier: Operating System :: OS Independent
+Requires-Python: >=3.8
+Description-Content-Type: text/markdown
+Requires-Dist: colorama
+Requires-Dist: cryptography
+Requires-Dist: bcrypt
+Requires-Dist: pywin32; platform_system == "Windows"
+
+# TASKMAN
+
+A secure task management and note-taking application with encryption support.
+
+## Features
+
+- Secure task management with encryption
+- Note-taking capabilities
+- Fast notes for quick thoughts
+- Daily report generation
+- Multi-platform support (Windows, Linux, macOS)
+
+## Installation

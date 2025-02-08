@@ -1,0 +1,16 @@
+README.md
+pyproject.toml
+setup.cfg
+src/taskman/__init__.py
+src/taskman-sv/__init__.py
+src/taskman-sv/cli.py
+src/taskman-sv/interface.py
+src/taskman-sv/taskman_backend.py
+src/taskman_sv.egg-info/PKG-INFO
+src/taskman_sv.egg-info/SOURCES.txt
+src/taskman_sv.egg-info/dependency_links.txt
+src/taskman_sv.egg-info/entry_points.txt
+src/taskman_sv.egg-info/requires.txt
+src/taskman_sv.egg-info/top_level.txt
+tests/test_taskman_backend.py
+tests/test_taskman_interface.py

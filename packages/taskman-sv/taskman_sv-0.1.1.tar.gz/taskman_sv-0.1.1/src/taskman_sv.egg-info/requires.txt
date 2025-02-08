@@ -1,0 +1,6 @@
+colorama
+cryptography
+bcrypt
+
+[:platform_system == "Windows"]
+pywin32
