@@ -1,0 +1,79 @@
+[project]
+name = "hcloud-rdns-manager"
+version = "1.0.0"
+description = "The hcloud-rdns-manager - the smart way to manage your rDNS records in the Hetzner cloud"
+authors = [
+    { name = "wh0ami", email = "wh0ami@noreply.codeberg.org" }
+]
+license = { file = "LICENSE" }
+readme = { file = "README.md", content-type = "text/markdown" }
+keywords = [
+    "Hetzner",
+    "Cloud",
+    "IaC",
+    "Infrastructure as Code",
+    "Automation",
+    "DNS",
+    "rDNS",
+    "PTR",
+]
+classifiers = [
+    "Development Status :: 5 - Production/Stable",
+    "Environment :: Console",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+]
+requires-python = ">=3.13"
+dependencies = [
+    "hcloud>=2.3.0",
+    "jsonschema>=4.23.0",
+    "loguru>=0.7.3",
+    "pyyaml>=6.0.2",
+    "tabulate>=0.9.0",
+]
+
+[dependency-groups]
+dev = [
+    "ruff>=0.9.5",
+]
+
+[project.scripts]
+hcloud-rdns-cli = "hcloud_rdns_manager.main:main"
+hcloud-rdns-manager = "hcloud_rdns_manager.main:main"
+
+[project.urls]
+Homepage = "https://codeberg.org/wh0ami/hcloud-rdns-manager"
+Documentation = "https://codeberg.org/wh0ami/hcloud-rdns-manager/src/branch/master/README.md"
+Repository = "https://codeberg.org/wh0ami/hcloud-rdns-manager"
+Issues = "https://codeberg.org/wh0ami/hcloud-rdns-manager/issues"
+
+[tool.uv]
+package = true
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.ruff]
+line-length = 120
+
+[tool.ruff.lint]
+select = [
+    "ALL",
+]
+ignore = [
+    "EM", # flake8-errmsg
+    "EXE", # flake8-executable
+    "ANN", # flake8-annotations
+    "FBT", # flake8-boolean-trap
+    "FA", # future-required-type-annotation
+    "TD", # flake8-todos
+    # tryceratops
+    "TRY003", # Avoid specifying long messages outside the exception class
+    # Pylint-Refactor
+    "PLR2004", # Magic value used in comparison, consider replacing {value} with a constant variable
+    # pydocstyle
+    "D100", # Missing docstring in public module
+    "D203", # 1 blank line required before class docstring
+    "D212", # Multi-line docstring summary should start at the first line
+]

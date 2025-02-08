@@ -1,0 +1,31 @@
+hcloud:
+  projects:
+    # this is my first project
+    my-project-1:
+      token: ThisIsMySecretToken
+      servers:
+        # cpx11 with id 1234567 (nick: myfancyserver)
+        '1234567':
+          rdns:
+            # WAN
+            1.2.3.4: myserver.mydomain.de
+            2000:1ce::1ce:babe::1: myserver.mydomain.de
+            2000:1ce::1ce:babe::2: myserver-second-v6.mydomain.de
+        # cx51 with id 6942069 (nick: myperfectserver)
+        '6942069':
+          rdns:
+            # WAN
+            2.3.4.5: myotherserver.mydomain.de
+            2000:1ce:1ce:beef::1: myotherserver.mydomain.de
+    # this is my first project
+    my-other-project:
+      token: ThisIsMyOtherSecretToken
+      servers:
+        # cpx31 with id 6842569 (nick: veryspecialserver)
+        '6842569':
+          rdns:
+            # WAN
+            7.6.5.4: myvpnserver.mydomain.de
+            2000:1ce:beer:babe::1: myvpnserver.mydomain.de
+            2000:1ce:beer:babe:69::1: myvpnserver.vpn-internal.mydomain.de
+            2000:1ce:beer:babe:69::2: myvpnclient.vpn-internal.mydomain.de

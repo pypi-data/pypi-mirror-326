@@ -1,0 +1,7 @@
+.idea/
+.venv/
+rdns-zones.yml
+hcloud_rdns_dump_*.yml
+__pycache__/
+dist/
+hcloud_rdns_manager.egg-info

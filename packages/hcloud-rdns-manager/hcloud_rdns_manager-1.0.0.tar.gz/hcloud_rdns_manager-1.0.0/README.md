@@ -1,0 +1,214 @@
+# Hetzner Cloud (hcloud) rDNS manager
+
+This is a tiny python3 software to easily manage your rDNS records in the Hetzner Cloud.
+
+My personal issue was, that I am doing quite much networking and vpn stuff on Hetzner Cloud servers, which is why I
+wanted to manage my rDNS records automated via GitLab CI. And there was no solution, that fitted for my purpose and
+taste.
+
+## Installation
+
+Just install it from pypi by using `pipx install hcloud-rdns-manager` or `pip install hcloud-rdns-manager`.
+
+Then, you can call it via `hcloud-rdns-manager` or `hcloud-rdns-cli`.
+
+## Configuration
+
+First, copy the file `rdns-zones.example.yml` into e.g. `rdns-zones.yml`. There is no default config file or something -
+you will pass the path with each run, which is why you can select the config file name by your own.
+
+I guess there is no need for much explanation. The config is using normal YAML - take care for the indentation and
+everything will be fine. You can specify as many projects and servers, as you want.
+
+The project name in the config doesn't have any relation to the project name in the webui - it is a custom nickname that
+you can create by yourself. The project will be identified via the passed token when talking to the Hetzner Cloud API.
+
+The server ain't identified by its (nick-)name - they will be identified by its unique Hetzner Cloud ID. Please take
+care to set `'` around the number, since the config validator will fail otherwise. You can get the ID's by
+running `hcloud server list` using [hetznercloud/cli](https://github.com/hetznercloud/cli).
+
+I know that it's quite annoying, to identify the servers via its ID. This is the reason, why I preferred YAML over JSON
+for the config file. YAML can do comments, JSON not. So just place comment lines starting with `#` wherever you want, to
+get a better overview over the configuration file.
+
+## Usage
+
+### Getting started - show the help
+
+If you run the script like `hcloud-rdns-cli -h` (or `--help` instead), you can see the all possible parameters with
+explanation.
+
+```
+user@pc:~/Workspace/hcloud-rdns-manager$ hcloud-rdns-cli --help
+usage: hcloud-rdns-cli [-h] [--commit] [--servers server-id] [--projects project-name] action rdns_zone_file
+
+This is the hcloud-rdns-manager - the smart way to manage your rDNS records in the Hetzner cloud
+
+positional arguments:
+  action                Valid actions are:
+                        check   - read the rdns zone file and validate it (--servers and --projects will be ignored, if passed)
+                        deploy  - deploy the rdns entries from the rdns zone file in the Hetzner cloud, if --commit was passed. Otherwise, it will only perform a dry-run and display the changes.
+                        dump    - obtain and dump the current config from the Hetzner cloud
+                        
+  rdns_zone_file        rDNS zone file that should be processed
+
+optional arguments:
+  -h, --help            show this help message and exit
+  --commit              Commit, that the changes should really be deployed. (only deploy action)
+  --servers server-id   Only affect these server id(s). Can be given multiple times. By default, all servers are affected.
+  --projects project-name
+                        Only affect these projects. The project name passed here is NOT the name from the Web UI, it is the name that you defined in your local rdns zone file. Can be given multiple times. By default, all projects are affected.
+user@pc:~/Workspace/hcloud-rdns-manager$ 
+```
+
+### Validate your config file
+
+If you just want to check, whether the syntax of you config file is correct, you can simply
+use `hcloud-rdns-cli check my-config.yml`
+
+```
+user@pc:~/Workspace/hcloud-rdns-manager$ hcloud-rdns-cli check my-config.yml 
+Validating passed rdns zone config...
+The passed rdns zone config is valid!
+user@pc:~/Workspace/hcloud-rdns-manager$ 
+```
+
+The config file will be checked/validated with each run - e.g. also before you do a validation or a deployment. If
+something is wrong, it will abort before doing anything regarding the Hetzner API.
+
+### Validation and Deployment
+
+The script is going to practice something like a staging - so if you run `hcloud-rdns-cli deploy my-config.yml`, you
+will only do a dry-run and see, what's going to be changed.
+
+```
+user@pc:~/Workspace/hcloud-rdns-manager$ hcloud-rdns-cli deploy my-config.yml
+Validating passed rdns zone config...
+The passed rdns zone config is valid!
+
+--> Server 1234567 (myfancyserver) from project my-project-1
+Nothing to do!
+
+--> Server 6942069 (myperfectserver) from project my-project-1
+Nothing to do!
+
+--> Server 6842569 (veryspecialserver) from project my-other-project
++----------+----------------------------+-----------------------------+--------------------------------------+
+| Action   | IP                         | Current PTR                 | New PTR                              |
+|----------+----------------------------+-----------------------------+--------------------------------------|
+| UPDATE   | 2000:1ce:beer:babe:69::1   | myvpnserver.vpn.mydomain.de | myvpnserver.vpn-internal.mydomain.de |
+| CREATE   | 2000:1ce:beer:babe:69::2   |                             | myvpnclient.vpn-internal.mydomain.de |
+| DELETE   | 2000:1ce:beer:babe:69::420 | kekse.vpn.mydomain.de       |                                      |
++----------+----------------------------+-----------------------------+--------------------------------------+
+
+user@pc:~/Workspace/hcloud-rdns-manager$ 
+```
+
+And if this is what you want, you can simply pass an additional `--commit` to put these changes into production.
+
+```
+user@pc:~/Workspace/hcloud-rdns-manager$ hcloud-rdns-cli --commit deploy my-config.yml
+Validating passed rdns zone config...
+The passed rdns zone config is valid!
+
+--> Server 1234567 (myfancyserver) from project my-project-1
+Nothing to do!
+
+--> Server 6942069 (myperfectserver) from project my-project-1
+Nothing to do!
+
+--> Server 6842569 (veryspecialserver) from project my-other-project
++----------+----------------------------+-----------------------------+--------------------------------------+
+| Action   | IP                         | Current PTR                 | New PTR                              |
+|----------+----------------------------+-----------------------------+--------------------------------------|
+| UPDATE   | 2000:1ce:beer:babe:69::1   | myvpnserver.vpn.mydomain.de | myvpnserver.vpn-internal.mydomain.de |
+| CREATE   | 2000:1ce:beer:babe:69::2   |                             | myvpnclient.vpn-internal.mydomain.de |
+| DELETE   | 2000:1ce:beer:babe:69::420 | kekse.vpn.mydomain.de       |                                      |
++----------+----------------------------+-----------------------------+--------------------------------------+
+Applying changeset...
+Changes applied!
+
+user@pc:~/Workspace/hcloud-rdns-manager$ 
+```
+
+You can use the additional parameters `--servers <server ID>` or `--projects <project name>` to limit your changes to
+apply. This could be helpful, if you manage a very big environment with this script.
+
+```
+user@pc:~/Workspace/hcloud-rdns-manager$ hcloud-rdns-cli --projects my-other-project deploy my-config.yml
+Validating passed rdns zone config...
+The passed rdns zone config is valid!
+
+--> Server 6842569 (veryspecialserver) from project my-other-project
++----------+----------------------------+-----------------------------+--------------------------------------+
+| Action   | IP                         | Current PTR                 | New PTR                              |
+|----------+----------------------------+-----------------------------+--------------------------------------|
+| UPDATE   | 2000:1ce:beer:babe:69::1   | myvpnserver.vpn.mydomain.de | myvpnserver.vpn-internal.mydomain.de |
+| CREATE   | 2000:1ce:beer:babe:69::2   |                             | myvpnclient.vpn-internal.mydomain.de |
+| DELETE   | 2000:1ce:beer:babe:69::420 | kekse.vpn.mydomain.de       |                                      |
++----------+----------------------------+-----------------------------+--------------------------------------+
+
+user@pc:~/Workspace/hcloud-rdns-manager$ 
+```
+
+### Dump an existing config
+
+No backup, no mercy. That's why I implemented a feature to dump the rDNS configuration based on the projects and servers
+defined in your current configuration.
+
+Just run `hcloud-rdns-cli dump my-config.yml` and your dump will be stored in a file
+called `hcloud_rdns_dump_YYYY-mm-dd_HH-MM-SS.yml` in your current working directory. The spacer will be replaced with a
+current timestamp.
+
+```
+user@pc:~/Workspace/hcloud-rdns-manager$ hcloud-rdns-cli dump my-config.yml 
+Validating passed rdns zone config...
+The passed rdns zone config is valid!
+Creating project dump...
+Dump created!
+Validating passed rdns zone config...
+The passed rdns zone config is valid!
+Writing dump to hcloud_rdns_dump_2022-01-22_22-17-34.yml...
+Dump written to hcloud_rdns_dump_2022-01-22_22-17-34.yml !
+user@pc:~/Workspace/hcloud-rdns-manager$ 
+```
+
+The dump will be syntax checked with the same schema, as the input config was checked. Based on that fact, your dump
+should be directly re-importable with the `deploy` action.   
+Please note, that the dump action is also compatible with the `--projects` and `--servers` options.
+
+## Development
+
+* Dependency installation: `uv sync`
+* Lockfile update: `uv lock`
+* Linting: `uv run ruff check`
+* Formatting: `uv run ruff format`
+* Building: `uv build` - artifacts can be found in the `dist/` directory
+* Publishing: `uv publish`
+
+## Not clarified topics and possible problems
+
+- I didn't test this with floating ip addresses or subnets - I guess those are handled different by the Hetzner API
+- This was only tested under Linux. All other unix-like OS (including macOS) should work without any problems
+  (in theory), but be careful. For Windows, it could work - I basically don't have an idea, whether or whether not.
+- Unit tests using PyTest would be pretty nice, but I don't have the time for that. May somebody want's to
+  contribute them? :)
+
+## Licensing, contribution, thanks and other stuff
+
+For licensing information, please see the `LICENSE` file. Every idea and everybody's
+knowledge is welcome - feel free to contribute by creating issues and pull requests! :)
+
+Thanks to the python3 development team!
+
+Also, thanks to the maintainers of the python3 dependencies:
+
+- tabulate: [GitHub](https://github.com/astanin/python-tabulate)
+- pyyaml: [Website](https://pyyaml.org/) / [GitHub](https://github.com/yaml/pyyaml)
+- hcloud: [GitHub](https://github.com/hetznercloud/hcloud-python)
+- loguru: [GitHub](https://github.com/Delgan/loguru)
+- jsonschema: [GitHub](https://github.com/Julian/jsonschema)
+
+Furthermore, I want to thank Jetbrains for providing their [PyCharm IDE](https://www.jetbrains.com/pycharm/) for free to
+the community (I used it to write the code of this project). Please note, that this is not a paid ad - I am truly
+convinced of their work, and I am writing this based on my own free will.
