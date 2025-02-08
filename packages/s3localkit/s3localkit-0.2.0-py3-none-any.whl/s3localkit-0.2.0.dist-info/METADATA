@@ -1,0 +1,6 @@
+Metadata-Version: 2.1
+Name: s3localkit
+Version: 0.2.0
+License-File: LICENSE
+Requires-Dist: boto3
+
