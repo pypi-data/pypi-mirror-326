@@ -1,0 +1,10 @@
+Metadata-Version: 2.1
+Name: wololo
+Version: 0.2.0
+Summary: A PyTorch Framework for Probabilistic Model Conversion
+Author: mrcaprari
+Requires-Dist: torch>=2.5.1
+Provides-Extra: test
+Requires-Dist: matplotlib; extra == "test"
+Requires-Dist: numpy; extra == "test"
+Requires-Dist: tqdm; extra == "test"
