@@ -1,0 +1,22 @@
+[build-system]
+requires = ["setuptools>=42", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "capture_bot"
+version = "0.1.0"
+description = "A Python project for screen capture"
+authors = [
+    { name="Your Name", email="your.email@example.com" }
+]
+dependencies = [
+    "pyautogui",
+    "pynput",
+    "Pillow>=9.2.0"
+]
+
+[tool.setuptools]
+packages = ["screen_capture_agent"]
+
+[tool.poetry.scripts]
+run_capture_agent = "screen_capture_agent.capture_agent:run_app"

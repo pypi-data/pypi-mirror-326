@@ -1,0 +1,10 @@
+README.md
+pyproject.toml
+setup.py
+capture_bot.egg-info/PKG-INFO
+capture_bot.egg-info/SOURCES.txt
+capture_bot.egg-info/dependency_links.txt
+capture_bot.egg-info/requires.txt
+capture_bot.egg-info/top_level.txt
+screen_capture_agent/capture_agent.py
+tests/test_capture_agent.py
