@@ -1,0 +1,47 @@
+boundary_threshold: 0.2
+channels:
+- eeg1
+- eeg2
+data_dir: data
+dilation: 2
+erosion: 1
+event_threshold: 0.5
+feature_select_thresh: 0.9
+feature_size:
+- 5
+- 10
+- 15
+features:
+- line_length
+- kurtosis
+- skewness
+- rms
+- mad
+- var
+- energy
+- hjorth_mobility
+- hjorth_complexity
+- delta_power
+- theta_power
+- alpha_power
+- beta_power
+- gamma_power
+- weighted_frequency
+- spectral_entropy
+- get_envelope_max_diff
+file_check: true
+fs: 100
+gui_win: 1
+model_id: d013f3a35f254dd0b84782e62dad2183
+model_predictions_dir: model_predictions
+nleast_corr: 5
+parent_path: D:\test_seizyml\test_data
+post_processing_method: dual_threshold
+predicted_check: true
+processed_check: true
+processed_dir: processed
+rolling_window: 6
+train_path: D:\test_seizyml\train_data
+trained_model_dir: models
+verified_predictions_dir: verified_predictions
+win: 5
