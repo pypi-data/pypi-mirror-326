@@ -1,0 +1,16 @@
+LICENSE
+MANIFEST.in
+README.md
+pyproject.toml
+settings.ini
+setup.py
+gzkeyboard/__init__.py
+gzkeyboard/_modidx.py
+gzkeyboard/gzkeyboard.py
+gzkeyboard.egg-info/PKG-INFO
+gzkeyboard.egg-info/SOURCES.txt
+gzkeyboard.egg-info/dependency_links.txt
+gzkeyboard.egg-info/entry_points.txt
+gzkeyboard.egg-info/not-zip-safe
+gzkeyboard.egg-info/requires.txt
+gzkeyboard.egg-info/top_level.txt

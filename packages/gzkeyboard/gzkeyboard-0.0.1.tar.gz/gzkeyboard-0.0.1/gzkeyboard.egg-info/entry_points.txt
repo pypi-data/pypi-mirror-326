@@ -1,0 +1,2 @@
+[nbdev]
+gzkeyboard = gzkeyboard._modidx:d
