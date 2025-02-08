@@ -1,0 +1,2 @@
+[console_scripts]
+widget = widget:main
