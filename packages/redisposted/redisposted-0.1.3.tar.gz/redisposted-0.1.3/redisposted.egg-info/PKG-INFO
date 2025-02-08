@@ -1,0 +1,13 @@
+Metadata-Version: 2.1
+Name: redisposted
+Version: 0.1.3
+Summary: Concrete implementation of posted for Redis
+License: mit
+Description-Content-Type: text/markdown
+License-File: LICENSE
+
+# redisposted
+
+Concrete implementation of `posted` for Redis.
+
+[Documentation](https://i2mint.github.io/redisposted/)
