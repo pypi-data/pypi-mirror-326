@@ -1,0 +1,14 @@
+Metadata-Version: 2.3
+Name: lsqbc
+Version: 0.1.0
+Summary: A functional programming language
+Author: henceiusegentoo
+Author-email: 61363222+henceiusegentoo@users.noreply.github.com
+Requires-Python: >=3.12
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.12
+Classifier: Programming Language :: Python :: 3.13
+Description-Content-Type: text/markdown
+
+# lsqbc | ls qb compiler
+qb is a functional programming language written in python 

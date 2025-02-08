@@ -1,0 +1,15 @@
+qb/__main__.py,sha256=lZ38H1ZYGDOKvwGGEP6qEthw2v9JxfqRwgKXsVnmAOo,4162
+qb/compiler_functions/__init__.py,sha256=v2QGU4HSznLiSh32WXeYo7RmvlptAZlGKx4fPN1K02Q,158
+qb/compiler_functions/cleaner.py,sha256=eFD0nBa4ixgy2cM9Q926meS2KN-Qun4EdamAFcCNeIU,1521
+qb/compiler_functions/keyword_replacement.py,sha256=7ENDRetu_BII9UMpPGN3lPPRJSqZwhGJZnzOvQRDf0E,2226
+qb/compiler_functions/multi_line_lambda.py,sha256=A8Liun1iSU3kljYzmbj1538M6XrIlNdLoINxYecimfw,1128
+qb/compiler_functions/pipe_operator.py,sha256=vJ_WLNN6yw-NFhFDS2dk-yv6tBvJWhdDvRQmFAfsiD8,1748
+qb/compiler_functions/string_cryptography.py,sha256=dToYnUezan4NbRxe-x5tvlCU2w21yjssxMYPDT5vSCs,1734
+qb/qbstd/__init__.py,sha256=UNP36Tru6J3UNBWeIPnOx0e-l_oQMX2gZhPw94gfG74,71
+qb/qbstd/functions.py,sha256=M1Mo8MazMoZdQ9eTNx6FQ9_mqrqBEkF-7Nc-6O2oNMg,311
+qb/qbstd/types.py,sha256=fRQnfw0njK3njM4pK9qF31QOEnUfCqq7rH5Gjthita0,3072
+qb/qbstd/wrappers.py,sha256=ZrTJOAcAecoIOiObc0A7xrhkgwqxEtx79z_ZneSrw_M,109
+lsqbc-0.1.0.dist-info/entry_points.txt,sha256=8_etXP_lY7NOA3_wsxQIel4o05RUOL7BkP4CRCBqvmw,39
+lsqbc-0.1.0.dist-info/METADATA,sha256=GnF63d5wi_iB7fQap3-E2vb68hyqKVMCR-2F8gyy_SM,479
+lsqbc-0.1.0.dist-info/WHEEL,sha256=IYZQI976HJqqOpQU6PHkJ8fb3tMNBFjg-Cn-pwAbaFM,88
+lsqbc-0.1.0.dist-info/RECORD,,
