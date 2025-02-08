@@ -1,0 +1,17 @@
+LICENSE
+README.md
+pyproject.toml
+src/payloadinspector/__init__.py
+src/payloadinspector/main.py
+src/payloadinspector/payloadinspector.py
+src/payloadinspector.egg-info/PKG-INFO
+src/payloadinspector.egg-info/SOURCES.txt
+src/payloadinspector.egg-info/dependency_links.txt
+src/payloadinspector.egg-info/entry_points.txt
+src/payloadinspector.egg-info/top_level.txt
+tests/test_bitfield.py
+tests/test_bits_from_bytes.py
+tests/test_cli.py
+tests/test_field_values.py
+tests/test_format_output.py
+tests/test_payload.py
