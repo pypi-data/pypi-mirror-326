@@ -1,0 +1,3 @@
+[console_scripts]
+install-itp-interface = itp_interface.main.install:install_itp_interface
+install-lean-repl = itp_interface.main.install:install_lean_repl
