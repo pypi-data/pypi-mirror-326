@@ -1,0 +1,2 @@
+[console_scripts]
+build-sync = build_sync:build_sync
