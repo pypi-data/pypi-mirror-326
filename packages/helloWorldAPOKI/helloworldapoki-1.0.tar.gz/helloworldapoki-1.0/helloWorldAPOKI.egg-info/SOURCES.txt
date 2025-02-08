@@ -1,0 +1,7 @@
+setup.py
+helloWorldAPOKI/__init__.py
+helloWorldAPOKI/functions.py
+helloWorldAPOKI.egg-info/PKG-INFO
+helloWorldAPOKI.egg-info/SOURCES.txt
+helloWorldAPOKI.egg-info/dependency_links.txt
+helloWorldAPOKI.egg-info/top_level.txt
