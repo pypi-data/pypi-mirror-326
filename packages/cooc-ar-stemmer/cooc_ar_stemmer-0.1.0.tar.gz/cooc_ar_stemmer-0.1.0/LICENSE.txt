@@ -1,0 +1,43 @@
+cooc_ar_stemmer License Agreement
+Version 1.0 – 07.02.2025
+
+1. License Grant
+1.1. Free Educational and Academic Use
+You (the "User") are granted a royalty-free, non-exclusive, non-transferable license to use cooc_ar_stemmer (the "Software") for non-commercial purposes, including:
+
+- Personal learning
+- Educational use in schools, universities, and research institutions
+- Academic research and publication
+- Teaching and classroom use
+
+Users may modify and redistribute the Software for non-commercial academic purposes only, provided that:
+
+- The original license terms remain intact.
+- Proper attribution is given to the original author.
+- The modifications are not used in a commercial setting.
+
+1.2. Commercial Use Requires a Paid License
+Any use of this Software for commercial purposes requires a separate commercial license. This includes, but is not limited to:
+
+- Selling, licensing, or distributing the Software as part of a commercial product or service
+- Using the Software to generate revenue or provide commercial services
+- Integrating the Software into proprietary systems intended for business use
+
+To obtain a commercial license, contact:
+📧 iskander.akhmetov@gmail.com
+🌐 airesearch.science
+
+2. Restrictions
+No Commercial Use Without Permission: You may not use this Software for commercial purposes without obtaining a paid license.
+No Sublicensing or Resale: You may not sublicense, sell, rent, or distribute this Software for profit.
+No Removal of Notices: You must retain all copyright notices, attributions, and license terms in any copy or derivative work.
+
+3. Attribution Requirements
+When using the Software in academic or educational settings, you must provide attribution by including the following statement:
+"This software, cooc_ar_stemmer, was developed by Iskander Akhmetov in 2020-2025 and is provided under an Educational Use License."
+
+4. Disclaimer of Warranties
+This Software is provided "as is," without any warranties, including but not limited to implied warranties of merchantability or fitness for a particular purpose. The author is not responsible for any damages or legal issues arising from the use of this Software.
+
+5. Governing Law
+This License shall be governed by and interpreted in accordance with the laws of The Republic of Kazakhstan.

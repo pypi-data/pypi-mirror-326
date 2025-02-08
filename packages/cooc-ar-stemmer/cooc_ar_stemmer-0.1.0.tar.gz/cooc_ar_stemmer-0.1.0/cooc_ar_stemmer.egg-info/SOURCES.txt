@@ -1,0 +1,13 @@
+LICENSE.txt
+MANIFEST.in
+README.md
+setup.py
+cooc_ar_stemmer/__init__.py
+cooc_ar_stemmer/ar_stem.py
+cooc_ar_stemmer/dic.pkl
+cooc_ar_stemmer/mx.pkl
+cooc_ar_stemmer/vectorizer.pkl
+cooc_ar_stemmer.egg-info/PKG-INFO
+cooc_ar_stemmer.egg-info/SOURCES.txt
+cooc_ar_stemmer.egg-info/dependency_links.txt
+cooc_ar_stemmer.egg-info/top_level.txt
