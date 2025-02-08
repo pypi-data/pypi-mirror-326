@@ -1,0 +1,8 @@
+hatch_frozen/__init__.py,sha256=47DEQpj8HBSa-_TImW-5JCeuQeRkm5NMpJWZG3hSuFU,0
+hatch_frozen/hooks.py,sha256=oSMb6EuZO3NuDlRCNBD_EuIL08maZv3RnmycUBPAgS4,174
+hatch_frozen/plugin.py,sha256=nIT0gjd1EY3q7wwkPj3dYVWDEVTvjC19PiVtOH1V5oc,1130
+hatch_frozen-0.1.0.dist-info/METADATA,sha256=12--hI_YnmLif6EQfQLkiHofcrsenuDQduceSKdPTKg,14535
+hatch_frozen-0.1.0.dist-info/WHEEL,sha256=qtCwoSJWgHk21S1Kb4ihdzI2rlJ1ZKaIurTj_ngOhyQ,87
+hatch_frozen-0.1.0.dist-info/entry_points.txt,sha256=dpjrLCJKy_K_XFC7rqHcJKK6ubymJJubWFhLLzY9z_M,36
+hatch_frozen-0.1.0.dist-info/licenses/LICENSE,sha256=xx0jnfkXJvxRnG63LTGOxlggYnIysveWIZ6H3PNdCrQ,11357
+hatch_frozen-0.1.0.dist-info/RECORD,,

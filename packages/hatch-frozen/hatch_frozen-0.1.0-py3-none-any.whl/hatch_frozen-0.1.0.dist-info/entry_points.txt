@@ -1,0 +1,2 @@
+[hatch]
+frozen = hatch_frozen.hooks
