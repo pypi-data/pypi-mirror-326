@@ -1,0 +1,28 @@
+Metadata-Version: 2.2
+Name: DASST
+Version: 0.0.1
+Summary: A Python package to read system usage also known as Disk And System Stats Tool
+Home-page: https://github.com/CoderLogy/DASST
+Author: Shourya Wadhwa
+Author-email: sourceboxtv@gmail.com
+License: GPL-3.0-or-later
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: GNU General Public License v3 (GPLv3)
+Classifier: Operating System :: OS Independent
+Requires-Python: >=3.8
+Description-Content-Type: text/markdown
+Requires-Dist: psutil
+Dynamic: author
+Dynamic: author-email
+Dynamic: classifier
+Dynamic: description
+Dynamic: description-content-type
+Dynamic: home-page
+Dynamic: license
+Dynamic: requires-dist
+Dynamic: requires-python
+Dynamic: summary
+
+# DASST or Disk And System Stats Tool
+ Get disk usage information like how much space is available, free, and used.
+ A Python package to read disk usage also known as Disk And System Stats Tool
