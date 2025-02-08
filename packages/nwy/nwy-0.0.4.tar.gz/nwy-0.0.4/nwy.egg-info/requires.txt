@@ -1,0 +1,4 @@
+hy
+hyrule
+hyjinx[llm]
+pymupdf
