@@ -1,0 +1,5 @@
+duckdb_extension_azure/__init__.py,sha256=47DEQpj8HBSa-_TImW-5JCeuQeRkm5NMpJWZG3hSuFU,0
+duckdb_extension_azure/extensions/v1.2.0/azure.duckdb_extension,sha256=XtIGRAKq_t_CiUa4KO60dn9dUKuY7qDzzt2D_TIj0Jo,10345646
+duckdb_extension_azure-1.2.0a1.dist-info/METADATA,sha256=o76_A8qgNc_SnqKcto5iv8BWGiBAjKiG3Msr7ILZq4E,2187
+duckdb_extension_azure-1.2.0a1.dist-info/WHEEL,sha256=jqhm2QdIBHhtJir_MybjpltaP4-JihQ9PB1c5Z1EI28,101
+duckdb_extension_azure-1.2.0a1.dist-info/RECORD,,
