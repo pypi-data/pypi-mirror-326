@@ -1,0 +1,3 @@
+[console_scripts]
+pdf2latex = noteworthy.cli:pdftolatex
+pdf2md = noteworthy.cli:pdftomd
