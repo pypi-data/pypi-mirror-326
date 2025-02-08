@@ -1,0 +1,14 @@
+Metadata-Version: 2.2
+Name: GT_Utils
+Version: 1.0.0
+Summary: GT_Utils
+Home-page: https://github.com/BigDataFounder/GT_Utils
+Author: gengch
+Author-email: gengchuanhua@163.com
+License: MIT
+License-File: LICENSE
+Dynamic: author
+Dynamic: author-email
+Dynamic: home-page
+Dynamic: license
+Dynamic: summary
