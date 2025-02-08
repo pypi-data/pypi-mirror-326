@@ -1,0 +1,51 @@
+from typing import Dict, List, Union
+
+
+class PayiHeaderNames:
+    limit_ids:str  = "xProxy-Limit-IDs"
+    request_tags:str = "xProxy-Request-Tags"
+    experience_id:str = "xProxy-Experience-ID"
+    experience_name:str = "xProxy-Experience-Name"
+    user_id:str = "xProxy-User-ID"
+    route_as_resource:str = "xProxy-RouteAs-Resource"
+    provider_base_uri = "xProxy-Provider-BaseUri"
+
+def create_limit_header_from_ids(limit_ids: List[str]) -> Dict[str, str]:
+    if not isinstance(limit_ids, list):  # type: ignore
+        raise TypeError("limit_ids must be a list")
+
+    valid_ids = [id.strip() for id in limit_ids if isinstance(id, str) and id.strip()]  # type: ignore
+
+    return { PayiHeaderNames.limit_ids: ",".join(valid_ids) } if valid_ids else {}
+
+
+def create_request_header_from_tags(request_tags: List[str]) -> Dict[str, str]:
+    if not isinstance(request_tags, list):  # type: ignore
+        raise TypeError("request_tags must be a list")
+
+    valid_tags = [tag.strip() for tag in request_tags if isinstance(tag, str) and tag.strip()]  # type: ignore
+
+    return { PayiHeaderNames.request_tags: ",".join(valid_tags) } if valid_tags else {}
+
+
+def create_headers(
+    limit_ids: Union[List[str], None] = None,
+    request_tags: Union[List[str], None] = None,
+    user_id: Union[str, None] = None,
+    experience_id: Union[str, None] = None,
+    experience_name: Union[str, None] = None,
+) -> Dict[str, str]:
+    headers: Dict[str, str] = {}
+
+    if limit_ids:
+        headers.update(create_limit_header_from_ids(limit_ids))
+    if request_tags:
+        headers.update(create_request_header_from_tags(request_tags))
+    if user_id:
+        headers.update({ PayiHeaderNames.user_id: user_id})
+    if experience_id:
+        headers.update({ PayiHeaderNames.experience_id: experience_id})
+    if experience_name:
+        headers.update({ PayiHeaderNames.experience_name: experience_name})
+
+    return headers
