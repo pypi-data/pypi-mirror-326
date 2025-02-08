@@ -1,0 +1,2 @@
+[console_scripts]
+photohunt = photohunt.__main__:main
