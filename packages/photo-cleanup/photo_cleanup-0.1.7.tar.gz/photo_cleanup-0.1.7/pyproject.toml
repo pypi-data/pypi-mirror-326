@@ -1,0 +1,27 @@
+[project]
+name = "photo-cleanup"
+version = "0.1.7"
+description = "Photo cleanup tool. Recursively deletes unnecessary JPG files in a folder when a matching RAW file exists"
+authors = [
+    {name = "Natalie Albers",email = "nralbers@gmail.com"}
+]
+license = {text = "MIT"}
+license-files = ["LICENCE"]
+readme = "README.md"
+requires-python = ">=3.13"
+dependencies = [
+    "typer (>=0.15.1,<0.16.0)"
+]
+
+[project.urls]
+Repository = "https://github.com/nralbers/photo-cleanup"
+Issues = "https://github.com/nralbers/photo-cleanup/issues"
+
+
+[build-system]
+requires = ["poetry-core>=2.0.0,<3.0.0"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.poetry.scripts]
+
+photo-cleanup = "photo_cleanup.main:app"
