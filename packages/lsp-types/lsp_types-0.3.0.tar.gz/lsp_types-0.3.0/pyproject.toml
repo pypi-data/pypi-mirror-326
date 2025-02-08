@@ -1,0 +1,30 @@
+[tool.poetry]
+name = "lsp-types"
+version = "0.3.0"
+description = "Zero-dependency Python library for Language Server Protocol types"
+authors = ["Mazyad Alabduljaleel <mazjaleel@gmail.com>"]
+license = "MIT"
+readme = "README.md"
+homepage = "https://github.com/mazyod/lsp-python-types"
+repository = "https://github.com/mazyod/lsp-python-types"
+documentation = "https://github.com/mazyod/lsp-python-types#readme"
+keywords = ["lsp", "language-server-protocol", "ide", "development-tools", "editor-tools"]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.12",
+    "Topic :: Software Development :: Libraries :: Python Modules",
+    "Topic :: Text Editors :: Integrated Development Environments (IDE)",
+    "Typing :: Typed"
+]
+include = ["lsp_types"]
+
+[tool.poetry.dependencies]
+python = "^3.12"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
