@@ -1,0 +1,4511 @@
+---
+metadata:
+  title: |
+    LAWV Family Law Packet Creator
+  short title: |
+    Family Law Packets
+  description: |
+    A Docassemble interview for creating various WV Supreme Court Family Law packets from LegalServer data
+  authors:
+    - name: Dane W. Henry, Esq.
+      organization: Legal Aid of West Virginia, Inc.
+  revision_date: 2025-02-07
+  required privileges:
+    - admin
+    - developer
+    - advocate
+---
+include:
+  - docassemble.LegalServerLink:data/questions/LSLink.yml
+  - docassemble.LAWVCommon:common_info.yml
+---
+features:
+  javascript: docassemble.LAWVCommon:data/static/force_lightmode.js
+  css: docassemble.LAWVCommon:data/static/lawv.css
+  use catchall: True
+  navigation: True
+---
+objects:
+  - children: DAList.using(object=IndividualName, there_are_any=True, auto_gather=False)
+  - children_addresses: DAList.using(object_type=Address)
+  - child_support_children: DAList.using(object_type=Individual)
+  - p_employment: DAList.using(object_type=DAObject, complete_attribute='complete')
+  - r_employment: DAList.using(object_type=DAObject, complete_attribute='complete')
+  - cohabit: Address
+  - debts: DAList.using(object_type=DAObject, complete_attribute='complete')
+  - conveyed_property: DAList.using(object_type=DAObject, complete_attribute='complete')
+---
+imports:
+  - datetime
+---
+sections:
+  - intro: Introduction
+  - case: Case Info
+  - bio: Party Info
+    subsections:
+      - petitioner: Petitioner
+      - respondent: Respondent
+      - children: Children
+  - pleadings: Petition/Pleadings
+  - property: Property Info
+  - custody: Custody Schedule
+  - final: Collect Documents
+---
+section: intro
+question: |
+  Select the packet
+field: packet
+default: ${ problem_code }
+choices:
+  - Divorce Petition Without Children: divorce_without
+  - Divorce Petition with Children: divorce_with
+under: |
+  Coming Soon:
+
+    * Divorce Answer without Children
+    * Divorce Answer with Children
+    * Custody Petition
+    * Custody Answer
+    * Custody Modification
+    * Child Support
+---
+section: intro
+question: |
+  Which path?
+subquestion: |
+  Do you want to print the bundle with whatever information 
+  we currently have in LegalServer or do you want to complete 
+  the entire packet, such as when you are sitting down with the client?
+field: path
+choices:
+  - Print as-is: print
+  - Complete the Packet: guided
+---
+section: case
+question: |
+  Answer the following:
+fields:
+  - Are you filing in **${ client.address.county } County**?: expected_county
+    datatype: yesnoradio
+  - In what county are you filing: filing_county
+    input type: dropdown
+    code: counties
+    show if:
+      variable: expected_county
+      is: False
+  - Filing with a fee waiver?: fee_waiver
+    datatype: yesnoradio
+  - Seeking spousal support?: seeking_spousal
+    datatype: yesnoradio
+    show if:
+      code: |
+        packet == "divorce_without" or packet == "divorce_with"
+  - Seeking child support?: seeking_child_support
+    datatype: yesnoradio
+    show if:
+      code: |
+        packet == "divorce_with"
+  - Is there an active CPS investigation, or one within the last year?: cps
+    datatype: yesnoradio
+    show if:
+      code: |
+        packet == "divorce_with"
+  - Full Rep or Pro Se?: representation
+    datatype: radio
+    choices:
+      - Pro Se: pro_se
+      - Full rep: full_rep
+  - Attorney: attorney_name
+    show if:
+      variable: representation
+      is: full_rep
+  - Firm: firm
+    default: "Legal Aid of West Virginia, Inc."
+    show if:
+      variable: representation
+      is: full_rep
+  - Address: firm_address
+    show if:
+      variable: representation
+      is: full_rep
+  - Phone: firm_phone
+    show if:
+      variable: representation
+      is: full_rep
+---
+section: case
+question: |
+  Does the Petitioner's identifying information need
+  to be kept confidential?
+fields:
+  - no label: confidential
+    datatype: yesnoradio
+  - Who is at risk?: at_risk
+    show if: confidential
+  - Why are they at risk?: at_risk_because
+    input type: area
+    show if: confidential
+---
+section: case
+question: |
+  Are in-court accommodations required?
+fields:
+  - no label: accommodations
+    datatype: yesnoradio
+  - Describe your accommodation: accom_detail
+    datatype: checkboxes
+    choices:
+      - Wheelchair accessible hearing room and other facilites: wheelchair
+      - Reader or other auxiliary aid for the visually impaired: visual
+      - Interpreter or other auxiliary aid for the deaf and hard of hearing: hearing
+      - Spokesperson or other auxiliary aid for the speech impaired: speech
+      - Foreign language interpreter: language
+      - Other: other
+    none of the above: False
+    show if: accommodations
+  - Specify Language: accom_language
+    show if: accom_detail['language']
+  - Specify: accom_other
+    show if: accom_detail['other']
+---
+event: petitionerReview
+section: petitioner
+question: |
+  Review Petitioner Information
+review:
+  - Edit: client.name.first
+    button: |
+      **Name**: ${ client.name.full() }  
+      **DoB**: ${ client.birthdate }  
+      **Email**: ${ client.email }  
+      **Phone**: ${ client.phone_number }  
+      **Address**: ${ client.address.on_one_line() }  
+      **County**: ${ client.address.county } County
+
+      %if packet == "divorce_with" or packet == "divorce_without":
+      %if defined("client.maiden_name"):
+      **Maiden Name**: ${ client.maiden_name }
+      %else:
+      **Maiden Name**: Unknown
+      %endif
+      %endif
+continue button field: petitioner_reviewed
+---
+section: petitioner
+question: |
+  Petitioner Information
+fields:
+  - First Name: client.name.first
+  - Middle Name: client.name.middle
+    required: False
+  - Last Name: client.name.last
+  - Birthdate: client.birthdate
+    datatype: date
+    max: ${ today().minus(years=18) }
+  - Email Address: client.email
+    datatype: email
+  - Phone Number: client.phone_number
+  - Address: client.address.address
+    address autocomplete: True
+  - Unit/Apt.: client.address.unit
+    required: False
+  - City: client.address.city
+  - State: client.address.state
+    code: states_list()
+    default: WV
+  - Zip: client.address.zip
+  - County: client.address.county
+  - Maiden Name: client.maiden_name
+    show if:
+      code: |
+        packet == "divorce_with" or packet == "divorce_without"
+---
+section: petitioner
+question: |
+  Petitioner Current Income
+fields:
+  - Employer: client.employer_name
+    required: False
+  - Employer Address: client.employer_address
+    required: False
+  - Employer Phone: client.employer_phone
+    required: False 
+  - Income: legalserver_incomes[0].amount
+  - Period: legalserver_incomes[0].period
+    choices:
+      - Weekly
+      - Biweekly
+      - Semi-Monthly
+      - Monthly
+      - Quarterly
+      - Annually
+  - Receive TANF benefits?: tanf
+    datatype: yesnowide
+    grid: 
+      width: 8
+      start: True
+  - TANF Amount: tanf_amount
+    datatype: currency
+    grid: 4
+    show if: tanf
+  - note: |
+      **Other Income** (Monthly Amounts)
+  - Commissions: client.commissions
+    datatype: yesnowide
+    grid: 3
+  - no label: client.commissions_amount
+    datatype: currency
+    grid: 3
+    show if: client.commissions
+  - Bonuses: client.bonuses
+    datatype: yesnowide
+    grid: 3
+  - no label: client.bonuses_amount
+    datatype: currency
+    grid: 3
+    show if: client.bonuses
+  - Tips: client.tips
+    datatype: yesnowide
+    grid: 
+      width: 3
+      start: True
+  - no label: client.tips_amount
+    datatype: currency
+    grid: 3
+    show if: client.tips
+  - Pension: client.pension
+    datatype: yesnowide
+    grid: 3
+  - no label: client.pension_amount
+    datatype: currency
+    grid: 3
+    show if: client.pension
+  - Social Security: client.ssi
+    datatype: yesnowide
+    grid: 
+      width: 3
+      start: True
+  - no label: client.ssi_amount
+    datatype: currency
+    grid: 3
+    show if: client.ssi
+  - Unemployment: client.unemployment
+    datatype: yesnowide
+    grid: 3
+  - no label: client.unemployment_amount
+    datatype: currency
+    grid: 3
+    show if: client.unemployment
+  - Workers Comp: client.wc
+    datatype: yesnowide
+    grid: 
+      width: 3
+      start: True
+  - no label: client.wc_amount
+    datatype: currency
+    grid: 3
+    show if: client.wc
+  - Other: client.other
+    datatype: yesnowide
+    grid: 3
+  - no label: client.other_amount
+    datatype: currency
+    grid: 3
+    show if: client.other
+---
+section: petitioner
+question: |
+  Health Insurance Information
+fields:
+  - Is health insurance available through employment?: insurance_available
+    datatype: yesnoradio
+    grid: 6
+  - Does the client have health insurance?: is_insured
+    datatype: yesnoradio
+    grid: 6
+  - note: |
+      **Insurance Details**
+    show if: is_insured
+  - Insurance Company Name: insurance_name
+    show if: is_insured
+    label above field: True
+  - Address: insurance_address
+    show if: is_insured
+    required: False
+    label above field: True
+  - Policy Number: policy_number
+    show if: is_insured
+    required: False
+    grid: 
+      width: 4
+      breakpoint: sm
+    label above field: True
+  - Group Number: group_number
+    show if: is_insured
+    required: False
+    grid: 
+      width: 4
+      breakpoint: sm
+    label above field: True
+  - Other ID No: other_number
+    show if: is_insured
+    required: False
+    grid: 
+      width: 4
+      breakpoint: sm
+    label above field: True
+  - Restrictions: insurance_restrictions
+    show if: is_insured
+    required: False
+    label above field: True
+  - Persons Covered: insurance_coverage
+    show if: is_insured
+    required: False
+    label above field: True
+  - Deductibles: deductible
+    show if: is_insured
+    required: False
+    datatype: currency
+    grid: 
+      width: 6
+      breakpoint: sm
+    label above field: True
+  - Children's Portion of Premium: child_portion
+    show if: is_insured
+    required: False
+    datatype: currency
+    grid: 
+      width: 6
+      breakpoint: sm
+    label above field: True
+  - Does client have recurring, out-of-pocket expenses not covered by insurance?: out_of_pocket
+    datatype: yesnoradio
+    show if: is_insured
+---
+section: petitioner
+question: |
+  Child Support **to** other children
+subquestion: |
+  Does Petitioner pay child support for any other children?
+yesno: child_support_children.there_are_any
+---
+section: petitioner
+question: |
+  Child Support Payment Information
+fields:
+  - First Name: child_support_children[i].name.first
+  - Last Name: child_support_children[i].name.last
+  - Birthdate: child_support_children[i].birthdate
+    datatype: date
+  - SSN: child_support_children[i].ssn
+    required: False
+  - Support Amount: child_support_children[i].amount
+    datatype: currency
+---
+section: petitioner
+question: |
+  More Children?
+subquestion: |
+  So far you have listed:
+
+  % for child in child_support_children:
+  * ${ child.name.full() } - ${ child.birthdate } - $${ child.amount }  
+  % endfor
+
+  Are there others?
+yesno: child_support_children.there_is_another
+---
+section: petitioner
+question: |
+  **Monthly** Expenses
+fields:
+  - Rent/Mortgage: housing_cost
+    datatype: currency
+    grid:
+      width: 3
+      label width: 3
+  - Home Repair: maintenance_cost
+    datatype: currency
+    required: False
+    grid:
+      width: 3
+      label width: 3
+  - Electric: electric_cost
+    datatype: currency
+    required: False
+    grid:
+      width: 3
+      label width: 3
+  - Water / Sewer: water_cost
+    datatype: currency
+    required: False
+    grid:
+      width: 3
+      label width: 3
+  - Gas / Heat: heat_cost
+    datatype: currency
+    required: False
+    grid:
+      width: 3
+      label width: 3
+  - Trash: trash_cost
+    datatype: currency
+    required: False
+    grid:
+      width: 3
+      label width: 3
+  - Credit Card: debt_cost
+    datatype: currency
+    required: False
+    grid:
+      width: 3
+      label width: 3
+  - Car Payment: car_payment_cost
+    datatype: currency
+    required: False
+    grid:
+      width: 3
+      label width: 3
+  - Car Repair: car_repair_cost
+    datatype: currency
+    required: False
+    grid:
+      width: 3
+      label width: 3
+  - Car Insurance: car_insurance_cost
+    datatype: currency
+    required: False
+    grid:
+      width: 3
+      label width: 3
+  - Gasoline: fuel_cost
+    datatype: currency
+    required: False
+    grid:
+      width: 3
+      label width: 3
+  - Food: food_cost
+    datatype: currency
+    required: False
+    grid:
+      width: 3
+      label width: 3
+  - Clothing: clothing_cost
+    datatype: currency
+    required: False
+    grid:
+      width: 3
+      label width: 3
+  - Child Care: child_care_cost
+    datatype: currency
+    required: False
+    grid:
+      width: 3
+      label width: 3
+  - Cable / Internet: communications_cost
+    datatype: currency
+    required: False
+    grid:
+      width: 3
+      label width: 3
+  - Phone: phone_cost
+    datatype: currency
+    required: False
+    grid:
+      width: 3
+      label width: 3
+  - Health Insurance: insurance_cost
+    datatype: currency
+    required: False
+    grid:
+      width: 3
+      label width: 3
+  - Other Insurance: other_insurance_cost
+    datatype: currency
+    required: False
+    grid:
+      width: 3
+      label width: 3
+  - Medical Bills: medical_bills_cost
+    datatype: currency
+    required: False
+    grid:
+      width: 3
+      label width: 3
+  - Entertainment: entertainment_cost
+    datatype: currency
+    required: False
+    grid:
+      width: 3
+      label width: 3
+  - Other: other_cost
+    datatype: currency
+    required: False
+    grid:
+      width: 3
+      label width: 3
+---
+section: petitioner
+question: |
+  Education and Health
+fields:
+  - note: |
+      **High School / GED Education**
+  - Graduate from high school?: p_high_school
+    datatype: yesnoradio
+    grid: 
+      width: 3
+      label width: 4
+  - Year?: p_high_school_detail
+    show if: p_high_school
+    label above field: True
+    grid: 
+      width: 3
+      end: True
+  - Receive a GED?: p_ged
+    datatype: yesnoradio
+    grid: 
+      width: 3
+      label width: 4
+  - Year?: p_ged_detail  
+    show if: p_ged
+    label above field: True
+    grid: 3
+  - note: |
+      **Higher Education**
+  - Graduate from technical or trade school?: p_tech_school
+    datatype: yesnoradio
+  - Year and type of training, degree, or certificate: p_tech_school_detail
+    show if: p_tech_school
+  - Graduate from college?: p_college
+    datatype: yesnoradio
+  - Year and degree: p_college_detail
+    show if: p_college
+  - Post-graduate degree?: p_post
+    datatype: yesnoradio
+  - Year and degree: p_post_detail
+    show if: p_post
+  - note : |
+      **Health Assessment**
+  - Physical health: p_physical_health
+    choices:
+      - Excellent: excellent
+      - Good: good
+      - Poor: poor
+  - Explain: p_physical_health_detail
+    show if: 
+      variable: p_physical_health
+      is: poor
+  - Mental and emotional health: p_emotional_health
+    choices:
+      - Excellent: excellent
+      - Good: good
+      - Poor: poor
+  - Explain: p_emotional_health_detail
+    show if: 
+      variable: p_emotional_health
+      is: poor
+---
+section: petitioner
+question: |
+  Previous Employment
+subquestion: |
+  The Finanacial Statement (SCA-FC-106) requests the last 4 places of employment.
+
+  Do you want to add employment history?
+yesno: p_employment.there_are_any
+---
+section: petitioner
+question: |
+  Employer Information
+fields:
+  - Employer: p_employment[i].employer
+  - Position: p_employment[i].position
+    required: False
+  - Start Date: p_employment[i].start
+    datatype: date
+    max: ${ today() }
+    required: False
+  - End Date: p_employment[i].end
+    datatype: date
+    required: False
+  - Gross Monthly Income: p_employment[i].income
+    datatype: currency
+    required: False
+---
+section: petitioner
+question: |
+  Another Employer?
+subquestion: |
+  So far you have listed:
+
+  % for employ in p_employment:
+  * ${ employ.employer }
+  % endfor
+
+  Are there others?
+yesno: p_employment.there_is_another
+---
+section: respondent
+question: |
+  Review Respondent Information
+review:
+  - Edit: legalserver_adverse_parties[0].name.first
+    button: |
+      **Name**: ${ legalserver_adverse_parties[0].name.full() }  
+      %if defined("legalserver_adverse_parties[0].birthdate"):
+      **DoB**: ${ legalserver_adverse_parties[0].birthdate }  
+      %else:
+      **DoB**: Undefined  
+      %endif
+      %if defined("legalserver_adverse_parties[0].phone_number"):
+      **Phone**: ${ legalserver_adverse_parties[0].phone_number }  
+      %else:
+      **Phone**: Undefined  
+      %endif  
+      **Address**: ${ legalserver_adverse_parties[0].address.on_one_line() }  
+      **County**: ${ legalserver_adverse_parties[0].address.county }
+continue button field: respondent_reviewed
+---
+section: respondent
+question: |
+  Respondent Information
+fields:
+  - First Name: legalserver_adverse_parties[0].name.first
+  - Middle Name: legalserver_adverse_parties[0].name.middle
+    required: False
+  - Last Name: legalserver_adverse_parties[0].name.last
+  - Birthdate: legalserver_adverse_parties[0].birthdate
+    datatype: date
+    max: ${ today().minus(years=18) }
+    required: False
+  - Phone Number: legalserver_adverse_parties[0].phone_number
+    required: False
+  - Address: legalserver_adverse_parties[0].address.address
+    address autocomplete: True
+  - Unit/Apt.: legalserver_adverse_parties[0].address.unit
+    required: False
+  - City: legalserver_adverse_parties[0].address.city
+  - State: legalserver_adverse_parties[0].address.state
+    code: states_list()
+    default: WV
+  - Zip: legalserver_adverse_parties[0].address.zip
+  - County: legalserver_adverse_parties[0].address.county
+---
+section: respondent
+question: |
+  Education and Health
+fields:
+  - note: |
+      **High School / GED Education**
+  - Graduate from high school?: r_high_school
+    datatype: yesnoradio
+    grid: 
+      width: 3
+      label width: 5
+  - Year?: r_high_school_detail
+    show if: r_high_school
+    label above field: True
+    grid: 
+      width: 3
+      end: True
+  - Receive a GED?: r_ged
+    datatype: yesnoradio
+    grid: 
+      width: 3
+      label width: 3
+  - Year?: r_ged_detail  
+    show if: r_ged
+    label above field: True
+    grid: 3
+  - note: |
+      **Higher Education**
+  - Graduate from technical or trade school?: r_tech_school
+    datatype: yesnoradio
+  - Year and type of training, degree, or certificate: r_tech_school_detail
+    show if: r_tech_school
+  - Graduate from college?: r_college
+    datatype: yesnoradio
+  - Year and degree: r_college_detail
+    show if: r_college
+  - Post-graduate degree?: r_post
+    datatype: yesnoradio
+  - Year and degree: r_post_detail
+    show if: r_post
+  - note : |
+      **Health Assessment**
+  - Physical health: r_physical_health
+    choices:
+      - Excellent: excellent
+      - Good: good
+      - Poor: poor
+  - Explain: r_physical_health_detail
+    show if: 
+      variable: r_physical_health
+      is: poor
+  - Mental and emotional health: r_emotional_health
+    choices:
+      - Excellent: excellent
+      - Good: good
+      - Poor: poor
+  - Explain: r_emotional_health_detail
+    show if: 
+      variable: r_emotional_health
+      is: poor
+---
+section: respondent
+question: |
+  Respondent's Previous Employment
+subquestion: |
+  The Finanacial Statement (SCA-FC-106) requests the last 4 places of employment.
+
+  Do you want to add employment history?
+yesno: r_employment.there_are_any
+---
+section: respondent
+question: |
+  Employer Information
+fields:
+  - Employer: r_employment[i].employer
+  - Position: r_employment[i].position
+    required: False
+  - Start Date: r_employment[i].start
+    datatype: date
+    max: ${ today() }
+    required: False
+  - End Date: r_employment[i].end
+    datatype: date
+    required: False
+  - Gross Monthly Income: r_employment[i].income
+    datatype: currency
+    required: False
+---
+section: respondent
+question: |
+  Another Employer?
+subquestion: |
+  So far you have listed:
+
+  % for employ in r_employment:
+  * ${ employ.employer }
+  % endfor
+
+  Are there others?
+yesno: r_employment.there_is_another
+---
+event: childrenReview
+section: children
+question: |
+  Review Children Information
+subquestion: |
+  ${ children.table }
+  
+  ${ children.add_action() }
+continue button field: children_reviewed
+---
+table: children.table
+rows: children
+columns:
+  - Name: |
+      row_item.name.full()
+  - DoB: |
+      row_item.birthdate if defined("row_item.birthdate") else ""
+  - SSN: |
+      row_item.ssn
+edit:
+  - name.first
+---
+section: children
+question: |
+  Please enter the information
+fields:
+  - First Name: children[i].name.first
+  - Middle Name: children[i].name.middle
+    required: False
+  - Last Name: children[i].name.last
+  - Birthdate: children[i].birthdate
+    datatype: date
+    min: ${ today().minus(years=18) }
+  - SSN: children[i].ssn
+    required: False
+---
+section: children
+question: |
+  Prior Addresses of Children
+subquestion: |
+  The Petition for Divorce (SCA-FC-101) requests previous addresses for the children.
+
+  Do you want to add residence history?
+yesno: children_addresses.there_are_any
+---
+section: children
+question: |
+  Address Information
+fields:
+  - Address: children_addresses[i].address
+    address autocomplete: True
+  - Unit/Apt.: children_addresses[i].unit
+    required: False
+  - City: children_addresses[i].city
+  - State: children_addresses[i].state
+    code: states_list()
+    default: WV
+  - Zip: children_addresses[i].zip
+  - Date of Residence: children_addresses[i].date
+    hint: |
+      June 2006 - December 2007
+---
+section: children
+question: |
+  Another Address?
+subquestion: |
+  So far you have listed:
+
+  % for addy in children_addresses:
+  * ${ addy.on_one_line() } - ${ addy.date }
+  % endfor
+
+  Are there others?
+yesno: children_addresses.there_is_another
+---
+section: children
+question: |
+  Who provides health insurance for the children?
+fields:
+  - no label: children_insurance
+    choices:
+      - Petitioner: petitioner
+      - Respondent: respondent
+      - Medicaid: medicaid
+      - WV CHIP: chip
+      - Someone else: other
+      - No insurance: none
+  - Name and Address: other_detail
+    show if:
+      variable: children_insurance
+      is: other
+---
+section: pleadings
+question: |
+  Marriage Information and Jurisdiction
+fields:
+  - note: |
+      **Marriage Information**
+  - Date of Marriage: marriage_date
+    datatype: date
+    label above field: True
+    grid: 4
+  - Marriage State: marriage_state
+    label above field: True
+    grid: 4
+  - Marriage County: marriage_county
+    label above field: True
+    grid: 4
+  - note: |
+      ***
+  - Last cohabitation address: cohabit.address
+    address autocomplete: True
+    label above field: True
+    grid: 12
+  - City: cohabit.city
+    label above field: True
+    grid: 4
+  - State: cohabit.state
+    label above field: True
+    grid: 4
+  - Date of Separation: cohabit_date
+    datatype: date
+    label above field: True
+    grid: 4
+  - note: |
+      ***
+      **Choose all that apply**:
+  - Petitioner has been a resident of WV for more than 1 year prior to filing: p_resident
+    datatype: yesnowide
+  - Respondent has been a resident of WV for more than 1 year prior to filing: r_resident
+    datatype: yesnowide
+  - Parties were married in WV and at least one of them resides in WV at this time: wv_married
+    datatype: yesnowide
+  - note: |
+      **Filing in ${ filing_county } County because:
+  - This is the last cohabitation county: cohabitation
+    datatype: yesnowide
+  - This is where Respondent now resides: r_resides
+    datatype: yesnowide
+  - This is where Petitioner resides and Respondent is not a WV resident: p_resides
+    datatype: yesnowide
+  - Other: other_jurisdiction
+    datatype: yesnowide
+  - Explain: other_jurisdiction_detail
+    input type: area
+    show if: other_jurisdiction
+  - note: |
+      ***
+  - Is either party under 18?: under_18
+    datatype: yesnoradio
+    hide if:
+      code: |
+        p_age >= 18 and r_age >= 18
+  - Is either party active duty military?: military
+    datatype: yesnoradio
+  - Is either party legally incompetent?: incompetent
+    datatype: yesnoradio
+  - Is either party currently incarcerated?: incarcerated
+    datatype: yesnoradio
+---
+section: pleadings
+question: |
+  Pleadings Concerning the Children
+fields:
+  - note: |
+      Check all that apply
+  - Petitioner has been a party or witness to another proceeding concerning custody of the children: other_proceeding_party
+    datatype: yesnowide
+  - Petitioner is aware of another proceeding concerning custody of the children: other_proceeding_aware
+    datatype: yesnowide
+  - Petitioner is aware of another person who has physical custody or custodial rights of the children: other_party_rights
+    datatype: yesnowide
+  - note: |
+      ***  
+      Check all that apply
+  - Children have resided in WV for at least 6 months before filing or are less than 6 months: resided_6_months
+    datatype: yesnowide
+  - It is in the best interest of the children for WV to assume jurisdiction: significant_connection
+    datatype: yesnowide
+  - Children have been abandoned in WV: abandoned
+    datatype: yesnowide
+  - Children are here and there is an emergency necessitating jurisdiction be assumed: emergency
+    datatype: yesnowide
+  - No other state has jurisdiction and in the children's best interest for WV to assume: no_other_state
+    datatype: yesnowide
+  - Another state has declined: other_state_declined
+    datatype: yesnowide
+  - note: |
+      ***  
+      Parenting Allocation (Select one)
+  - no label: parenting_allocation
+    choices:
+      - Parents should have shared decision making authority: shared_parenting
+      - Petitioner should have sole decision making authority: sole_parenting
+  - note: |
+      ***  
+      Respondent has: (check all that apply)
+  - Abused, neglected, or abandoned one or more of the children: abuse
+    datatype: yesnowide
+  - Sexually assaulted or abused one or more of the children: sexual_assault
+    datatype: yesnowide
+  - Engaged in acts of domestic violence: domestic_violence
+    datatype: yesnowide
+  - Repeatedly interfered with Petitioner's access to or contact with the children: access_interference
+    datatype: yesnowide
+  - Repeatedly made false reports or accusations of domestic violence or child abuse: false_reports
+    datatype: yesnowide
+  - note: |
+      therefore Petitioner believes: (check all that apply)
+  - Petitioner have sole decision making authority: sole_decision_making
+    datatype: yesnowide
+  - Respondent's time should be limited: limit_respondent
+    datatype: yesnowide
+  - Respondent should have no custodial responsibility or contact: no_contact
+    datatype: yesnowide
+---
+section: petition
+question: |
+  Grounds for Divorce
+fields:
+  - Irreconcilable differences have arisen between the parties: irreconcilable_differences
+    datatype: yesnowide
+  - Parties have lived separate and apart for one year or more: separate
+    datatype: yesnowide
+  - Respondent has inflicted cruel and inhuman treatment upon Petitioner: cruelty
+    datatype: yesnowide
+  - Other grounds for divorce: other_grounds
+    datatype: yesnowide
+  - Which are: other_grounds_detail
+    input type: area
+    show if: other_grounds
+---
+section: property
+question: |
+  Marital Property
+subquestion: |
+  Is there marital property or debt at issue?
+yesno: property_at_issue
+---
+section: property
+question: |
+  Marital Property Details
+fields:
+  - Marital Home: marital_home
+    datatype: yesnowide
+  - Market Value: marital_home_value
+    datatype: currency
+    label above field: True
+    grid: 3
+    show if: marital_home
+  - Amount Owed: marital_home_owed
+    datatype: currency
+    required: False
+    label above field: True
+    grid: 3
+    show if: marital_home
+  - Who Owns: marital_home_owned
+    choices:
+      - M
+      - P
+      - R
+    required: False
+    label above field: True
+    grid: 3
+    show if: marital_home
+  - Goes To: marital_home_goes_to
+    choices:
+      - P
+      - R
+    required: False
+    label above field: True
+    grid: 3
+    show if: marital_home
+  - Other Real Estate: other_real_estate
+    datatype: yesnowide
+  - Market Value: other_real_estate_value
+    datatype: currency
+    label above field: True
+    grid: 3
+    show if: other_real_estate
+  - Amount Owed: other_real_estate_owed
+    datatype: currency
+    required: False
+    label above field: True
+    grid: 3
+    show if: other_real_estate
+  - Who Owns: other_real_estate_owned
+    choices:
+      - M
+      - P
+      - R
+    required: False
+    label above field: True
+    grid: 3
+    show if: other_real_estate
+  - Goes To: other_real_estate_goes_to
+    choices:
+      - P
+      - R
+    required: False
+    label above field: True
+    grid: 3
+    show if: other_real_estate
+  - Mobile Home: mobile_home
+    datatype: yesnowide
+  - Market Value: mobile_home_value
+    datatype: currency
+    label above field: True
+    grid: 3
+    show if: mobile_home
+  - Amount Owed: mobile_home_owed
+    datatype: currency
+    required: False
+    label above field: True
+    grid: 3
+    show if: mobile_home
+  - Who Owns: mobile_home_owned
+    choices:
+      - M
+      - P
+      - R
+    required: False
+    label above field: True
+    grid: 3
+    show if: mobile_home
+  - Goes To: mobile_home_goes_to
+    choices:
+      - P
+      - R
+    required: False
+    label above field: True
+    grid: 3
+    show if: mobile_home
+  - Motror Vehicles: motor_vehicle
+    datatype: yesnowide
+  - Motor Vehicle Description: motor_vehicle_1_description
+    show if: motor_vehicle
+  - Market Value: motor_vehicle_1_value
+    datatype: currency
+    label above field: True
+    grid: 3
+    show if: motor_vehicle
+  - Amount Owed: motor_vehicle_1_owed
+    datatype: currency
+    required: False
+    label above field: True
+    grid: 3
+    show if: motor_vehicle
+  - Who Owns: motor_vehicle_1_owned
+    choices:
+      - M
+      - P
+      - R
+    required: False
+    label above field: True
+    grid: 3
+    show if: motor_vehicle
+  - Goes To: motor_vehicle_1_goes_to
+    choices:
+      - P
+      - R
+    required: False
+    label above field: True
+    grid: 3
+    show if: motor_vehicle
+  - Motor Vehicle Description: motor_vehicle_2_description
+    show if: motor_vehicle
+  - Market Value: motor_vehicle_2_value
+    datatype: currency
+    label above field: True
+    grid: 3
+    show if: motor_vehicle
+  - Amount Owed: motor_vehicle_2_owed
+    datatype: currency
+    required: False
+    label above field: True
+    grid: 3
+    show if: motor_vehicle
+  - Who Owns: motor_vehicle_2_owned
+    choices:
+      - M
+      - P
+      - R
+    required: False
+    label above field: True
+    grid: 3
+    show if: motor_vehicle
+  - Goes To: motor_vehicle_2_goes_to
+    choices:
+      - P
+      - R
+    required: False
+    label above field: True
+    grid: 3
+    show if: motor_vehicle
+  - Household Goods: household_goods
+    datatype: yesnowide
+  - Market Value: household_goods_value
+    datatype: currency
+    label above field: True
+    grid: 3
+    show if: household_goods
+  - Amount Owed: household_goods_owed
+    datatype: currency
+    required: False
+    label above field: True
+    grid: 3
+    show if: household_goods
+  - Who Owns: household_goods_owned
+    choices:
+      - M
+      - P
+      - R
+    required: False
+    label above field: True
+    grid: 3
+    show if: household_goods
+  - Goes To: household_goods_goes_to
+    choices:
+      - P
+      - R
+    required: False
+    label above field: True
+    grid: 3
+    show if: household_goods
+  - Checking Account: checking_account
+    datatype: yesnowide
+  - Market Value: checking_account_value
+    datatype: currency
+    label above field: True
+    grid: 3
+    show if: checking_account
+  - Amount Owed: checking_account_owed
+    datatype: currency
+    required: False
+    label above field: True
+    grid: 3
+    show if: checking_account
+  - Who Owns: checking_account_owned
+    choices:
+      - M
+      - P
+      - R
+    required: False
+    label above field: True
+    grid: 3
+    show if: checking_account
+  - Goes To: checking_account_goes_to
+    choices:
+      - P
+      - R
+    required: False
+    label above field: True
+    grid: 3
+    show if: checking_account
+  - Savings Account: savings_account
+    datatype: yesnowide
+  - Market Value: savings_account_value
+    datatype: currency
+    label above field: True
+    grid: 3
+    show if: savings_account
+  - Amount Owed: savings_account_owed
+    datatype: currency
+    required: False
+    label above field: True
+    grid: 3
+    show if: savings_account
+  - Who Owns: savings_account_owned
+    choices:
+      - M
+      - P
+      - R
+    required: False
+    label above field: True
+    grid: 3
+    show if: savings_account
+  - Goes To: savings_account_goes_to
+    choices:
+      - P
+      - R
+    required: False
+    label above field: True
+    grid: 3
+    show if: savings_account
+  - Money Market Certificates: money_market
+    datatype: yesnowide
+  - Market Value: money_market_value
+    datatype: currency
+    label above field: True
+    grid: 3
+    show if: money_market
+  - Amount Owed: money_market_owed
+    datatype: currency
+    required: False
+    label above field: True
+    grid: 3
+    show if: money_market
+  - Who Owns: money_market_owned
+    choices:
+      - M
+      - P
+      - R
+    required: False
+    label above field: True
+    grid: 3
+    show if: money_market
+  - Goes To: money_market_goes_to
+    choices:
+      - P
+      - R
+    required: False
+    label above field: True
+    grid: 3
+    show if: money_market
+  - Stocks: stocks
+    datatype: yesnowide
+  - Market Value: stocks_value
+    datatype: currency
+    label above field: True
+    grid: 3
+    show if: stocks
+  - Amount Owed: stocks_owed
+    datatype: currency
+    required: False
+    label above field: True
+    grid: 3
+    show if: stocks
+  - Who Owns: stocks_owned
+    choices:
+      - M
+      - P
+      - R
+    required: False
+    label above field: True
+    grid: 3
+    show if: stocks
+  - Goes To: stocks_goes_to
+    choices:
+      - P
+      - R
+    required: False
+    label above field: True
+    grid: 3
+    show if: stocks
+  - Credit Union Account: credit_union
+    datatype: yesnowide
+  - Market Value: credit_union_value
+    datatype: currency
+    label above field: True
+    grid: 3
+    show if: credit_union
+  - Amount Owed: credit_union_owed
+    datatype: currency
+    required: False
+    label above field: True
+    grid: 3
+    show if: credit_union
+  - Who Owns: credit_union_owned
+    choices:
+      - M
+      - P
+      - R
+    required: False
+    label above field: True
+    grid: 3
+    show if: credit_union
+  - Goes To: credit_union_goes_to
+    choices:
+      - P
+      - R
+    required: False
+    label above field: True
+    grid: 3
+    show if: credit_union
+  - Profit Sharing Plan: profit_sharing
+    datatype: yesnowide
+  - Market Value: profit_sharing_value
+    datatype: currency
+    label above field: True
+    grid: 3
+    show if: profit_sharing
+  - Amount Owed: profit_sharing_owed
+    datatype: currency
+    required: False
+    label above field: True
+    grid: 3
+    show if: profit_sharing
+  - Who Owns: profit_sharing_owned
+    choices:
+      - M
+      - P
+      - R
+    required: False
+    label above field: True
+    grid: 3
+    show if: profit_sharing
+  - Goes To: profit_sharing_goes_to
+    choices:
+      - P
+      - R
+    required: False
+    label above field: True
+    grid: 3
+    show if: profit_sharing
+  - Trusts: trusts
+    datatype: yesnowide
+  - Market Value: trusts_value
+    datatype: currency
+    label above field: True
+    grid: 3
+    show if: trusts
+  - Amount Owed: trusts_owed
+    datatype: currency
+    required: False
+    label above field: True
+    grid: 3
+    show if: trusts
+  - Who Owns: trusts_owned
+    choices:
+      - M
+      - P
+      - R
+    required: False
+    label above field: True
+    grid: 3
+    show if: trusts
+  - Goes To: trusts_goes_to
+    choices:
+      - P
+      - R
+    required: False
+    label above field: True
+    grid: 3
+    show if: trusts
+  - Mutual Funds: mutual_funds
+    datatype: yesnowide
+  - Market Value: mutual_funds_value
+    datatype: currency
+    label above field: True
+    grid: 3
+    show if: mutual_funds
+  - Amount Owed: mutual_funds_owed
+    datatype: currency
+    required: False
+    label above field: True
+    grid: 3
+    show if: mutual_funds
+  - Who Owns: mutual_funds_owned
+    choices:
+      - M
+      - P
+      - R
+    required: False
+    label above field: True
+    grid: 3
+    show if: mutual_funds
+  - Goes To: mutual_funds_goes_to
+    choices:
+      - P
+      - R
+    required: False
+    label above field: True
+    grid: 3
+    show if: mutual_funds
+  - Bonds: bonds
+    datatype: yesnowide
+  - Market Value: bonds_value
+    datatype: currency
+    label above field: True
+    grid: 3
+    show if: bonds
+  - Amount Owed: bonds_owed
+    datatype: currency
+    required: False
+    label above field: True
+    grid: 3
+    show if: bonds
+  - Who Owns: bonds_owned
+    choices:
+      - M
+      - P
+      - R
+    required: False
+    label above field: True
+    grid: 3
+    show if: bonds
+  - Goes To: bonds_goes_to
+    choices:
+      - P
+      - R
+    required: False
+    label above field: True
+    grid: 3
+    show if: bonds
+  - Pension Plans: pension_plans
+    datatype: yesnowide
+  - Market Value: pension_plans_value
+    datatype: currency
+    label above field: True
+    grid: 3
+    show if: pension_plans
+  - Amount Owed: pension_plans_owed
+    datatype: currency
+    required: False
+    label above field: True
+    grid: 3
+    show if: pension_plans
+  - Who Owns: pension_plans_owned
+    choices:
+      - M
+      - P
+      - R
+    required: False
+    label above field: True
+    grid: 3
+    show if: pension_plans
+  - Goes To: pension_plans_goes_to
+    choices:
+      - P
+      - R
+    required: False
+    label above field: True
+    grid: 3
+    show if: pension_plans
+  - IRA / SEP Accounts: ira
+    datatype: yesnowide
+  - Market Value: ira_value
+    datatype: currency
+    label above field: True
+    grid: 3
+    show if: ira
+  - Amount Owed: ira_owed
+    datatype: currency
+    required: False
+    label above field: True
+    grid: 3
+    show if: ira
+  - Who Owns: ira_owned
+    choices:
+      - M
+      - P
+      - R
+    required: False
+    label above field: True
+    grid: 3
+    show if: ira
+  - Goes To: ira_goes_to
+    choices:
+      - P
+      - R
+    required: False
+    label above field: True
+    grid: 3
+    show if: ira
+  - Whole Life Insurance: whole_life
+    datatype: yesnowide
+  - Market Value: whole_life_value
+    datatype: currency
+    label above field: True
+    grid: 3
+    show if: whole_life
+  - Amount Owed: whole_life_owed
+    datatype: currency
+    required: False
+    label above field: True
+    grid: 3
+    show if: whole_life
+  - Who Owns: whole_life_owned
+    choices:
+      - M
+      - P
+      - R
+    required: False
+    label above field: True
+    grid: 3
+    show if: whole_life
+  - Goes To: whole_life_goes_to
+    choices:
+      - P
+      - R
+    required: False
+    label above field: True
+    grid: 3
+    show if: whole_life
+  - Annuties: annuities
+    datatype: yesnowide
+  - Market Value: annuities_value
+    datatype: currency
+    label above field: True
+    grid: 3
+    show if: annuities
+  - Amount Owed: annuities_owed
+    datatype: currency
+    required: False
+    label above field: True
+    grid: 3
+    show if: annuities
+  - Who Owns: annuities_owned
+    choices:
+      - M
+      - P
+      - R
+    required: False
+    label above field: True
+    grid: 3
+    show if: annuities
+  - Goes To: annuities_goes_to
+    choices:
+      - P
+      - R
+    required: False
+    label above field: True
+    grid: 3
+    show if: annuities
+  - Guns: guns
+    datatype: yesnowide
+  - Market Value: guns_value
+    datatype: currency
+    label above field: True
+    grid: 3
+    show if: guns
+  - Amount Owed: guns_owed
+    datatype: currency
+    required: False
+    label above field: True
+    grid: 3
+    show if: guns
+  - Who Owns: guns_owned
+    choices:
+      - M
+      - P
+      - R
+    required: False
+    label above field: True
+    grid: 3
+    show if: guns
+  - Goes To: guns_goes_to
+    choices:
+      - P
+      - R
+    required: False
+    label above field: True
+    grid: 3
+    show if: guns
+  - Tools: tools
+    datatype: yesnowide
+  - Market Value: tools_value
+    datatype: currency
+    label above field: True
+    grid: 3
+    show if: tools
+  - Amount Owed: tools_owed
+    datatype: currency
+    required: False
+    label above field: True
+    grid: 3
+    show if: tools
+  - Who Owns: tools_owned
+    choices:
+      - M
+      - P
+      - R
+    required: False
+    label above field: True
+    grid: 3
+    show if: tools
+  - Goes To: tools_goes_to
+    choices:
+      - P
+      - R
+    required: False
+    label above field: True
+    grid: 3
+    show if: tools
+  - Jewelry: jewelry
+    datatype: yesnowide
+  - Market Value: jewelry_value
+    datatype: currency
+    label above field: True
+    grid: 3
+    show if: jewelry
+  - Amount Owed: jewelry_owed
+    datatype: currency
+    required: False
+    label above field: True
+    grid: 3
+    show if: jewelry
+  - Who Owns: jewelry_owned
+    choices:
+      - M
+      - P
+      - R
+    required: False
+    label above field: True
+    grid: 3
+    show if: jewelry
+  - Goes To: jewelry_goes_to
+    choices:
+      - P
+      - R
+    required: False
+    label above field: True
+    grid: 3
+    show if: jewelry
+  - Personal Property Not In Home: personal_prop
+    datatype: yesnowide
+  - Market Value: personal_prop_value
+    datatype: currency
+    label above field: True
+    grid: 3
+    show if: personal_prop
+  - Amount Owed: personal_prop_owed
+    datatype: currency
+    required: False
+    label above field: True
+    grid: 3
+    show if: personal_prop
+  - Who Owns: personal_prop_owned
+    choices:
+      - M
+      - P
+      - R
+    required: False
+    label above field: True
+    grid: 3
+    show if: personal_prop
+  - Goes To: personal_prop_goes_to
+    choices:
+      - P
+      - R
+    required: False
+    label above field: True
+    grid: 3
+    show if: personal_prop
+  - Other: other_property
+    datatype: yesnowide
+  - Other Property Description: other_property_description
+    show if: other_property
+  - Market Value: other_property_value
+    datatype: currency
+    label above field: True
+    grid: 3
+    show if: other_property
+  - Amount Owed: other_property_owed
+    datatype: currency
+    required: False
+    label above field: True
+    grid: 3
+    show if: other_property
+  - Who Owns: other_property_owned
+    choices:
+      - M
+      - P
+      - R
+    required: False
+    label above field: True
+    grid: 3
+    show if: other_property
+  - Goes To: other_property_goes_to
+    choices:
+      - P
+      - R
+    required: False
+    label above field: True
+    grid: 3
+    show if: other_property
+---
+section: property
+question: |
+  Marital Debts
+subquestion: |
+  Are there any marital debts?
+yesno: debts.there_are_any
+---
+section: property
+question: |
+  Debt Detail Information
+fields:
+  - Owed to Whom?: debts[i].owed_to
+  - Amount Owed?: debts[i].amount
+    datatype: currency
+  - For What?: debts[i].purpose
+    required: False
+  - Secured By?: debts[i].security
+    required: False
+  - Whose Debt: debts[i].owned_by
+    choices:
+      - M
+      - P
+      - R
+    required: False
+---
+section: property
+question: |
+  Other Debts?
+subquestion: |
+  So far you have listed:
+
+  % for debt in debts:
+  * ${ debt.owed_to } - $${ debt.amount }  
+  % endfor
+
+  Are there others?
+yesno: debts.there_is_another
+---
+section: property
+question: |
+  Conveyed Property
+subquestion: |
+  Was there any real or personal property with a value of $500.00 or more that was sold, 
+  given away, or otherwise transferred by you and/or your spouse within the last 5 years?
+yesno: conveyed_property.there_are_any
+---
+section: property
+question: |
+  Conveyance Detail Information
+fields:
+  - Property Description: conveyed_property[i].description
+  - Amount: conveyed_property[i].amount
+    datatype: currency
+    required: False
+  - To Whom?: conveyed_property[i].recipient
+    required: False
+---
+section: property
+question: |
+  More Property?
+subquestion: |
+  So far you have listed:
+
+  % for prop in conveyed_property:
+  * ${ prop.description }
+  % endfor
+
+  Are there others?
+yesno: conveyed_property.there_is_another
+---
+section: custody
+question: |
+  BCSE Services
+fields:
+  - I understand BCSE must be used to collect court-order child support: bcse_agreement
+    datatype: checkboxes
+    choices:
+      - I understand: yes
+    none of the above: False
+  - What level of BCSE services?: bcse_services
+    choices:
+      - Full Services: full_services
+      - Income Withholding Only: income_withholding
+      - No Services: no_services
+    js show if: |
+      val("bcse_agreement['yes']")
+---
+section: custody
+question: |
+  Custody Schedule
+subquestion: |
+  Using one of the "pre-built" options below will skip most follow-up questions
+  and set the custody schedule accordingly:
+
+  * **Sole Custody** will seek to remove all of Petitioner's time  
+  * **Shared Custody** will select a week-on, week-off schedule with weekend exchanges  
+  * **Petitioner Primary** will give Respondent every other Fri-Sun  
+
+field: custody_schedule
+choices:
+  - Sole Custody, Sole Decision Making: sole
+  - Shared Custody - Week On, Week Off: shared_weekly
+  - Petitioner Primary - Alternate Weekends: alternate_weekends
+  - Custom / Other: other
+---
+section: custody
+question: |
+  Parental Responsibilities
+fields:
+  - note: |
+      **What percentage of the following did Petitioner perform:**
+  - Daily Physical Needs (%): p_daily
+    datatype: range
+    min: 0
+    max: 100
+    step: 5
+    label above field: True
+  - Developmental Needs (%): p_development
+    datatype: range
+    min: 0
+    max: 100
+    step: 5
+    label above field: True
+  - Proper Behavior (%): p_behavior
+    datatype: range
+    min: 0
+    max: 100
+    step: 5
+    label above field: True
+  - Education Matters (%): p_education
+    datatype: range
+    min: 0
+    max: 100
+    step: 5
+    label above field: True
+  - Social Skills (%): p_social
+    datatype: range
+    min: 0
+    max: 100
+    step: 5
+    label above field: True
+  - Health Care (%): p_health
+    datatype: range
+    min: 0
+    max: 100
+    step: 5
+    label above field: True
+  - Moral and Religious (%): p_moral
+    datatype: range
+    min: 0
+    max: 100
+    step: 5
+    label above field: True
+  - Child Care (%): p_child_care
+    datatype: range
+    min: 0
+    max: 100
+    step: 5
+    label above field: True
+---
+section: custody
+question: |
+  Parental Responsibilities Cont.
+fields:
+  - Did Petitioner and Respondent ALWAYS share major decisions?: all_decisions
+    datatype: yesnoradio
+  - note: |
+      **Indicate the percentage each category is shared or made by Petitioner or Respondent**  
+    show if:
+      variable: all_decisions
+      is: False
+  - note: |
+      Education:  
+    grid: 3
+    show if:
+      variable: all_decisions
+      is: False
+  - Shared: education_shared
+    datatype: integer
+    min: 0
+    max: 100
+    grid: 2
+    label above field: True
+    required: False
+    show if:
+      variable: all_decisions
+      is: False
+  - Petitioner: education_p
+    datatype: integer
+    min: 0
+    max: 100
+    grid: 2
+    label above field: True
+    required: False
+    show if:
+      variable: all_decisions
+      is: False
+  - Respondent: education_r
+    datatype: integer
+    min: 0
+    max: 100
+    grid: 2
+    label above field: True
+    required: False
+    show if:
+      variable: all_decisions
+      is: False
+  - Who **should** decide: education_decision
+    choices:
+      - S: shared
+      - P: petitioner
+      - R: respondent
+    label above field: True
+    grid: 3
+    show if:
+      variable: all_decisions
+      is: False
+  - note: |
+      Non-Emergency Health Care:  
+    grid: 3
+    show if:
+      variable: all_decisions
+      is: False
+  - Shared: health_shared
+    datatype: integer
+    min: 0
+    max: 100
+    grid: 2
+    label above field: True
+    required: False
+    show if:
+      variable: all_decisions
+      is: False
+  - Petitioner: health_p
+    datatype: integer
+    min: 0
+    max: 100
+    grid: 2
+    label above field: True
+    required: False
+    show if:
+      variable: all_decisions
+      is: False
+  - Respondent: health_r
+    datatype: integer
+    min: 0
+    max: 100
+    grid: 2
+    label above field: True
+    required: False
+    show if:
+      variable: all_decisions
+      is: False
+  - Who **should** decide: health_decision
+    choices:
+      - S: shared
+      - P: petitioner
+      - R: respondent
+    label above field: True
+    grid: 3
+    show if:
+      variable: all_decisions
+      is: False
+  - note: |
+      Religion:  
+    grid: 3
+    show if:
+      variable: all_decisions
+      is: False
+  - Shared: religion_shared
+    datatype: integer
+    min: 0
+    max: 100
+    grid: 2
+    label above field: True
+    required: False
+    show if:
+      variable: all_decisions
+      is: False
+  - Petitioner: religion_p
+    datatype: integer
+    min: 0
+    max: 100
+    grid: 2
+    label above field: True
+    required: False
+    show if:
+      variable: all_decisions
+      is: False
+  - Respondent: religion_r
+    datatype: integer
+    min: 0
+    max: 100
+    grid: 2
+    label above field: True
+    required: False
+    show if:
+      variable: all_decisions
+      is: False
+  - Who **should** decide: religion_decision
+    choices:
+      - S: shared
+      - P: petitioner
+      - R: respondent
+    label above field: True
+    grid: 3
+    show if:
+      variable: all_decisions
+      is: False
+  - note: |
+      Child Care:  
+    grid: 3
+    show if:
+      variable: all_decisions
+      is: False
+  - Shared: child_care_shared
+    datatype: integer
+    min: 0
+    max: 100
+    grid: 2
+    label above field: True
+    required: False
+    show if:
+      variable: all_decisions
+      is: False
+  - Petitioner: child_care_p
+    datatype: integer
+    min: 0
+    max: 100
+    grid: 2
+    label above field: True
+    required: False
+    show if:
+      variable: all_decisions
+      is: False
+  - Respondent: child_care_r
+    datatype: integer
+    min: 0
+    max: 100
+    grid: 2
+    label above field: True
+    required: False
+    show if:
+      variable: all_decisions
+      is: False
+  - Who **should** decide: child_care_decision
+    choices:
+      - S: shared
+      - P: petitioner
+      - R: respondent
+    label above field: True
+    grid: 3
+    show if:
+      variable: all_decisions
+      is: False
+  - note: |
+      School Activities:  
+    grid: 3
+    show if:
+      variable: all_decisions
+      is: False
+  - Shared: school_shared
+    datatype: integer
+    min: 0
+    max: 100
+    grid: 2
+    label above field: True
+    required: False
+    show if:
+      variable: all_decisions
+      is: False  
+  - Petitioner: school_p
+    datatype: integer
+    min: 0
+    max: 100
+    grid: 2
+    label above field: True
+    required: False
+    show if:
+      variable: all_decisions
+      is: False
+  - Respondent: school_r
+    datatype: integer
+    min: 0
+    max: 100
+    grid: 2
+    label above field: True
+    required: False
+    show if:
+      variable: all_decisions
+      is: False
+  - Who **should** decide: school_decision
+    choices:
+      - S: shared
+      - P: petitioner
+      - R: respondent
+    label above field: True
+    grid: 3
+    show if:
+      variable: all_decisions
+      is: False
+  - Other 1: other_category_1  
+    grid: 3
+    label above field: True
+    required: False
+    show if:
+      variable: all_decisions
+      is: False
+  - Shared: other_category_1_shared
+    datatype: integer
+    min: 0
+    max: 100
+    grid: 3
+    label above field: True
+    required: False
+    show if:
+      variable: all_decisions
+      is: False
+  - Petitioner: other_category_1_p
+    datatype: integer
+    min: 0
+    max: 100
+    grid: 3
+    label above field: True
+    required: False
+    show if:
+      variable: all_decisions
+      is: False
+  - Respondent: other_category_1_r
+    datatype: integer
+    min: 0
+    max: 100
+    grid: 3
+    label above field: True
+    required: False
+    show if:
+      variable: all_decisions
+      is: False
+  - Other 2: other_category_2  
+    grid: 3
+    label above field: True
+    required: False
+    show if:
+      variable: all_decisions
+      is: False
+  - Shared: other_category_2_shared
+    datatype: integer
+    min: 0
+    max: 100
+    grid: 3
+    label above field: True
+    required: False
+    show if:
+      variable: all_decisions
+      is: False
+  - Petitioner: other_category_2_p
+    datatype: integer
+    min: 0
+    max: 100
+    grid: 3
+    label above field: True
+    required: False
+    show if:
+      variable: all_decisions
+      is: False
+  - Respondent: other_category_2_r
+    datatype: integer
+    min: 0
+    max: 100
+    grid: 3
+    label above field: True
+    required: False
+    show if:
+      variable: all_decisions
+      is: False
+validation code: |
+  if education_shared + education_p + education_r > 100:
+    validation_error("Please check your Education numbers", field="education_shared")
+  if health_shared + health_p + health_r > 100:
+    validation_error("Please check your Health Care numbers", field="health_shared")
+  if religion_shared + religion_p + religion_r > 100:
+    validation_error("Please check your Religion numbers", field="religion_shared")
+  if child_care_shared + child_care_p + child_care_r > 100:
+    validation_error("Please check your Child Care numbers", field="child_care_shared")
+  if school_shared + school_p + school_r > 100:
+    validation_error("Please check your School Activities numbers", field="school_shared")
+  if other_category_1_shared + other_category_1_p + other_category_1_r > 100:
+    validation_error("Please check your Other 1numbers", field="other_category_1")
+  if other_category_2_shared + other_category_2_p + other_category_2_r > 100:
+    validation_error("Please check your Other 2 numbers", field="other_category_2")
+---
+section: custody
+question: |
+  Schedules and Activities
+fields:
+  - Petitioner's Work Schedule: p_work_schedule
+    input type: area
+    required: False
+  - note: |
+      **School, After-School, and Sports Activities**
+  - no label: no_school
+    datatype: checkboxes
+    choices:
+      - None of the children attend school, pre-school, or sports: yes
+    none of the above: False
+  - School / sports activity detail: school_detail
+    input type: area
+    required: False
+    js hide if: |
+      val("no_school['yes']")
+  - note: |
+      **Child Care**
+  - no label: no_child_care
+    datatype: checkboxes
+    choices:
+      - No child care by anyone other than parents: yes
+    none of the above: False
+  - Child care detail: child_care_detail
+    input type: area
+    required: False
+    js hide if: |
+      val("no_child_care['yes']")
+---
+section: custody
+question: |
+  Parental Time and Visitation Restrictions
+fields:
+  - no label: restrictions
+    input type: radio
+    choices:
+      - No Restrictions: no_restrictions
+      - Restrictions: restrictions
+    label above field: True
+  - Restrictions Reasons: restrictions_reasons
+    input type: area
+    label above field: True
+    show if:
+      variable: restrictions
+      is: restrictions
+  - Visitation: visitation
+    input type: radio  
+    choices:
+      - Regular visitation: regular_visitation
+      - No visitation for Respondent: no_visitation
+      - Supervised visitation: supervised_visitation
+    show if:
+      variable: restrictions
+      is: restrictions
+  - Supervisor: supervisor
+    show if:
+      variable: visitation
+      is: supervised_visitation
+  - Supervised Location: supervised_location
+    show if:
+      variable: visitation
+      is: supervised_visitation
+  - no label: supervised_transfer
+    datatype: checkboxes
+    choices:
+      - Transfers should be supervised: yes
+    none of the above: False
+    show if:
+      variable: restrictions
+      is: restrictions
+  - Transfer Supervisor: transfer_supervisor
+    js show if:
+      val("supervised_transfer['yes']")
+  - Transfer Location: transfer_location
+    js show if:
+      val("supervised_transfer['yes']")
+  - Other Proposed Restrictions: other_restrictions
+    input type: area
+    label above field: True
+    required: False
+    show if:
+      variable: restrictions
+      is: restrictions
+---
+generic object: DACatchAll
+question: |
+  What is ${ x.object_name() }?
+fields:
+  - no label: x.value
+validation code: |
+  define(x.instanceName, x.value)
+---
+if: |
+  x.context == 'float'
+generic object: DACatchAll
+question: |
+  How much is ${ x.object_name() }?
+fields:
+  - Amount: x.value
+    datatype: currency
+validation code: |
+  define(x.instanceName, x.value)
+---
+ga id: divorceWithQuickEndpoint
+question: |
+  Final Information
+subquestion: |
+  You can download the PDFs for your **Divorce with Children Petition** below.
+
+  % if divorce_with_submitted_to_LS:
+  File saved to the LegalServer case as both a PDF file. 
+  % else:
+  There was an error uploading file to Legalserver.
+  % endif
+
+  ${ action_button_html(divorce_with_bundle.url_for(), classname='btn btn-da btn-primary', label='Download All', icon='file-pdf') }
+  ${ action_button_html(url_action('send_divorce_with_files'), classname='btn btn-da btn-primary', label='Email these to me', icon='envelope') }
+field: generate_divorce_with_packet
+manual attachment list: True
+allow emailing: False
+buttons:
+  - All done
+---
+code: |
+  divorce_with_documents = [sca_fc_103, sca_fc_101, sca_fc_104, sca_fc_106, sca_fc_112, sca_fc_121, sca_fc_128, sca_fc_129, fdvscap]
+  divorce_with_bundle = pdf_concatenate(divorce_with_documents, filename=client.name.full() + " Divorce Petition.pdf")
+  add_file_to_LS = post_file_to_legalserver_documents_webhook(legalserver_site=legalserver_site, file_path=zip_file(divorce_with_bundle, filename='files.zip').path(), legalserver_matter_uuid=legalserver_matter_uuid, save_to_sharepoint=True)
+  divorce_with_submitted_to_LS = True
+---
+event: send_divorce_with_files
+code: |
+  send_email(to=client, attachments=divorce_with_bundle,template=email_all_files)
+---
+ga id: divorceWithoutQuickEndpoint
+question: |
+  Final Information
+subquestion: |
+  You can download the PDFs for your **Divorce Petition** below.
+
+  % if divorce_without_submitted_to_LS:
+  File saved to the LegalServer case as both a PDF file. 
+  % else:
+  There was an error uploading file to Legalserver.
+  % endif
+
+  ${ action_button_html(divorce_without_bundle.url_for(), classname='btn btn-da btn-primary', label='Download All', icon='file-pdf') }
+  ${ action_button_html(url_action('send_divorce_without_files'), classname='btn btn-da btn-primary', label='Email these to me', icon='envelope') }
+field: generate_divorce_without_packet
+manual attachment list: True
+allow emailing: False
+buttons:
+  - All done
+---
+code: |
+  divorce_without_documents = [sca_fc_103, sca_fc_101, sca_fc_104, sca_fc_106, sca_fc_112, fdvscap]
+  divorce_without_bundle = pdf_concatenate(divorce_without_documents, filename=client.name.full() + " Divorce Petition.pdf")
+  add_file_to_LS = post_file_to_legalserver_documents_webhook(legalserver_site=legalserver_site, file_path=zip_file(divorce_without_bundle, filename='files.zip').path(), legalserver_matter_uuid=legalserver_matter_uuid, save_to_sharepoint=True)
+  divorce_without_submitted_to_LS = True
+---
+event: send_divorce_without_files
+code: |
+  send_email(to=client, attachments=divorce_without_bundle,template=email_all_files)
+---
+template: email_all_files
+subject: |
+  LAWV Family Law Packets
+content: |
+  Your document(s) is/are attached.
+
+  Additional information can always be found at [Legal Aid of West Virginia](https://legalaidwv.org/).
+
+  *NOTE: This email address is not monitored.  Please do not reply to this message.*
+---
+# Petition for Divorce - 101
+attachment:
+  - name: sca_fc_101
+    filename: sca_fc_101
+    pdf template file: sca_fc_101.pdf
+    variable name: sca_fc_101
+    fields:
+      - "upper_county": ${ client.address.county.upper() }
+      #- "case_num": ${ case_number }
+      - "p_name": ${ client.name.full(middle="full") }
+      - "r_name": ${ legalserver_adverse_parties[0].name.full(middle="full") }
+      #- "dv_proceeding": No
+      #- "p_resident": Yes
+      #- "r_resident": No
+      #- "wv_married": No
+      - "county": ${ client.address.county }
+      #- "cohabitation": No
+      #- "r_resides": No
+      #- "p_resides": No
+      #- "other_jurisdiction": No
+      #- "other_jurisdiction_detail": "something"
+      - "p_county": ${ client.address.county }
+      - "r_county": ${ legalserver_adverse_parties[0].address.county }
+      - "respondent_resides": |
+          ${ "address_unknown" if not defined("legalserver_adverse_parties[0].address") else "in_wv" if legalserver_adverse_parties[0].address.state == "WV" else "out_of_state" }
+      - "r_address": ${ legalserver_adverse_parties[0].address.on_one_line() if not legalserver_adverse_parties[0].address.state == "WV" else "" }
+      #- "marriage_county": "something"
+      #- "marriage_state": "something"
+      #- "marriage_day": "something"
+      #- "marriage_month": "something"
+      #- "marriage_year": "something"
+      #- "cohabit_county": "something"
+      #- "cohabit_address": "something"
+      #- "cohabit_state": "something"
+      #- "cohabit_month": "something"
+      #- "cohabit_day": "something"
+      #- "cohabit_year": "something"
+      - "under_18": ${ "yes" if p_age > 18 and r_age > 18 else "no" }
+      #- "military": "no"
+      #- "incompetent": "no"
+      #- "incarcerated": "no"
+      - "children_of_marriage": ${ "yes" if children.there_are_any == True else "no" }
+      - "minor_1_name": ${ children[0].name.full() if defined("children[0]") else ""}
+      - "minor_1_dob": ${ children[0].date_of_birth if (defined("children[0]") and defined("children[0].date_of_birth")) else ""}
+      - "minor_2_name": ${ children[1].name.full() if defined("children[1]") else ""}
+      - "minor_2_dob": ${ children[1].date_of_birth if (defined("children[1]") and defined("children[1].date_of_birth")) else ""}
+      - "minor_3_name": ${ children[2].name.full() if defined("children[2]") else ""}
+      - "minor_3_dob": ${ children[2].date_of_birth if (defined("children[2]") and defined("children[2].date_of_birth")) else ""}
+      - "minor_4_name": ${ children[3].name.full() if defined("children[3]") else ""}
+      - "minor_4_dob": ${ children[3].date_of_birth if (defined("children[3]") and defined("children[3].date_of_birth")) else ""}      
+      - "minor_5_name": ${ children[4].name.full() if defined("children[4]") else ""}
+      - "minor_5_dob": ${ children[4].date_of_birth if (defined("children[4]") and defined("children[4].date_of_birth")) else ""}
+      - "minor_6_name": ${ children[5].name.full() if defined("children[5]") else ""}
+      - "minor_6_dob": ${ children[5].date_of_birth if (defined("children[5]") and defined("children[5].date_of_birth")) else ""}
+      - "minor_7_name": ${ children[6].name.full() if defined("children[6]") else ""}
+      - "minor_7_dob": ${ children[6].date_of_birth if (defined("children[6]") and defined("children[6].date_of_birth")) else ""}
+      - "minor_8_name": ${ children[7].name.full() if defined("children[7]") else ""}
+      - "minor_8_dob": ${ children[7].date_of_birth if (defined("children[7]") and defined("children[7].date_of_birth")) else ""}
+      #- "child_expected": No
+      #- "expected_dob": "something"
+      #- "reside_with": No
+      #- "other_address_1": "something"
+      #- "other_name_1": "something"
+      #- "other_address_2": "something"
+      #- "other_name_2": "something"
+      #- "other_name_3": "something"
+      #- "other_address_3": "something"
+      #- "additional_sheets": "something"
+      #- "prior_address_child_1": "something"
+      #- "prior_address_1": "something"
+      #- "prior_address_dates_1": "something"
+      #- "prior_address_child_2": "something"
+      #- "prior_address_2": "something"
+      #- "prior_address_dates_2": "something"
+      #- "prior_address_child_3": "something"
+      #- "prior_address_3": "something"
+      #- "prior_address_dates_3": "something"
+      #- "prior_address_child_4": "something"
+      #- "prior_address_4": "something"
+      #- "prior_address_dates_4": "something"
+      #- "prior_address_child_5": "something"
+      #- "prior_address_5": "something"
+      #- "prior_address_dates_5": "something"
+      #- "health_insurance": No
+      #- "health_insurance_other_name": "something"
+      #- "health_insurance_other_address": "something"
+      #- "other_proceeding_party": No
+      #- "other_proceeding_aware": No
+      #- "other_party_rights": No
+      #- "resided_6_months": No
+      #- "significant_connection": No
+      #- "abandoned": No
+      #- "emergency": No
+      #- "no_other_state": No
+      #- "other_state_declined": No
+      #- "parenting_allocation": No
+      #- "abuse": No
+      #- "sexual_assault": No
+      - "domestic_violence": ${ "yes" if client.victim_of_domestic_violence == True else "no" }
+      #- "access_interference": No
+      #- "false_reports": No
+      #- "sole_decision_making": No
+      #- "limit_respondent": No
+      #- "no_contact": No
+      #- "spousal_support": No
+      #- "child_support": No
+      #- "marital_property": No
+      #- "prior_name": "something"
+      #- "resume_name": No
+      - "irreconcilable_differences": "yes"
+      #- "separate": No
+      - "cruelty": ${ "yes" if client.victim_of_domestic_violence == True else "no" }
+      #- "other_grounds": No
+      #- "other_grounds_detail": "something"
+      - "approve_parenting_plan": ${ "yes" if divorce_with_children == "yes" else "no"}
+      #- "pay_child_spport": No
+      #- "maintain_insurance": No
+      #- "pay_spousal_support": No
+      #- "divide_property": No
+      #- "marital_home": No
+      #- "marital_home_possession": No
+      #- "marital_home_address": "something"
+      #- "award_vehicle": No
+      #- "vehicle_possession": No
+      #- "vehicle_detail": "something"
+      #- "award_furniture": No
+      #- "furniture_possession": No
+      #- "award_property": No
+      #- "property_detail_1": "something"
+      #- "property_value_1": "something"
+      #- "property_detail_2": "something"
+      #- "property_value_2": "something"
+      #- "property_detail_3": "something"
+      #- "property_value_3": "something"
+      #- "property_detail_4": "something"
+      #- "property_value_4": "something"
+      #- "property_detail_5": "something"
+      #- "property_value_5": "something"
+      #- "petitioner_debts": No
+      #- "p_debt_1": "something"
+      #- "p_debt_value_1": "something"
+      #- "p_debt_2": "something"
+      #- "p_debt_value_2": "something"
+      #- "p_debt_3": "something"
+      #- "p_debt_value_3": "something"
+      #- "p_debt_4": "something"
+      #- "p_debt_value_4": "something"
+      #- "p_debt_5": "something"
+      #- "p_debt_value_5": "something"
+      #- "respondent_debts": No
+      #- "r_debt_1": "something"
+      #- "r_debt_value_1": "something"
+      #- "r_debt_2": "something"
+      #- "r_debt_value_2": "something"
+      #- "r_debt_3": "something"
+      #- "r_debt_value_3": "something"
+      #- "r_debt_4": "something"
+      #- "r_debt_value_4": "something"
+      #- "r_debt_5": "something"
+      #- "r_debt_value_5": "something"
+      - "prohibit_conveyance": "yes"
+      #- "grant_resume_name": No
+      - "prohibit_abuse": "yes"
+      #- "other_relief": No
+      #- "other_relief_detail": "something"
+---
+# Domestic Civil Case Information Statement -103
+attachment:
+  - name: sca_fc_103
+    filename: sca_fc_103
+    pdf template file: sca_fc_103.pdf
+    variable name: sca_fc_103
+    fields:
+      - "upper_county": ${ client.address.county.upper() }
+      #- "case_num": ${ case_number }
+      - "p_name": ${ client.name.full(middle="full") }
+      - "r_name": ${ legalserver_adverse_parties[0].name.full(middle="full") }
+      #- "confidential": No
+      - "p_address_line_one": ${ client.address.line_one() }
+      - "p_address_line_two": ${ client.address.line_two() }
+      - "p_phone": ${ client.phone_number }
+      - "p_gender": ${ client.gender.lower() }
+      - "p_dob": ${ client.birthdate }
+      - "p_ssn": ${ client.ssn }
+      - "p_race": ${ p_race }
+      - "minor_1_name": ${ children[0].name.full() if defined("children[0]") else ""}
+      - "minor_1_dob": ${ children[0].date_of_birth if (defined("children[0]") and defined("children[0].date_of_birth")) else ""}
+      - "minor_1_ssn": ${ children[0].ssn if (defined("children[0]") and defined("children[0].ssn")) else ""}
+      - "minor_2_name": ${ children[1].name.full() if defined("children[1]") else ""}
+      - "minor_2_dob": ${ children[1].date_of_birth if (defined("children[1]") and defined("children[1].date_of_birth")) else ""}
+      - "minor_2_ssn": ${ children[1].ssn if (defined("children[1]") and defined("children[1].ssn")) else ""}
+      - "minor_3_name": ${ children[2].name.full() if defined("children[2]") else ""}
+      - "minor_3_dob": ${ children[2].date_of_birth if (defined("children[2]") and defined("children[2].date_of_birth")) else ""}
+      - "minor_3_ssn": ${ children[2].ssn if (defined("children[2]") and defined("children[2].ssn")) else ""}
+      - "minor_4_name": ${ children[3].name.full() if defined("children[3]") else ""}
+      - "minor_4_dob": ${ children[3].date_of_birth if (defined("children[3]") and defined("children[3].date_of_birth")) else ""}
+      - "minor_4_ssn": ${ children[3].ssn if (defined("children[3]") and defined("children[3].ssn")) else ""}
+      - "accommodations": ${ accommodations }
+      - "wheelchair": ${ "Yes" if client.is_disabled else "No" }
+      - "interpreter": ${ "Yes" if client.interpreter else "No" }
+      - "r_address_line_one": ${ legalserver_adverse_parties[0].address.line_one() }                            
+      - "r_address_line_two": ${ legalserver_adverse_parties[0].address.line_two() }
+      - "r_phone": ${ legalserver_adverse_parties[0].phone_home }
+      - "r_gender": ${ legalserver_adverse_parties[0].gender.lower() }
+      - "r_ssn": ${ legalserver_adverse_parties[0].ssn }
+      - "r_dob": ${ legalserver_adverse_parties[0].date_of_birth }
+      - "r_race": ${ r_race }
+      - "divorce_without_children": ${ divorce_without_children }
+      - "divorce_with_children": ${ divorce_with_children }
+      - "grandparent_visitation": ${ grandparent_visitation }
+      - "annulment": ${ annulment }
+      - "separate_maintenance": ${ separate_maintenance }
+      - "child_support_only": ${ child_support_only }
+      - "child_custody_without_divorce": ${ child_custody_without_divorce }
+      - "paternity": ${ paternity }
+      - "modification": ${ modification }
+      - "contempt": ${ contempt }
+      - "infant_guardianship": ${ infant_guardianship }
+      #- "other_relief": No
+      #- "other_relief_detail": something
+      #- "alimony": No
+      #- "dvpo": No
+      #- "cps": No
+      #- "attorney": No
+      #- "attorney_name": something
+      #- "attorney_firm": something
+      #- "attorney_address": something
+      #- "attorney_phone": something
+      #- "Signature": |
+      #    ${ client.signature }
+      #- "date": something
+---
+# Vital Statistics - 104
+attachment:
+  - name: sca_fc_104
+    filename: sca_fc_104
+    pdf template file: sca_fc_104.pdf
+    variable name: sca_fc_104
+    fields:
+      - "upper_county": ${ client.address.county.upper() }
+      #- "case_num": something
+      - "p_name": ${ client.name.full(middle="full") }
+      - "r_name": ${ legalserver_adverse_parties[0].name.full(middle="full") }
+      #- "prior_name": something
+      - "p_dob": ${ client.birthdate }
+      - "r_dob": ${ legalserver_adverse_parties[0].date_of_birth }
+      #- "marriage_county": something
+      #- "marriage_state": something
+      #- "marriage_date": something
+      - "divorce": "yes"
+      #- "annulment": No
+      - "minor_1_name": ${ children[0].name.full() if defined("children[0]") else ""}
+      - "minor_1_dob": ${ children[0].date_of_birth if (defined("children[0]") and defined("children[0].date_of_birth")) else ""}
+      - "minor_2_name": ${ children[1].name.full() if defined("children[1]") else ""}
+      - "minor_2_dob": ${ children[1].date_of_birth if (defined("children[1]") and defined("children[1].date_of_birth")) else ""}
+      - "minor_3_name": ${ children[2].name.full() if defined("children[2]") else ""}
+      - "minor_3_dob": ${ children[2].date_of_birth if (defined("children[2]") and defined("children[2].date_of_birth")) else ""}
+      - "minor_4_name": ${ children[3].name.full() if defined("children[3]") else ""}
+      - "minor_4_dob": ${ children[3].date_of_birth if (defined("children[3]") and defined("children[3].date_of_birth")) else ""}      
+      - "minor_5_name": ${ children[4].name.full() if defined("children[4]") else ""}
+      - "minor_5_dob": ${ children[4].date_of_birth if (defined("children[4]") and defined("children[4].date_of_birth")) else ""}
+      - "minor_6_name": ${ children[5].name.full() if defined("children[5]") else ""}
+      - "minor_6_dob": ${ children[5].date_of_birth if (defined("children[5]") and defined("children[5].date_of_birth")) else ""}
+      - "minor_7_name": ${ children[6].name.full() if defined("children[6]") else ""}
+      - "minor_7_dob": ${ children[6].date_of_birth if (defined("children[6]") and defined("children[6].date_of_birth")) else ""}
+---
+# Financial Statement - 106
+attachment:
+  - name: sca_fc_106
+    filename: sca_fc_106
+    pdf template file: sca_fc_106.pdf
+    variable name: sca_fc_106
+    fields:
+      - "upper_county": ${ client.address.county.upper() }
+      #- "case_num": something
+      - "p_name": ${ client.name.full(middle="full") }
+      - "r_name": ${ legalserver_adverse_parties[0].name.full(middle="full") }
+      #- "protect_information": something
+      - "name": ${ client.name.full(middle="full") }
+      - "dob": ${ client.birthdate }
+      - "address": ${ client.address.on_one_line() }
+      - "age": ${ p_age }
+      - "phone_num": ${ client.phone_number }
+      - "disability": ${ accommodations }
+      #- "education": No
+      #- "employer": something
+      #- "employment_type": something
+      #- "employer_address": something
+      #- "employer_phone": something
+      #- "date_employed": something
+      - "gross_pay": ${ legalserver_incomes[0].amount }
+      - "pay_period": ${ legalserver_incomes[0].period }
+      #- "tanf_amount": something
+      #- "tanf": No
+      - "salary": ${ legalserver_incomes[0].amount }
+      #- "pension": something
+      #- "ssi": something
+      #- "wages": something
+      #- "severance": something
+      #- "commissions": something
+      #- "workers_comp": something
+      #- "bonuses": something
+      #- "other_income": something
+      #- "tips": something
+      #- "other_income_detail": something
+      #- "marital_home_m": No
+      #- "marital_home_p": No
+      #- "marital_home_r": No
+      #- "marital_home_value": something
+      #- "marital_home_owed": something
+      #- "other_real_estate_m": No
+      #- "other_real_estate_p": No
+      #- "other_real_estate_r": No
+      #- "other_real_estate_value": something
+      #- "other_real_estate_owed": something
+      #- "mobile_home_m": No
+      #- "mobile_home_p": No
+      #- "mobile_home_r": No
+      #- "mobile_home_value": something
+      #- "mobile_home_owed": something
+      #- "motor_vehicle_1_m": No
+      #- "motor_vehicle_1_p": No
+      #- "motor_vehicle_1_r": No
+      #- "motor_vehicle_1_description": something
+      #- "motor_vehicle_1_value": something
+      #- "motor_vehicle_1_owed": something
+      #- "motor_vehicle_2_m": No
+      #- "motor_vehicle_2_p": No
+      #- "motor_vehicle_2_r": No
+      #- "motor_vehicle_2_description": something
+      #- "motor_vehicle_2_value": something
+      #- "motor_vehicle_2_owed": something
+      #- "household_goods_m": No
+      #- "household_goods_p": No
+      #- "household_goods_r": No
+      #- "household_goods_value": something
+      #- "household_goods_owed": something
+      #- "checking_m": No
+      #- "checking_p": No
+      #- "checking_r": No
+      #- "checking_value": something
+      #- "checking_owed": something
+      #- "savings_m": No
+      #- "savings_p": No
+      #- "savings_r": No
+      #- "savings_value": something
+      #- "savings_owed": something
+      #- "money_market_m": No
+      #- "money_market_p": No
+      #- "money_market_r": No
+      #- "money_market_value": something
+      #- "money_market_owed": something
+      #- "stocks_m": No
+      #- "stocks_p": No
+      #- "stocks_r": No
+      #- "stocks_value": something
+      #- "stocks_owed": something
+      #- "credit_union_m": No
+      #- "credit_union_p": No
+      #- "credit_union_r": No
+      #- "credit_union_value": something
+      #- "credit_union_owed": something
+      #- "profit_sharing_m": No
+      #- "profit_sharing_p": No
+      #- "profit_sharing_r": No
+      #- "profit_sharing_value": something
+      #- "profit_sharing_owed": something
+      #- "trusts_m": No
+      #- "trusts_p": No
+      #- "trusts_r": No
+      #- "trusts_value": something
+      #- "trusts_owed": something
+      #- "mutual_fund_m": No
+      #- "mutual_fund_p": No
+      #- "mutual_fund_r": No
+      #- "mutual_fund_value": something
+      #- "mutual_fund_owed": something
+      #- "bonds_m": No
+      #- "bonds_p": No
+      #- "bonds_r": No
+      #- "bonds_value": something
+      #- "bonds_owed": something
+      #- "pension_m": No
+      #- "pension_p": No
+      #- "pension_r": No
+      #- "pension_value": something
+      #- "pension_owed": something
+      #- "ira_m": No
+      #- "ira_p": No
+      #- "ira_r": No
+      #- "ira_value": something
+      #- "ira_owed": something
+      #- "whole_life_m": No
+      #- "whole_life_p": No
+      #- "whole_life_r": No
+      #- "whole_life_value": something
+      #- "whole_life_owed": something
+      #- "annuities_m": No
+      #- "annuities_p": No
+      #- "annuities_r": No
+      #- "annuities_value": something
+      #- "annuities_owed": something
+      #- "guns_m": No
+      #- "guns_p": No
+      #- "guns_r": No
+      #- "guns_value": something
+      #- "guns_owed": something
+      #- "tools_m": No
+      #- "tools_p": No
+      #- "tools_r": No
+      #- "tools_value": something
+      #- "tools_owed": something
+      #- "jewelry_m": No
+      #- "jewelry_p": No
+      #- "jewelry_r": No
+      #- "jewelry_value": something
+      #- "jewelry_owed": something
+      #- "personal_prop_m": No
+      #- "personal_prop_p": No
+      #- "personal_prop_r": No
+      #- "personal_prop_value": something
+      #- "personal_prop_owed": something
+      #- "other_property_m": No
+      #- "other_property_p": No
+      #- "other_property_r": No
+      #- "other_property_description": something
+      #- "other_property_value": something
+      #- "other_property_owed": something
+      #- "conveyed_property_1_description": something
+      #- "conveyed_property_1_amount": something
+      #- "conveyed_property_1_recipient": something
+      #- "conveyed_property_2_description": something
+      #- "conveyed_property_2_amount": something
+      #- "conveyed_property_2_recipient": something
+      #- "conveyed_property_3_description": something
+      #- "conveyed_property_3_amount": something
+      #- "conveyed_property_3_recipient": something
+      #- "conveyed_property_4_description": something
+      #- "conveyed_property_4_amount": something
+      #- "conveyed_property_4_recipient": something
+      #- "conveyed_property_5_description": something
+      #- "conveyed_property_5_amount": something
+      #- "conveyed_property_5_recipient": something
+      #- "conveyed_property_6_description": something
+      #- "conveyed_property_6_amount": something
+      #- "conveyed_property_6_recipient": something
+      #- "conveyed_property_7_description": something
+      #- "conveyed_property_7_amount": something
+      #- "conveyed_property_7_recipient": something
+      #- "conveyed_property_8_description": something
+      #- "conveyed_property_8_amount": something
+      #- "conveyed_property_8_recipient": something
+      #- "debt_1_m": No
+      #- "debt_1_p": No
+      #- "debt_1_r": No
+      #- "debt_owed_to_1": something
+      #- "debt_amount_1": something
+      #- "debt_purpose_1": something
+      #- "debt_secured_1": something
+      #- "debt_2_m": No
+      #- "debt_2_p": No
+      #- "debt_2_r": No
+      #- "debt_owed_to_2": something
+      #- "debt_amount_2": something
+      #- "debt_purpose_2": something
+      #- "debt_secured_2": something
+      #- "debt_3_m": No
+      #- "debt_3_p": No
+      #- "debt_3_r": No
+      #- "debt_owed_to_3": something
+      #- "debt_amount_3": something
+      #- "debt_purpose_3": something
+      #- "debt_secured_3": something
+      #- "debt_4_m": No
+      #- "debt_4_p": No
+      #- "debt_4_r": No
+      #- "debt_owed_to_4": something
+      #- "debt_amount_4": something
+      #- "debt_purpose_4": something
+      #- "debt_secured_4": something
+      #- "debt_5_m": No
+      #- "debt_5_p": No
+      #- "debt_5_r": No
+      #- "debt_owed_to_5": something
+      #- "debt_amount_5": something
+      #- "debt_purpose_5": something
+      #- "debt_secured_5": something
+      #- "debt_6_m": No
+      #- "debt_6_p": No
+      #- "debt_6_r": No
+      #- "debt_owed_to_6": something
+      #- "debt_amount_6": something
+      #- "debt_purpose_6": something
+      #- "debt_secured_6": something
+      #- "debt_7_m": No
+      #- "debt_7_p": No
+      #- "debt_7_r": No
+      #- "debt_owed_to_7": something
+      #- "debt_amount_7": something
+      #- "debt_purpose_7": something
+      #- "debt_secured_7": something
+      #- "debt_8_m": No
+      #- "debt_8_p": No
+      #- "debt_8_r": No
+      #- "debt_owed_to_8": something
+      #- "debt_amount_8": something
+      #- "debt_purpose_8": something
+      #- "debt_secured_8": something
+      #- "debt_9_m": No
+      #- "debt_9_p": No
+      #- "debt_9_r": No
+      #- "debt_owed_to_9": something
+      #- "debt_amount_9": something
+      #- "debt_purpose_9": something
+      #- "debt_secured_9": something
+      #- "debt_total_monthly_payments": something
+      #- "debt_total_owed": something
+      - "minor_1_name": ${ children[0].name.full() if defined("children[0]") else ""}
+      - "minor_1_dob": ${ children[0].date_of_birth if (defined("children[0]") and defined("children[0].date_of_birth")) else ""}
+      - "minor_1_age": ${ children[0].age if (defined("children[0]") and defined("children[0].date_of_birth")) else ""}
+      - "minor_1_ssn": ${ children[0].ssn if (defined("children[0]") and defined("children[0].ssn")) else ""}
+      - "minor_2_name": ${ children[1].name.full() if defined("children[1]") else ""}
+      - "minor_2_dob": ${ children[1].date_of_birth if (defined("children[1]") and defined("children[1].date_of_birth")) else ""}
+      - "minor_2_age": ${ children[1].age if (defined("children[1]") and defined("children[1].date_of_birth")) else ""}
+      - "minor_2_ssn": ${ children[1].ssn if (defined("children[1]") and defined("children[1].ssn")) else ""}
+      - "minor_3_name": ${ children[2].name.full() if defined("children[2]") else ""}
+      - "minor_3_dob": ${ children[2].date_of_birth if (defined("children[2]") and defined("children[2].date_of_birth")) else ""}
+      - "minor_3_age": ${ children[2].age if (defined("children[2]") and defined("children[2].date_of_birth")) else ""}
+      - "minor_3_ssn": ${ children[2].ssn if (defined("children[2]") and defined("children[2].ssn")) else ""}
+      - "minor_4_name": ${ children[3].name.full() if defined("children[3]") else ""}
+      - "minor_4_dob": ${ children[3].date_of_birth if (defined("children[3]") and defined("children[3].date_of_birth")) else ""}
+      - "minor_4_age": ${ children[3].age if (defined("children[3]") and defined("children[3].date_of_birth")) else ""}
+      - "minor_4_ssn": ${ children[3].ssn if (defined("children[3]") and defined("children[3].ssn")) else ""}
+      - "minor_5_name": ${ children[4].name.full() if defined("children[4]") else ""}
+      - "minor_5_dob": ${ children[4].date_of_birth if (defined("children[4]") and defined("children[4].date_of_birth")) else ""}
+      - "minor_5_age": ${ children[4].age if (defined("children[4]") and defined("children[4].date_of_birth")) else ""}
+      - "minor_5_ssn": ${ children[4].ssn if (defined("children[4]") and defined("children[4].ssn")) else ""}
+      - "minor_6_name": ${ children[5].name.full() if defined("children[5]") else ""}
+      - "minor_6_dob": ${ children[5].date_of_birth if (defined("children[5]") and defined("children[5].date_of_birth")) else ""}
+      - "minor_6_age": ${ children[5].age if (defined("children[5]") and defined("children[5].date_of_birth")) else ""}
+      - "minor_6_ssn": ${ children[5].ssn if (defined("children[5]") and defined("children[5].ssn")) else ""}
+      - "minor_7_name": ${ children[6].name.full() if defined("children[6]") else ""}
+      - "minor_7_dob": ${ children[6].date_of_birth if (defined("children[6]") and defined("children[6].date_of_birth")) else ""}
+      - "minor_7_age": ${ children[6].age if (defined("children[6]") and defined("children[6].date_of_birth")) else ""}
+      - "minor_7_ssn": ${ children[6].ssn if (defined("children[6]") and defined("children[6].ssn")) else ""}      
+      #- "ss_benefits": No
+      #- "ss_amount": something
+      #- "income": No
+      #- "income_amount": something
+      #- "special_needs_children": No
+      #- "special_needs": something
+      #- "childcare_paid": No
+      #- "child_care_received": something
+      #- "other_minor_children": No
+      #- "support_disabled_adults": No
+      #- "da_1_name": something
+      #- "da_1_age": something
+      #- "da_1_disability": something
+      #- "da_1_support": something
+      #- "da_2_name": something
+      #- "da_2_age": something
+      #- "da_2_disability": something
+      #- "da_2_support": something
+      #- "da_3_name": something
+      #- "da_3_age": something
+      #- "da_3_disability": something
+      #- "da_3_support": something
+      #- "da_4_name": something
+      #- "da_4_age": something
+      #- "da_4_disability": something
+      #- "da_4_support": something
+      #- "da_5_name": something
+      #- "da_5_age": something
+      #- "da_5_disability": something
+      #- "da_5_support": something
+      #- "da_6_name": something
+      #- "da_6_age": something
+      #- "da_6_disability": something
+      #- "da_6_support": something
+      #- "da_7_name": something
+      #- "da_7_age": something
+      #- "da_7_disability": something
+      #- "da_7_support": something
+      #- "insurance_available": No
+      #- "insurance_name": something
+      #- "insurance_address": something
+      #- "insurance_policy": something
+      #- "insurance_group": something
+      #- "insurance_id": something
+      #- "insurance_restrictions": something
+      #- "insurance_coverage": something
+      #- "insurance_deductible": something
+      #- "insurance_premium": something
+      #- "out_of_pocket": No
+      #- "child_support_payments": No
+      #- "child_support_1_name": something
+      #- "child_support_1_dob": something
+      #- "child_support_1_ssn": something
+      #- "child_support_1_amount": something
+      #- "child_support_2_name": something
+      #- "child_support_2_dob": something
+      #- "child_support_2_ssn": something
+      #- "child_support_2_amount": something
+      #- "child_support_3_name": something
+      #- "child_support_3_dob": something
+      #- "child_support_3_ssn": something
+      #- "child_support_3_amount": something
+      #- "child_support_4_name": something
+      #- "child_support_4_dob": something
+      #- "child_support_4_ssn": something
+      #- "child_support_4_amount": something
+      #- "child_support_5_name": something
+      #- "child_support_5_dob": something
+      #- "child_support_5_ssn": something
+      #- "child_support_5_amount": something
+      #- "child_support_6_name": something
+      #- "child_support_6_dob": something
+      #- "child_support_6_ssn": something
+      #- "child_support_6_amount": something
+      #- "child_support_7_name": something
+      #- "child_support_7_dob": something
+      #- "child_support_7_ssn": something
+      #- "child_support_7_amount": something
+      #- "cc_payment": something
+      #- "rent_or_mortgage": something
+      #- "car_payment": something
+      #- "home_repair": something
+      #- "car_repair": something
+      #- "electric_bill": something
+      #- "car_insurance": something
+      #- "water_bill": something
+      #- "gas": something
+      #- "gas_bill": something
+      #- "food": something
+      #- "trash_bill": something
+      #- "clothing": something
+      #- "cable_bill": something
+      #- "child_care": something
+      #- "phone_bill": something
+      #- "health_insurance": something
+      #- "entertainment_bill": something
+      #- "other_insurance": something
+      #- "other_insurance_detail": something
+      #- "medical_bills": something
+      #- "medical_bills_detail": something
+      #- "other_expenses": something
+      #- "other_expenses_detail": something
+      #- "total_monthly_expenses": something
+      #- "p_high_school": No
+      #- "p_high_school_year": something
+      #- "p_ged": No
+      #- "p_ged_year": something
+      #- "p_tech_school": No
+      #- "p_tech_training": something
+      #- "p_college": No
+      #- "p_degree": something
+      #- "p_post_grad": No
+      #- "p_post_grad_degree": something
+      #- "p_employer_1_name": something
+      #- "p_employer_1_position": something
+      #- "p_employer_1_begin": something
+      #- "p_employer_1_end": something
+      #- "p_employer_1_income": something
+      #- "p_employer_2_name": something
+      #- "p_employer_2_position": something
+      #- "p_employer_2_begin": something
+      #- "p_employer_2_end": something
+      #- "p_employer_2_income": something
+      #- "p_employer_3_name": something
+      #- "p_employer_3_position": something
+      #- "p_employer_3_begin": something
+      #- "p_employer_3_end": something
+      #- "p_employer_3_income": something
+      #- "p_employer_4_name": something
+      #- "p_employer_4_position": something
+      #- "p_employer_4_begin": something
+      #- "p_employer_4_end": something
+      #- "p_employer_4_income": something
+      - "p_age": ${ p_age }
+      #- "p_physical_health_state": No
+      #- "p_physical_health": something
+      #- "p_mental_health_state": No
+      #- "p_mental_health": something
+      #- "r_high_school": No
+      #- "r_high_school_year": something
+      #- "r_ged": No
+      #- "r_ged_year": something
+      #- "r_tech_school": No
+      #- "r_tech_training": something
+      #- "r_college": No
+      #- "r_degree": something
+      #- "r_post_grad": No
+      #- "r_post_grad_degree": something
+      #- "r_employer_1_name": something
+      #- "r_employer_1_position": something
+      #- "r_employer_1_begin": something
+      #- "r_employer_1_end": something
+      #- "r_employer_1_income": something
+      #- "r_employer_2_name": something
+      #- "r_employer_2_position": something
+      #- "r_employer_2_begin": something
+      #- "r_employer_2_end": something
+      #- "r_employer_2_income": something
+      #- "r_employer_3_name": something
+      #- "r_employer_3_position": something
+      #- "r_employer_3_begin": something
+      #- "r_employer_3_end": something
+      #- "r_employer_3_income": something
+      #- "r_employer_4_name": something
+      #- "r_employer_4_position": something
+      #- "r_employer_4_begin": something
+      #- "r_employer_4_end": something
+      #- "r_employer_4_income": something
+      - "r_age": ${ r_age }
+      #- "r_physical_health_state": No
+      #- "r_physical_health": something
+      #- "r_mental_health_state": No
+      #- "r_mental_health": something
+      #- "additional_training": No
+      #- "additional_training_detail": something
+      #- "spousal_support_detail": something
+      - "county": ${ client.address.county }
+---
+# Motion for Temporary Relief - 112
+attachment:
+  - name: sca_fc_112
+    filename: sca_fc_112
+    pdf template file: sca_fc_112.pdf
+    variable name: sca_fc_112
+    fields:
+      - "upper_county": ${ client.address.county.upper() }
+      #- "case_num": something
+      - "r_name": ${ legalserver_adverse_parties[0].name.full(middle="full") }
+      - "p_name": ${ client.name.full(middle="full") }
+      - "name": ${ client.name.full(middle="full") }
+      - "prior_relief": "no"
+      - "op_prior_relief": "no"
+      - "custody": |
+          ${ 'yes' if divorce_with_children == True or child_custody_without_divorce == True else 'no' }
+      - "parenting_plan": |
+          ${ 'yes' if divorce_with_children == True or child_custody_without_divorce == True else 'no' }
+      - "child_support": |
+          ${ 'yes' if divorce_with_children == True or child_custody_without_divorce == True else 'no' }
+      #- "spousal_support": No
+      #- "insurance": No
+      #- "residence": No
+      #- "automobiles": No
+      #- "debts": No
+      #- "gal": No
+      #- "protective_order": No
+      #- "other": No
+      #- "other_detail": something
+      - "county": ${ client.address.county }
+      - "op_name": ${ legalserver_adverse_parties[0].name.full(middle="full") }
+      - "op_address": ${ legalserver_adverse_parties[0].address.on_one_line() }
+---
+# Parenting Plan - 121
+attachment:
+  - name: sca_fc_121
+    filename: sca_fc_121
+    pdf template file: sca_fc_121.pdf
+    variable name: sca_fc_121
+    fields:
+      - "upper_county": ${ client.address.county.upper() }
+      #- "case_num": something
+      - "r_name": ${ legalserver_adverse_parties[0].name.full(middle="full") }
+      - "p_name": ${ client.name.full(middle="full") }
+      - "completed_by": "individually"
+      - "role": "petitioner"
+      - "individual": ${ client.name.full(middle="full") }
+      #- "p_name_joint": something
+      #- "r_name_joint": something
+      - "use": "both"
+      - "minor_1_name": ${ children[0].name.full() if defined("children[0]") else ""}
+      - "minor_1_dob": ${ children[0].date_of_birth if (defined("children[0]") and defined("children[0].date_of_birth")) else ""}
+      - "minor_2_name": ${ children[1].name.full() if defined("children[1]") else ""}
+      - "minor_2_dob": ${ children[1].date_of_birth if (defined("children[1]") and defined("children[1].date_of_birth")) else ""}
+      - "minor_3_name": ${ children[2].name.full() if defined("children[2]") else ""}
+      - "minor_3_dob": ${ children[2].date_of_birth if (defined("children[2]") and defined("children[2].date_of_birth")) else ""}
+      - "minor_4_name": ${ children[3].name.full() if defined("children[3]") else ""}
+      - "minor_4_dob": ${ children[3].date_of_birth if (defined("children[3]") and defined("children[3].date_of_birth")) else ""}
+      - "minor_5_name": ${ children[4].name.full() if defined("children[4]") else ""}
+      - "minor_5_dob": ${ children[4].date_of_birth if (defined("children[4]") and defined("children[4].date_of_birth")) else ""}
+      - "minor_6_name": ${ children[5].name.full() if defined("children[5]") else ""}
+      - "minor_6_dob": ${ children[5].date_of_birth if (defined("children[5]") and defined("children[5].date_of_birth")) else ""}      
+      - "minor_7_name": ${ children[6].name.full() if defined("children[6]") else ""}
+      - "minor_7_dob": ${ children[6].date_of_birth if (defined("children[6]") and defined("children[6].date_of_birth")) else ""}
+      - "minor_8_name": ${ children[7].name.full() if defined("children[7]") else ""}
+      - "minor_8_dob": ${ children[7].date_of_birth if (defined("children[7]") and defined("children[7].date_of_birth")) else ""}
+      #- "limit_parenting_time": No
+      #- "limit_time_detail": something
+      #- "restrictions": No
+      #- "restrictions_on": No
+      #- "restrictions_reasons": something
+      #- "no_visitation": No
+      #- "no_visistation_for": No
+      #- "no_visitation_other": No
+      #- "no_visitation_other_name": something
+      #- "supervised_visistation": No
+      #- "supervisor": something
+      #- "supervised_location": something
+      #- "supervised_transfer": No
+      #- "transfer_supervisor": something
+      #- "transfer_location": something
+      #- "other_restrictions": something
+      #- "education": No
+      #- "medical": No
+      #- "religious": No
+      #- "child_care": No
+      #- "child_employment": No
+      #- "car_use": No
+      #- "school_activities": No
+      #- "sports": No
+      #- "other_decision_making": No
+      #- "decision_making_other_detail": something
+      #- "minor_names_not_in_school": something
+      #- "p_monday_from_period": No
+      #- "p_monday_from_hour": something
+      #- "p_monday_from_minute": something
+      #- "p_monday_to_hour": something
+      #- "p_monday_to_minute": something
+      #- "p_monday_to_period": No
+      #- "p_monday": No
+      #- "p_monday_all_day": No
+      #- "p_tuesday_from_period": No
+      #- "p_tuesday_from_hour": something
+      #- "p_tuesday_from_minute": something
+      #- "p_tuesday_to_hour": something
+      #- "p_tuesday_to_minute": something
+      #- "p_tuesday_to_period": No
+      #- "p_tuesday": No
+      #- "p_tuesday_all_day": No
+      #- "p_wednesday_from_period": No
+      #- "p_wednesday_from_hour": something
+      #- "p_wednesday_from_minute": something
+      #- "p_wednesday_to_hour": something
+      #- "p_wednesday_to_minute": something
+      #- "p_wednesday_to_period": No
+      #- "p_wednesday": No
+      #- "p_wednesday_all_day": No
+      #- "p_thursday_from_period": No
+      #- "p_thursday_from_hour": something
+      #- "p_thursday_from_minute": something
+      #- "p_thursday_to_hour": something
+      #- "p_thursday_to_minute": something
+      #- "p_thursday_to_period": No
+      #- "p_thursday": No
+      #- "p_thursday_all_day": No
+      #- "p_friday_from_period": No
+      #- "p_friday_from_hour": something
+      #- "p_friday_from_minute": something
+      #- "p_friday_to_hour": something
+      #- "p_friday_to_minute": something
+      #- "p_friday_to_period": No
+      #- "p_friday": No
+      #- "p_friday_all_day": No
+      #- "p_alternating_from_period": No
+      #- "p_alternating_from_hour": something
+      #- "p_alternating_from_minute": something
+      #- "p_alternating_from_day": something
+      #- "p_alternating_to_hour": something
+      #- "p_alternating_to_minute": something
+      #- "p_alternating_to_day": something
+      #- "p_alternating_to_period": No
+      #- "p_alternating": No
+      #- "p_first_from_period": No
+      #- "p_first_from_hour": something
+      #- "p_first_from_minute": something
+      #- "p_first_from_day": something
+      #- "p_first_to_hour": something
+      #- "p_first_to_minute": something
+      #- "p_first_to_day": something
+      #- "p_first_to_period": No
+      #- "p_first": No
+      #- "p_second_from_period": No
+      #- "p_second_from_hour": something
+      #- "p_second_from_minute": something
+      #- "p_second_from_day": something
+      #- "p_second_to_hour": something
+      #- "p_second_to_minute": something
+      #- "p_second_to_day": something
+      #- "p_second_to_period": No
+      #- "p_second": No
+      #- "p_third_from_period": No
+      #- "p_third_from_hour": something
+      #- "p_third_from_minute": something
+      #- "p_third_from_day": something
+      #- "p_third_to_hour": something
+      #- "p_third_to_minute": something
+      #- "p_third_to_day": something
+      #- "p_third_to_period": No
+      #- "p_third": No
+      #- "p_fourth_from_period": No
+      #- "p_fourth_from_hour": something
+      #- "p_fourth_from_minute": something
+      #- "p_fourth_from_day": something
+      #- "p_fourth_to_hour": something
+      #- "p_fourth_to_minute": something
+      #- "p_fourth_to_day": something
+      #- "p_fourth_to_period": No
+      #- "p_fourth": No
+      #- "p_fifth_from_period": No
+      #- "p_fifth_from_hour": something
+      #- "p_fifth_from_minute": something
+      #- "p_fifth_from_day": something
+      #- "p_fifth_to_hour": something
+      #- "p_fifth_to_minute": something
+      #- "p_fifth_to_day": something
+      #- "p_fifth_to_period": No
+      #- "p_fifth": No
+      #- "r_monday_from_period": No
+      #- "r_monday_from_hour": something
+      #- "r_monday_from_minute": something
+      #- "r_monday_to_hour": something
+      #- "r_monday_to_minute": something
+      #- "r_monday_to_period": No
+      #- "r_monday": No
+      #- "r_monday_all_day": No
+      #- "r_tuesday_from_period": No
+      #- "r_tuesday_from_hour": something
+      #- "r_tuesday_from_minute": something
+      #- "r_tuesday_to_hour": something
+      #- "r_tuesday_to_minute": something
+      #- "r_tuesday_to_period": No
+      #- "r_tuesday": No
+      #- "r_tuesday_all_day": No
+      #- "r_wednesday_from_period": No
+      #- "r_wednesday_from_hour": something
+      #- "r_wednesday_from_minute": something
+      #- "r_wednesday_to_hour": something
+      #- "r_wednesday_to_minute": something
+      #- "r_wednesday_to_period": No
+      #- "r_wednesday": No
+      #- "r_wednesday_all_day": No
+      #- "r_thursday_from_period": No
+      #- "r_thursday_from_hour": something
+      #- "r_thursday_from_minute": something
+      #- "r_thursday_to_hour": something
+      #- "r_thursday_to_minute": something
+      #- "r_thursday_to_period": No
+      #- "r_thursday_all_day": No
+      #- "r_friday_from_period": No
+      #- "r_friday_from_hour": something
+      #- "r_friday_from_minute": something
+      #- "r_friday_to_hour": something
+      #- "r_friday_to_minute": something
+      #- "r_friday_to_period": No
+      #- "r_friday": No
+      #- "r_friday_all_day": No
+      #- "r_alternating_from_period": No
+      #- "r_alternating_from_hour": something
+      #- "r_alternating_from_minute": something
+      #- "r_alternating_from_day": something
+      #- "r_alternating_to_hour": something
+      #- "r_alternating_to_minute": something
+      #- "r_alternating_to_day": something
+      #- "r_alternating_to_period": No
+      #- "r_alternating": No
+      #- "r_first_from_period": No
+      #- "r_first_from_hour": something
+      #- "r_first_from_minute": something
+      #- "r_first_from_day": something
+      #- "r_first_to_hour": something
+      #- "r_first_to_minute": something
+      #- "r_first_to_day": something
+      #- "r_first_to_period": No
+      #- "r_first": No
+      #- "r_second_from_period": No
+      #- "r_second_from_hour": something
+      #- "r_second_from_minute": something
+      #- "r_second_from_day": something
+      #- "r_second_to_hour": something
+      #- "r_second_to_minute": something
+      #- "r_second_to_day": something
+      #- "r_second_to_period": No
+      #- "r_second": No
+      #- "r_third_from_period": No
+      #- "r_third_from_hour": something
+      #- "r_third_from_minute": something
+      #- "r_third_from_day": something
+      #- "r_third_to_hour": something
+      #- "r_third_to_minute": something
+      #- "r_third_to_day": something
+      #- "r_third_to_period": No
+      #- "r_third": No
+      #- "r_fourth_from_period": No
+      #- "r_fourth_from_hour": something
+      #- "r_fourth_from_minute": something
+      #- "r_fourth_from_day": something
+      #- "r_fourth_to_hour": something
+      #- "r_fourth_to_minute": something
+      #- "r_fourth_to_day": something
+      #- "r_fourth_to_period": No
+      #- "r_fourth": No
+      #- "r_fifth_from_period": No
+      #- "r_fifth_from_hour": something
+      #- "r_fifth_from_minute": something
+      #- "r_fifth_from_day": something
+      #- "r_fifth_to_hour": something
+      #- "r_fifth_to_minute": something
+      #- "r_fifth_to_day": something
+      #- "r_fifth_to_period": No
+      #- "r_fifth": No
+      #- "minor_names_in_school": something
+      #- "p_school_monday_from_period": No
+      #- "p_school_monday_from_hour": something
+      #- "p_school_monday_from_minute": something
+      #- "p_school_monday_to_hour": something
+      #- "p_school_monday_to_minute": something
+      #- "p_school_monday_to_period": No
+      #- "p_school_monday": No
+      #- "p_school_monday_all_day": No
+      #- "p_school_tuesday_from_period": No
+      #- "p_school_tuesday_from_hour": something
+      #- "p_school_tuesday_from_minute": something
+      #- "p_school_tuesday_to_hour": something
+      #- "p_school_tuesday_to_minute": something
+      #- "p_school_tuesday_to_period": No
+      #- "p_school_tuesday": No
+      #- "p_school_tuesday_all_day": No
+      #- "p_school_wednesday_from_period": No
+      #- "p_school_wednesday_from_hour": something
+      #- "p_school_wednesday_from_minute": something
+      #- "p_school_wednesday_to_hour": something
+      #- "p_school_wednesday_to_minute": something
+      #- "p_school_wednesday_to_period": No
+      #- "p_school_wednesday": No
+      #- "p_school_wednesday_all_day": No
+      #- "p_school_thursday_from_period": No
+      #- "p_school_thursday_from_hour": something
+      #- "p_school_thursday_from_minute": something
+      #- "p_school_thursday_to_hour": something
+      #- "p_school_thursday_to_minute": something
+      #- "p_school_thursday_to_period": No
+      #- "p_school_thursday": No
+      #- "p_school_thursday_all_day": No
+      #- "p_school_friday_from_period": No
+      #- "p_school_friday_from_hour": something
+      #- "p_school_friday_from_minute": something
+      #- "p_school_friday_to_hour": something
+      #- "p_school_friday_to_minute": something
+      #- "p_school_friday_to_period": No
+      #- "p_school_friday": No
+      #- "p_school_friday_all_day": No
+      #- "p_school_alternating_from_period": No
+      #- "p_school_alternating_from_hour": something
+      #- "p_school_alternating_from_minute": something
+      #- "p_school_alternating_from_day": something
+      #- "p_school_alternating_to_hour": something
+      #- "p_school_alternating_to_minute": something
+      #- "p_school_alternating_to_day": something
+      #- "p_school_alternating_to_period": No
+      #- "p_school_alternating": No
+      #- "p_school_first_from_period": No
+      #- "p_school_first_from_hour": something
+      #- "p_school_first_from_minute": something
+      #- "p_school_first_from_day": something
+      #- "p_school_first_to_hour": something
+      #- "p_school_first_to_minute": something
+      #- "p_school_first_to_day": something
+      #- "p_school_first_to_period": No
+      #- "p_school_first": No
+      #- "p_school_second_from_period": No
+      #- "p_school_second_from_hour": something
+      #- "p_school_second_from_minute": something
+      #- "p_school_second_from_day": something
+      #- "p_school_second_to_hour": something
+      #- "p_school_second_to_minute": something
+      #- "p_school_second_to_day": something
+      #- "p_school_second_to_period": No
+      #- "p_school_second": No
+      #- "p_school_third_from_period": No
+      #- "p_school_third_from_hour": something
+      #- "p_school_third_from_minute": something
+      #- "p_school_third_from_day": something
+      #- "p_school_third_to_hour": something
+      #- "p_school_third_to_minute": something
+      #- "p_school_third_to_day": something
+      #- "p_school_third_to_period": No
+      #- "p_school_third": No
+      #- "p_school_fourth_from_period": No
+      #- "p_school_fourth_from_hour": something
+      #- "p_school_fourth_from_minute": something
+      #- "p_school_fourth_to_hour": something
+      #- "p_school_fourth_to_minute": something
+      #- "p_school_fourth_to_day": something
+      #- "p_school_fourth_to_period": No
+      #- "p_school_fourth_from_day": something
+      #- "p_school_fourth": No
+      #- "p_school_fifth_from_period": No
+      #- "p_school_fifth_from_hour": something
+      #- "p_school_fifth_from_minute": something
+      #- "p_school_fifth_from_day": something
+      #- "p_school_fifth_to_hour": something
+      #- "p_school_fifth_to_minute": something
+      #- "p_school_fifth_to_day": something
+      #- "p_school_fifth_to_period": No
+      #- "p_school_fifth": No
+      #- "r_school_monday_from_period": No
+      #- "r_school_monday_from_hour": something
+      #- "r_school_monday_from_minute": something
+      #- "r_school_monday_to_hour": something
+      #- "r_school_monday_to_minute": something
+      #- "r_school_monday_to_period": No
+      #- "r_school_monday": No
+      #- "r_school_monday_all_day": No
+      #- "r_school_tuesday_from_period": No
+      #- "r_school_tuesday_from_hour": something
+      #- "r_school_tuesday_from_minute": something
+      #- "r_school_tuesday_to_hour": something
+      #- "r_school_tuesday_to_minute": something
+      #- "r_school_tuesday_to_period": No
+      #- "r_school_tuesday": No
+      #- "r_school_tuesday_all_day": No
+      #- "r_school_wednesday_from_period": No
+      #- "r_school_wednesday_from_hour": something
+      #- "r_school_wednesday_from_minute": something
+      #- "r_school_wednesday_to_hour": something
+      #- "r_school_wednesday_to_minute": something
+      #- "r_school_wednesday_to_period": No
+      #- "r_school_wednesday": No
+      #- "r_school_wednesday_all_day": No
+      #- "r_school_thursday_from_period": No
+      #- "r_school_thursday_from_hour": something
+      #- "r_school_thursday_from_minute": something
+      #- "r_school_thursday_to_hour": something
+      #- "r_school_thursday_to_minute": something
+      #- "r_school_thursday_to_period": No
+      #- "r_school_thursday_all_day": No
+      #- "r_school_friday_from_period": No
+      #- "r_school_friday_from_hour": something
+      #- "r_school_friday_from_minute": something
+      #- "r_school_friday_to_hour": something
+      #- "r_school_friday_to_minute": something
+      #- "r_school_friday_to_period": No
+      #- "r_school_friday": No
+      #- "r_school_friday_all_day": No
+      #- "r_school_alternating_from_period": No
+      #- "r_school_alternating_from_hour": something
+      #- "r_school_alternating_from_minute": something
+      #- "r_school_alternating_from_day": something
+      #- "r_school_alternating_to_hour": something
+      #- "r_school_alternating_to_minute": something
+      #- "r_school_alternating_to_day": something
+      #- "r_school_alternating_to_period": No
+      #- "r_school_alternating": No
+      #- "r_school_first_from_period": No
+      #- "r_school_first_from_hour": something
+      #- "r_school_first_from_minute": something
+      #- "r_school_first_from_day": something
+      #- "r_school_first_to_hour": something
+      #- "r_school_first_to_minute": something
+      #- "r_school_first_to_day": something
+      #- "r_school_first_to_period": No
+      #- "r_school_first": No
+      #- "r_school_second_from_period": No
+      #- "r_school_second_from_hour": something
+      #- "r_school_second_from_minute": something
+      #- "r_school_second_from_day": something
+      #- "r_school_second_to_hour": something
+      #- "r_school_second_to_minute": something
+      #- "r_school_second_to_day": something
+      #- "r_school_second_to_period": No
+      #- "r_school_second": No
+      #- "r_school_third_from_period": No
+      #- "r_school_third_from_hour": something
+      #- "r_school_third_from_minute": something
+      #- "r_school_third_from_day": something
+      #- "r_school_third_to_hour": something
+      #- "r_school_third_to_minute": something
+      #- "r_school_third_to_day": something
+      #- "r_school_third_to_period": No
+      #- "r_school_third": No
+      #- "r_school_fourth_from_period": No
+      #- "r_school_fourth_from_hour": something
+      #- "r_school_fourth_from_minute": something
+      #- "r_school_fourth_from_day": something
+      #- "r_school_fourth_to_hour": something
+      #- "r_school_fourth_to_minute": something
+      #- "r_school_fourth_to_day": something
+      #- "r_school_fourth_to_period": No
+      #- "r_school_fourth": No
+      #- "r_school_fifth_from_period": No
+      #- "r_school_fifth_from_hour": something
+      #- "r_school_fifth_from_minute": something
+      #- "r_school_fifth_from_day": something
+      #- "r_school_fifth_to_hour": something
+      #- "r_school_fifth_to_minute": something
+      #- "r_school_fifth_to_day": something
+      #- "r_school_fifth_to_period": No
+      #- "r_school_fifth": No
+      #- "nye_even_odd": No
+      #- "nye_to_period": No
+      #- "nye_split_period": No
+      #- "nye_from_period": No
+      #- "nye_to_hour": something
+      #- "nye_to_minute": something
+      #- "nye_split_hour": something
+      #- "nye_split_minute": something
+      #- "nye_from_hour": something
+      #- "nye_from_minute": something
+      #- "nye_split": No
+      #- "nyd_to_period": No
+      #- "nyd_split_period": No
+      #- "nyd_from_period": No
+      #- "nyd_to_hour": something
+      #- "nyd_to_minute": something
+      #- "nyd_split_hour": something
+      #- "nyd_split_minute": something
+      #- "nyd_from_hour": something
+      #- "nyd_from_minute": something
+      #- "nyd_even_odd": No
+      #- "nyd_split": No
+      #- "mlk_to_period": No
+      #- "mlk_split_period": No
+      #- "mlk_from_period": No
+      #- "mlk_to_hour": something
+      #- "mlk_to_minute": something
+      #- "mlk_split_hour": something
+      #- "mlk_split_minute": something
+      #- "mlk_from_hour": something
+      #- "mlk_from_minute": something
+      #- "mlk_even_odd": No
+      #- "mlk_split": No
+      #- "pd_to_period": No
+      #- "pd_split_period": No
+      #- "pd_from_period": No
+      #- "pd_to_hour": something
+      #- "pd_to_minute": something
+      #- "pd_split_hour": something
+      #- "pd_split_minute": something
+      #- "pd_from_hour": something
+      #- "pd_from_minute": something
+      #- "pd_even_odd": No
+      #- "pd_split": No
+      #- "easter_to_period": No
+      #- "easter_split_period": No
+      #- "easter_from_period": No
+      #- "easter_to_hour": something
+      #- "easter_to_minute": something
+      #- "easter_split_hour": something
+      #- "easter_split_minute": something
+      #- "easter_from_hour": something
+      #- "easter_from_minute": something
+      #- "easter_even_odd": No
+      #- "easter_split": No
+      #- "spring_to_period": No
+      #- "spring_split_period": No
+      #- "spring_from_period": No
+      #- "spring_to_hour": something
+      #- "spring_to_minute": something
+      #- "spring_split_hour": something
+      #- "spring_split_minute": something
+      #- "spring_from_hour": something
+      #- "spring_from_minute": something
+      #- "spring_even_odd": No
+      #- "spring_split": No
+      #- "memorial_to_period": No
+      #- "memorial_split_period": No
+      #- "memorial_from_period": No
+      #- "memorial_to_hour": something
+      #- "memorial_to_minute": something
+      #- "memorial_split_hour": something
+      #- "memorial_split_minute": something
+      #- "memorial_from_hour": something
+      #- "memorial_from_minute": something
+      #- "memorial_even_odd": No
+      #- "memorial_split": No
+      #- "fourth_to_period": No
+      #- "fourth_split_period": No
+      #- "fourth_from_period": No
+      #- "fourth_to_hour": something
+      #- "fourth_to_minute": something
+      #- "fourth_split_hour": something
+      #- "fourth_split_minute": something
+      #- "fourth_from_hour": something
+      #- "fourth_from_minute": something
+      #- "fourth_even_odd": No
+      #- "fourth_split": No
+      #- "labor_to_period": No
+      #- "labor_split_period": No
+      #- "labor_from_period": No
+      #- "labor_to_hour": something
+      #- "labor_to_minute": something
+      #- "labor_split_hour": something
+      #- "labor_split_minute": something
+      #- "labor_from_hour": something
+      #- "labor_from_minute": something
+      #- "labor_even_odd": No
+      #- "labor_split": No
+      #- "thanksgiving_day_to_period": No
+      #- "thanksgiving_day_split_period": No
+      #- "thanksgiving_day_from_period": No
+      #- "thanksgiving_day_to_hour": something
+      #- "thanksgiving_day_to_minute": something
+      #- "thanksgiving_day_split_hour": something
+      #- "thanksgiving_day_split_minute": something
+      #- "thanksgiving_day_from_hour": something
+      #- "thanksgiving_day_from_minute": something
+      #- "thanksgiving_day_even_odd": No
+      #- "thanksgiving_day_split": No
+      #- "thanksgiving_break_to_period": No
+      #- "thanksgiving_break_split_period": No
+      #- "thanksgiving_break_from_period": No
+      #- "thanksgiving_break_to_hour": something
+      #- "thanksgiving_break_to_minute": something
+      #- "thanksgiving_break_split_hour": something
+      #- "thanksgiving_break_split_minute": something
+      #- "thanksgiving_break_from_hour": something
+      #- "thanksgiving_break_from_minute": something
+      #- "thanksgiving_break_even_odd": No
+      #- "thanksgiving_break_split": No
+      #- "christmas_eve_to_period": No
+      #- "christmas_eve_split_period": No
+      #- "christmas_eve_from_period": No
+      #- "christmas_eve_to_hour": something
+      #- "christmas_eve_to_minute": something
+      #- "christmas_eve_split_hour": something
+      #- "christmas_eve_split_minute": something
+      #- "christmas_eve_from_hour": something
+      #- "christmas_eve_from_minute": something
+      #- "christmas_eve_even_odd": No
+      #- "christmas_eve_split": No
+      #- "christmas_day_to_period": No
+      #- "christmas_day_split_period": No
+      #- "christmas_day_from_period": No
+      #- "christmas_day_to_hour": something
+      #- "christmas_day_to_minute": something
+      #- "christmas_day_split_hour": something
+      #- "christmas_day_split_minute": something
+      #- "christmas_day_from_hour": something
+      #- "christmas_day_from_minute": something
+      #- "christmas_day_even_odd": No
+      #- "christmas_day_split": No
+      #- "christmas_break_to_period": No
+      #- "christmas_break_split_period": No
+      #- "christmas_break_from_period": No
+      #- "christmas_break_to_hour": something
+      #- "christmas_break_to_minute": something
+      #- "christmas_break_split_hour": something
+      #- "christmas_break_split_minute": something
+      #- "christmas_break_from_hour": something
+      #- "christmas_break_from_minute": something
+      #- "christmas_break_even_odd": No
+      #- "christmas_break_split": No
+      #- "hanukkah_to_period": No
+      #- "hanukkah_split_period": No
+      #- "hanukkah_from_period": No
+      #- "hanukkah_to_hour": something
+      #- "hanukkah_to_minute": something
+      #- "hanukkah_split_hour": something
+      #- "hanukkah_split_minute": something
+      #- "hanukkah_from_hour": something
+      #- "hanukkah_from_minute": something
+      #- "hanukkah_even_odd": No
+      #- "hanukkah_split": No
+      #- "kwanza_to_period": No
+      #- "kwanza_split_period": No
+      #- "kwanza_from_period": No
+      #- "kwanza_to_hour": something
+      #- "kwanza_to_minute": something
+      #- "kwanza_split_hour": something
+      #- "kwanza_split_minute": something
+      #- "kwanza_from_hour": something
+      #- "kwanza_from_minute": something
+      #- "kwanza_even_odd": No
+      #- "kwanza_split": No
+      #- "other_holiday_to_period": No
+      #- "other_holiday_split_period": No
+      #- "other_holiday_from_period": No
+      #- "other_holiday_to_hour": something
+      #- "other_holiday_to_minute": something
+      #- "other_holiday_split_hour": something
+      #- "other_holiday_split_minute": something
+      #- "other_holiday_from_hour": something
+      #- "other_holiday_from_minute": something
+      #- "other_holiday": something
+      #- "other_holiday_even_odd": No
+      #- "other_holiday_split": No
+      #- "petitioners_to_period": No
+      #- "petitioners_split_period": No
+      #- "petitioners_from_period": No
+      #- "petitioners_to_hour": something
+      #- "petitioners_to_minute": something
+      #- "petitioners_split_hour": something
+      #- "petitioners_split_minute": something
+      #- "petitioners_from_hour": something
+      #- "petitioners_from_minute": something
+      #- "petitioners_even_odd": No
+      #- "petitioners_split": No
+      #- "respondents_to_period": No
+      #- "respondents_split_period": No
+      #- "respondents_from_period": No
+      #- "respondents_to_hour": something
+      #- "respondents_to_minute": something
+      #- "respondents_split_hour": something
+      #- "respondents_split_minute": something
+      #- "respondents_from_hour": something
+      #- "respondents_from_minute": something
+      #- "respondents_even_odd": No
+      #- "respondents_split": No
+      #- "p_birthday_to_period": No
+      #- "p_birthday_split_period": No
+      #- "p_birthday_from_period": No
+      #- "p_birthday_to_hour": something
+      #- "p_birthday_to_minute": something
+      #- "p_birthday_split_hour": something
+      #- "p_birthday_split_minute": something
+      #- "p_birthday_from_hour": something
+      #- "p_birthday_from_minute": something
+      #- "p_birthday_even_odd": No
+      #- "p_birthday_split": No
+      #- "r_birthday_to_period": No
+      #- "r_birthday_split_period": No
+      #- "r_birthday_from_period": No
+      #- "r_birthday_to_hour": something
+      #- "r_birthday_to_minute": something
+      #- "r_birthday_split_hour": something
+      #- "r_birthday_split_minute": something
+      #- "r_birthday_from_hour": something
+      #- "r_birthday_from_minute": something
+      #- "r_birthday_even_odd": No
+      #- "r_birthday_split": No
+      #- "child_birthday_to_period": No
+      #- "child_birthday_split_period": No
+      #- "child_birthday_from_period": No
+      #- "child_birthday_to_hour": something
+      #- "child_birthday_to_minute": something
+      #- "child_birthday_split_hour": something
+      #- "child_birthday_split_minute": something
+      #- "child_birthday_from_hour": something
+      #- "child_birthday_from_minute": something
+      #- "child_birthday_even_odd": No
+      #- "child_birthday_split": No
+      #- "halloween_to_period": No
+      #- "halloween_split_period": No
+      #- "halloween_from_period": No
+      #- "halloween_to_hour": something
+      #- "halloween_to_minute": something
+      #- "halloween_split_hour": something
+      #- "halloween_split_minute": something
+      #- "halloween_from_hour": something
+      #- "halloween_from_minute": something
+      #- "halloween_even_odd": No
+      #- "halloween_split": No
+      #- "other_occasion1_to_period": No
+      #- "other_occasion1_split_period": No
+      #- "other_occasion1_from_period": No
+      #- "other_occasion1_to_hour": something
+      #- "other_occasion1_to_minute": something
+      #- "other_occasion1_split_hour": something
+      #- "other_occasion1_split_minute": something
+      #- "other_occasion1_from_hour": something
+      #- "other_occasion1_from_minute": something
+      #- "other_occasion_1": something
+      #- "other_occasion1_even_odd": No
+      #- "other_occasion1_split": No
+      #- "other_occasion2_to_period": No
+      #- "other_occasion2_split_period": No
+      #- "other_occasion2_from_period": No
+      #- "other_occasion2_to_hour": something
+      #- "other_occasion2_to_minute": something
+      #- "other_occasion2_split_hour": something
+      #- "other_occasion2_split_minute": something
+      #- "other_occasion2_from_hour": something
+      #- "other_occasion2_from_minute": something
+      #- "other_occasion_2": something
+      #- "other_occasion2_even_odd": No
+      #- "other_occasion2_split": No
+      #- "detailed_parenting_plan": something
+      #- "p_duration_type": No
+      #- "p_duration": something
+      #- "r_duration_type": No
+      #- "r_duration": something
+      #- "summer_detail": something
+      #- "legal_custodian": No
+      #- "even_year_custodian": No
+      #- "odd_year_custodian": No
+      #- "minor_1_legal_custodian": No
+      #- "minor_2_legal_custodian": No
+      #- "minor_3_legal_custodian": No
+      #- "minor_4_legal_custodian": No
+      #- "minor_5_legal_custodian": No
+      #- "weekday_transfer_location": No
+      #- "weekday_other_transfer_location": something
+      #- "weekday_transfer_period": No
+      #- "weekday_transfer_hour": something
+      #- "weekday_transfer_minute": something
+      #- "weekday_transfer_detail": something
+      #- "weekend_transfer_location": No
+      #- "weekend_other_transfer_location": something
+      #- "weekend_transfer_period": No
+      #- "weekend_transfer_hour": something
+      #- "weekend_transfer_minute": something
+      #- "weekend_transfer_detail": something
+      #- "transportation_arrangements": No
+      #- "transportation_details": something
+      #- "special_travel": No
+      #- "special_travel_parent": No
+      #- "special_travel_details": something
+      #- "child_call_anytime": No
+      #- "child_call_weekday_from_period": No
+      #- "child_call_weekday_to_period": No
+      #- "child_call_weekdays": No
+      #- "child_call_weekday_from_hour": something
+      #- "child_call_weekday_from_minute": something
+      #- "child_call_weekday_to_hour": something
+      #- "child_call_weekday_to_minute": something
+      #- "child_call_weekend_to_period": No
+      #- "child_call_weekend_from_period": No
+      #- "child_call_weekends": No
+      #- "child_call_weekend_from_hour": something
+      #- "child_call_weekend_from_minute": something
+      #- "child_call_weekend_to_hour": something
+      #- "child_call_weekend_to_minute": something
+      #- "child_call_other": No
+      #- "child_call_other_detail": something
+      #- "child_call_call_cost_paid_by": something
+      #- "parent_call_anytime": No
+      #- "parent_call_weekday_from_period": No
+      #- "parent_call_weekday_to_period": No
+      #- "parent_call_weekdays": No
+      #- "parent_call_weekday_from_hour": something
+      #- "parent_call_weekday_from_minute": something
+      #- "parent_call_weekday_to_hour": something
+      #- "parent_call_weekday_to_minute": something
+      #- "parent_call_weekend_to_period": No
+      #- "parent_call_weekend_from_period": No
+      #- "parent_call_weekends": No
+      #- "parent_call_weekend_from_hour": something
+      #- "parent_call_weekend_from_minute": something
+      #- "parent_call_weekend_to_hour": something
+      #- "parent_call_weekend_to_minute": something
+      #- "parent_call_other": No
+      #- "parent_call_other_detail": something
+      #- "parent_call_call_cost_paid_by": something
+      - "activites": True
+      - "address_change": True
+      - "no_disparaging_remarks": True
+      - "prevent_others_disparaging": True
+      - "no_fighting": True
+      #- "not_schedule_during_time": No
+      #- "except": something
+      #- "other_communication_details": something
+      #- "no_punishment": No
+      #- "request_by": No
+      #- "in_writing": No
+      #- "email": No
+      #- "in_person": No
+      #- "phone": No
+      #- "making_request": No
+      #- "make_request_no_more_than": something
+      #- "receiving_request": No
+      #- "reply_no_more_than": something
+      #- "respond_by": No
+      #- "requesting_responsible_for_costs": No
+      #- "other_arrangements": No
+      #- "other_arrangements_details": something
+      #- "reside_while_deployed": No
+      #- "other_individual_detail": something
+      #- "after_deployment": No
+      #- "other_schedule_details": something
+      #- "additional_terms": No
+      #- "additional_terms_detail": something
+      #- "disagreement_resolution": No
+      #- "counselor": something
+      #- "mediator": something
+      #- "other_means_details": something
+      #- "r_percent_disagreement": something
+      #- "p_percent_disagreement": something
+      #- "person_deciding": No
+      #- "notify_mail": No
+      #- "notify_writing": No
+      #- "notify_phone": No
+      #- "notify_person": No
+      #- "notify_other": No
+      #- "notify_other_detail": something
+---
+# Parenting Plan Worksheet - 128
+attachment:
+  - name: sca_fc_128
+    filename: sca_fc_128
+    pdf template file: sca_fc_128.pdf
+    variable name: sca_fc_128
+    fields:
+      - "upper_court": ${ client.address.county.upper() }
+      #- "case_num": something
+      - "r_name": ${ legalserver_adverse_parties[0].name.full(middle="full") }
+      - "p_name": ${ client.name.full(middle="full") }
+      - "individual": ${ client.name.full(middle="full") }
+      - "date_af_date": ${ today() }
+      #- "minor_list": something
+      #- "p_daily": something
+      #- "r_daily": something
+      #- "p_development": something
+      #- "r_development": something
+      #- "p_behavior": something
+      #- "r_behavior": something
+      #- "p_education": something
+      #- "r_educaiton": something
+      #- "p_social": something
+      #- "r_social": something
+      #- "p_health": something
+      #- "r_health": something
+      #- "p_moral": something
+      #- "r_moral": something
+      #- "p_child_care": something
+      #- "r_child_care": something
+      #- "all_decisions": No
+      #- "education_shared": something
+      #- "education_p": something
+      #- "education_r": something
+      #- "health_shared": something
+      #- "health_p": something
+      #- "health_r": something
+      #- "religion_shared": something
+      #- "religion_p": something
+      #- "religion_r": something
+      #- "child_care_shared": something
+      #- "child_care_p": something
+      #- "child_care_r": something
+      #- "school_shared": something
+      #- "school_p": something
+      #- "school_r": something
+      #- "other_category1": something
+      #- "other_category1_shared": something
+      #- "other_category1_p": something
+      #- "other_category1_r": something
+      #- "other_category2": something
+      #- "other_category2_shared": something
+      #- "other_category2_p": something
+      #- "other_category2_r": something
+      #- "p_work_schedule": something
+      #- "r_work_schedule": something
+      #- "no_school": No
+      #- "school_minors": something
+      #- "school_detail": something
+      #- "no_child_care": No
+      #- "child_care_minors": something
+      #- "child_care_detail": something
+      #- "other_detail": something
+---
+# Motion to Adopt Individual Proposed Parenting Plan - 129
+attachment:
+  - name: sca_fc_129
+    filename: sca_fc_129
+    pdf template file: sca_fc_129.pdf
+    variable name: sca_fc_129
+    fields:
+      - "upper_county": ${ client.address.county.upper() }
+      #- "case_num": something
+      - "r_name": ${ legalserver_adverse_parties[0].name.full(middle="full") }
+      - "p_name": ${ client.name.full(middle="full") }
+      - "opposing_party": ${ legalserver_adverse_parties[0].name.full(middle="full") }
+      - "individual": ${ client.name.full(middle="full") }
+      - "county": ${ client.address.county }
+      #- "hearing_period": No
+      #- "hearing_day": something
+      #- "hearing_hour": something
+      #- "hearing_minute": something
+      #- "hearing_month": something
+      #- "hearing_year": something
+      #- "Signature": ${ user.signature }
+      #- "Date": something
+      #- "opposing_address": something
+      #- "service_year": something
+      #- "service_day": something
+      #- "service_month": something
+      #- "Signature_2": ${ user.signature }
+      #- "Date_2": something
+---
+# BCSE Application - fdvcsap
+attachment:
+  - name: fdvcsap
+    filename: fdvcsap
+    pdf template file: fdvcsap.pdf
+    variable name: fdvscap
+    fields:
+      - "existing_support_order": False
+      - "p_name": ${ client.name.full(middle="full") }
+      - "p_dob": ${ client.birthdate }
+      - "p_ssn": ${ client.ssn }
+      #- "p_relationship": something
+      - "p_gender": ${ client.gender.lower() }
+      - "p_address": ${ client.address.on_one_line() }
+      #- "p_mailing_address": something
+      - "p_phone": ${ client.phone_number }
+      #- "p_license": something
+      - "r_name": ${ legalserver_adverse_parties[0].name.full(middle="full") }
+      - "r_dob": ${ legalserver_adverse_parties[0].date_of_birth }
+      - "r_ssn": ${ legalserver_adverse_parties[0].ssn }
+      - "r_gender": ${ legalserver_adverse_parties[0].gender.lower() }
+      #- "r_relationship": something
+      - "r_address": ${ legalserver_adverse_parties[0].address.on_one_line() }
+      #- "r_mailing_address": something
+      - "r_phone": ${ legalserver_adverse_parties[0].phone_home }
+      #- "r_license": something
+      - "minor_1_name": ${ children[0].name.full() if defined("children[0]") else ""}
+      - "minor_1_dob": ${ children[0].date_of_birth if (defined("children[0]") and defined("children[0].date_of_birth")) else ""}
+      - "minor_1_ssn": ${ children[0].ssn if (defined("children[0]") and defined("children[0].ssn")) else ""}
+      #- "minor_1_gender": something
+      #- "minor_1_custodian": something
+      - "minor_2_name": ${ children[1].name.full() if defined("children[1]") else ""}
+      - "minor_2_dob": ${ children[1].date_of_birth if (defined("children[1]") and defined("children[1].date_of_birth")) else ""}
+      - "minor_2_ssn": ${ children[1].ssn if (defined("children[1]") and defined("children[1].ssn")) else ""}
+      #- "minor_2_gender": something
+      #- "minor_2_custodian": something
+      - "minor_3_name": ${ children[2].name.full() if defined("children[2]") else ""}
+      - "minor_3_dob": ${ children[2].date_of_birth if (defined("children[2]") and defined("children[2].date_of_birth")) else ""}
+      - "minor_3_ssn": ${ children[2].ssn if (defined("children[2]") and defined("children[2].ssn")) else ""}
+      #- "minor_3_gender": something
+      #- "minor_3_custodian": something
+      - "minor_4_name": ${ children[3].name.full() if defined("children[3]") else ""}
+      - "minor_4_dob": ${ children[3].date_of_birth if (defined("children[3]") and defined("children[3].date_of_birth")) else ""}
+      - "minor_4_ssn": ${ children[3].ssn if (defined("children[3]") and defined("children[3].ssn")) else ""}
+      #- "minor_4_gender": something
+      #- "minor_4_custodian": something
+      #- "employer_address": something
+      #- "tanf": No
+      #- "dhhr_child_support": No
+      #- "agreement": No
+      #- "bcse_services": No
+      #- "confidential": No
+---
+# Affidavit to Withhold Identifying Information - 140
+attachment:
+  - name: sca_fc_140
+    filename: sca_fc_140
+    pdf template file: sca_fc_140.pdf
+    variable name: sca_fc_140
+    fields:
+      #- "upper_county": something
+      #- "p_name": something
+      #- "r_name": something
+      #- "case_num": something
+      #- "county": something
+      - "at_risk": ${ at_risk }
+      - "at_risk_because": ${ at_risk_because }
+      #- "Signature": ${ user.signature }
+      #- "role": No
+---
+mandatory: True
+code: |
+  # --------------------------------------------
+  ## Family Law  Case:
+  ## UUID: 99807b68-5d67-5948-9a58-0dd478114f2e
+  ## LAWV
+  ## DEMO
+  # --------------------------------------------
+  # --------------------------------------------
+  ## LegalServer/Docassemble Connector
+  # --------------------------------------------
+  checked_for_stashed_data
+
+  # --------------------------------------------
+  ## Setting UUID and site for testing purposes
+  # --------------------------------------------
+  legalserver_matter_uuid = "99807b68-5d67-5948-9a58-0dd478114f2e"
+  legalserver_site_abbreviation = "LAWV"
+  legalserver_site_type = "Demo"
+  # --------------------------------------------
+  ## End setting
+  # --------------------------------------------
+
+  set_legalserver_site
+
+  # If you need everything, you can call `parse_all_legalserver_data`
+  # This is a little faster since it doesn't get extra records:
+  raise_errors_getting_legalserver_data
+  
+  parse_client_data
+  parse_legalserver_income_data
+  parse_legalserver_adverse_party_data
+  parse_legalserver_non_adverse_party_data
+  parse_legalserver_case_data
+  parse_legalserver_assignment_data
+  parse_legalserver_primary_assignment
+  parse_legalserver_pro_bono_assignments
+  #parse_legalserver_current_user
+
+  ### Once parsed, the data ends up in the following variables:
+  # client: Individual
+  # legalserver_case: DAObject
+  # legalserver_assignments: DAList.using(object=DAObject, there_are_any=True, auto_gather=False, complete_attribute='complete')
+  # legalserver_services: DAList.using(object=DAObject, there_are_any=True, auto_gather=False, complete_attribute='complete')
+  # legalserver_documents: DAList.using(object=DAObject, there_are_any=True, auto_gather=False, complete_attribute='complete')
+  # legalserver_litigations: DAList.using(object=DAObject, there_are_any=True, auto_gather=False, complete_attribute='complete')
+  # legalserver_charges: DAList.using(object=DAObject, there_are_any=True, auto_gather=False, complete_attribute='complete')
+  # legalserver_contacts: DAList.using(object=Individual, there_are_any=True, auto_gather=False, complete_attribute='complete')
+  # legalserver_incomes: DAList.using(object=DAObject, there_are_any=True, auto_gather=False, complete_attribute='complete')
+  # legalserver_notes: DAList.using(object=DAObject, there_are_any=True, auto_gather=False, complete_attribute='complete')
+  # legalserver_events: DAList.using(object=DAObject, there_are_any=True, auto_gather=False, complete_attribute='complete')
+  # legalserver_tasks: DAList.using(object=DAObject, there_are_any=True, auto_gather=False, complete_attribute='complete')
+  # client.additional_names: DAList.using(object=IndividualName, there_are_any=True, auto_gather=False, complete_attribute='complete')
+  # legalserver_adverse_parties: DAList.using(object=Person, there_are_any=True, auto_gather=False, complete_attribute='complete')
+  # legalserver_non_adverse_parties: DAList.using(object=Person, there_are_any=True, auto_gather=False, complete_attribute='complete')
+  # legalserver_primary_assignment: Individual
+  # legalserver_first_pro_bono_assignment: Individual
+  # legalserver_latest_pro_bono_assignment: Individual
+  # legalserver_pro_bono_assignments: DAList.using(object=Individual, there_are_any=False, auto_gather=False, complete_attribute='complete')
+  # legalserver_current_user: Individual
+
+  # --------------------------------------------
+  ## Setting variables from connector data
+  # --------------------------------------------  
+  ## Petitioner
+  # Race
+  if client.race == "White - Not Hispanic" or client.race == "White (Not Hispanic)":
+    p_race = "white"
+  elif client.race == "Black (Not Hispanic)":
+    p_race = "black"
+  elif client.race == "Native American":
+    p_race = "american_indian"
+  elif client.race == "Hispanic":
+    p_race = "hispanic"
+  elif client.race == "Asian or Pacific Islander":
+    p_race = "asian"
+  else:
+    p_race = "unknown"
+  # Disability
+  #if client.is_disabled == True or client.interpreter == True:
+  #  accommodations = "yes"
+  #else:
+  #  accommodations = "no"
+  # Age
+  if defined("client.birthdate"):
+    p_age = client.age_in_years()
+  
+  ## Respondent
+  for respondent in legalserver_adverse_parties:
+    respondent.address.geocode()
+  # Race
+  if legalserver_adverse_parties[0].race == "White - Not Hispanic" or legalserver_adverse_parties[0].race == "White (Not Hispanic)":
+    r_race = "white"
+  elif legalserver_adverse_parties[0].race == "Black (Not Hispanic)":
+    r_race = "black"
+  elif legalserver_adverse_parties[0].race == "Native American":
+    r_race = "american_indian"
+  elif legalserver_adverse_parties[0].race == "Hispanic":
+    r_race = "hispanic"
+  elif legalserver_adverse_parties[0].race == "Asian or Pacific Islander":
+    r_race = "asian"
+  else:
+    r_race = "unknown"
+  # Age
+  if defined("legalserver_adverse_parties[0].date_of_birth"):
+    legalserver_adverse_parties[0].birthdate = legalserver_adverse_parties[0].date_of_birth
+    r_age = legalserver_adverse_parties[0].age_in_years()
+
+  ## Children
+  children.clear()
+  for item in legalserver_non_adverse_parties:
+    if item.relationship_type == "Child":
+      if defined("item.date_of_birth"):
+        item.birthdate = item.date_of_birth
+        item.age = item.age_in_years()
+      if not defined("item.ssn"):
+        item.ssn = ""
+      children.append(item, set_instance_name=True)
+
+  ## Case Info
+  # Problem Code
+  divorce_without_children = False
+  divorce_with_children = False
+  grandparent_visitation = False
+  annulment = False
+  separate_maintenance = False
+  child_support_only = False
+  child_custody_without_divorce = False
+  paternity = False
+  modification = False
+  contempt = False
+  infant_guardianship = False
+  for code in legalserver_case.special_legal_problem_code:
+    match code:
+      case "311 Custody/Visitation Establishment":
+        child_custody_without_divorce = "Yes"
+        #problem_code = custody_only
+      case "312 Custody/Visitation Contempt":
+        contempt = "Yes"
+        #problem_code = contempt
+      case "315 Grandparent Visitation":
+        grandparent_visitation = "Yes"
+      case "316 Custody/Visitation Modification":
+        modification = "Yes"
+      case "321 Divorce with no Custody":
+        divorce_without_children = "Yes"
+        problem_code = "divorce_without"
+      case "322 Divorce with Custody":
+        divorce_with_children = "Yes"
+        problem_code = "divorce_with"
+      case "325 Separate Maintenance (Legal Separation)":
+        separate_maintenance = "Yes"
+      case "326 Annulment":
+        annulment = "Yes"
+      case "328 Divorce Contempt":
+        contempt = "Yes"
+      case "361 Paternity":
+        paternity = "Yes"
+      case "373 Violation of Protective Order (Contempt)":
+        contempt = "Yes"
+      case "382 Child Support Enforcement (Contempt)":
+        contempt = "Yes"
+      case "384 Child Support Modification":
+        modification = "Yes"
+      case "Child Support Establishment":
+        child_support_only = "Yes"
+      case "Guardianship Children Establishment":
+        infant_guardianship = "Yes"
+      case "Guardianship Children Modification":
+        infant_guardianship = "Yes"
+      case "Guardianship Children Revocation":
+        infant_guardianship = "Yes"
+      case "311 Custody":
+        child_custody_without_divorce = "Yes"
+
+  # --------------------------------------------
+  ## Now we start asking the questions
+  # --------------------------------------------
+  if packet == "divorce_without":
+    the_sections = nav.get_sections()
+    del the_sections[2]["subsections"][2]
+    nav.set_sections(the_sections)
+
+  if path == "guided":
+    # -----------
+    # Case Information
+    # -----------
+    representation
+    if expected_county:
+      filing_county = client.address.county
+    confidential
+    accommodations
+
+    if packet == "divorce_without" or packet == "divorce_with":
+      # -----------
+      # Petitioner Information
+      # -----------
+      petitioner_reviewed
+      p_high_school
+      client.commissions
+      p_employment.gather()
+      insurance_available
+      if fee_waiver or seeking_spousal:
+        housing_cost
+      child_support_children.gather()    
+
+      # -----------
+      # Respondent Information
+      # -----------
+      respondent_reviewed
+      r_high_school
+      r_employment.gather()
+
+      # -----------
+      # Children's Informaiton
+      # -----------
+      if packet == "divorce_with":
+        children_reviewed
+        children_addresses.gather()
+        children_insurance
+      
+      # -----------
+      # Petition Information
+      # -----------
+      marriage_date
+      if packet == "divorce_with":
+        other_proceeding_party
+      if cohabit_date <= today().minus(years=1):
+        separate = True
+      irreconcilable_differences
+
+      # -----------
+      # Property Information
+      # -----------
+      if property_at_issue:
+        marital_home
+        debts.gather()
+        conveyed_property.gather
+      
+      if packet == "divorce_with":
+        if seeking_child_support and not tanf:
+          bcse_agreement
+        if custody_schedule == "sole":
+          p_daily = 100
+          p_development = 100
+          p_behavior = 100
+          p_education = 100
+          p_social = 100
+          p_health = 100
+          p_moral = 100
+          p_child_care = 100
+          all_decisions = False
+          education_shared = 0
+          education_p = 100
+          education_r = 0
+          education_decision = "P"
+          health_shared = 0
+          health_p = 100
+          health_r = 0
+          health_decision = "P"
+          religion_shared = 0
+          religion_p = 100
+          religion_r = 0
+          religion_decision = "P"
+          child_care_shared = 0
+          child_care_p = 100
+          child_care_r = 0
+          child_care_decision = "P"
+          school_shared = 0
+          school_p = 100
+          school_r = 0
+          school_decision = "P"
+
+        elif custody_schedule == "shared_weekly":
+          p_daily = 50
+          p_development = 50
+          p_behavior = 50
+          p_education = 50
+          p_social = 50
+          p_health = 50
+          p_moral = 50
+          p_child_care = 50
+          all_decisions = True
+
+        elif custody_schedule == "alternate_weekends":
+          p_daily = 75
+          p_development = 75
+          p_behavior = 75
+          p_education = 75
+          p_social = 75
+          p_health = 75
+          p_moral = 75
+          p_child_care = 75
+          all_decisions = False
+          education_shared = 10
+          education_p = 80
+          education_r = 10
+          health_shared = 10
+          health_p = 80
+          health_r = 10
+          religion_shared = 10
+          religion_p = 80
+          religion_r = 10
+          child_care_shared = 10
+          child_care_p = 80
+          child_care_r = 10
+          school_shared = 10
+          school_p = 80
+          school_r = 10
+
+        else:
+          p_daily
+          all_decisions
+          no_school
+          restrictions
+  
+  # --------------------------------------------
+  ## Packets: https://lawv.sharepoint.com/sites/StrategicSupportStaffTaskForce/SitePages/Divorce,-Custody,-Support-Packet-Links.aspx
+  # --------------------------------------------
+  match packet:
+    case "divorce_with":
+      generate_divorce_with_packet
+    case "divorce_without":
+      generate_divorce_without_packet
+---
+code: |
+  p_employment[i].employer
+  p_employment[i].complete = True
+---
+code: |
+  r_employment[i].employer
+  r_employment[i].complete = True
+---
+code: |
+  debts[i].owed_to
+  debts[i].complete = True
+---
+code: |
+  conveyed_property[i].description
+  conveyed_property[i].complete = True
