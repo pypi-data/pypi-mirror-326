@@ -1,0 +1,101 @@
+{
+  "checkout_url": [
+    "https://VeePeeN.net/buy"
+  ],
+  "contact_url": [
+    "https://VeePeeN.net/contact",
+    "https://VeePeeN.xyz/contact"
+  ],
+  "official_url": [
+    "https://VeePeeN.net",
+    "https://VeePeeN.xyz",
+    "https://VeePeeN.org"
+  ],
+  "version": {
+    "current": "25.02.08",
+    "min": "25.01.03"
+  },
+  "apiUpdate": {
+    "lastUpdate": 0,
+    "interval": 1
+  },
+  "prices": {
+    "zh_CN": [
+      {
+        "tab": "套餐",
+        "item": [
+          {
+            "name": "新用户试用",
+            "data": "30 天  | 100GB",
+            "price": "0 RMB",
+            "id": 0
+          },
+          {
+            "name": "1200GB",
+            "data": "六个月 | 平均 9 块每月",
+            "price": "60 RMB",
+            "id": 1
+          },
+          {
+            "name": "600GB",
+            "data": "三个月 | 平均 10 块每月",
+            "price": "30 RMB",
+            "id": 2
+          },
+          {
+            "name": "200GB",
+            "data": "一个月 | 平均 12 块每月",
+            "price": "12 RMB",
+            "id": 3
+          }
+        ]
+      },
+      {
+        "tab": "流量包",
+        "item": [
+          {
+            "name": "0.06/GB",
+            "data": "永不过期 1000GB",
+            "price": "60 RMB",
+            "id": 4
+          },
+          {
+            "name": "0.09/GB",
+            "data": "永不过期 100GB",
+            "price": "9 RMB",
+            "id": 5
+          }
+        ]
+      },
+      {
+        "tab": "定制",
+        "item": [
+          {
+            "name": "直播运营",
+            "data": "稳定赚大钱",
+            "price": "联系客服",
+            "id": 6
+          },
+          {
+            "name": "游戏专用",
+            "data": "内部专线",
+            "price": "联系客服",
+            "id": 6
+          },
+          {
+            "name": "回国线路",
+            "data": "智能分流",
+            "price": "联系客服",
+            "id": 6
+          },
+          {
+            "name": "网络组网",
+            "data": "工程师在线支持",
+            "price": "联系客服",
+            "id": 6
+          }
+        ]
+      }
+    ]
+  }
+}
