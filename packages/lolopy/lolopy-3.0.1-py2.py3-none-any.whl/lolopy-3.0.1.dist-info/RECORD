@@ -1,0 +1,11 @@
+lolopy/__init__.py,sha256=47DEQpj8HBSa-_TImW-5JCeuQeRkm5NMpJWZG3hSuFU,0
+lolopy/learners.py,sha256=2B9eTKb1zbxwbggyD0vH7o87bCtrax9vmvsLEzay2yY,33463
+lolopy/loloserver.py,sha256=qQc1PpE5a-9Bg9JnIUN9qnp4hAXe_31kpjb_YBcsQ-I,2571
+lolopy/metrics.py,sha256=JFG9RDGPYrp2CLY_EXELItkby6gjX9iLbcIc3nMcMnI,3556
+lolopy/utils.py,sha256=tGwcXdMLzLrvZS7d_NGacIK5SiaMpnBpDA63yIZp3Pk,1266
+lolopy/version.py,sha256=sQwRpqjEcAazHORCVeIKrp1eiiH7fd9BS_HcyGNehFc,136
+lolopy/jar/lolo-jar-with-dependencies.jar,sha256=TNgjoEwpIEUIKDAADQEozcFzzI5_Tx-dkTgZBA79l1w,45905555
+lolopy-3.0.1.dist-info/METADATA,sha256=9IoLc_6Aw2_VRSCEpziWdT8FFWBeJUNK2W5NNGaJCNw,5160
+lolopy-3.0.1.dist-info/WHEEL,sha256=9Hm2OB-j1QcCUq9Jguht7ayGIIZBRTdOXD1qg9cCgPM,109
+lolopy-3.0.1.dist-info/top_level.txt,sha256=AVXQbarQ4HqE3gTvzqTU3UYAf8qm7p7jtvL6qJkhzMc,7
+lolopy-3.0.1.dist-info/RECORD,,
