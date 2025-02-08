@@ -1,0 +1,2 @@
+[console_scripts]
+ambi-alert = ambi_alert.cli:main
