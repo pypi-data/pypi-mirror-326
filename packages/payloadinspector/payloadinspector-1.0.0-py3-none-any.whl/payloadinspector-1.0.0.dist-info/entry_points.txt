@@ -1,0 +1,2 @@
+[console_scripts]
+payloadinspector = payloadinspector.main:main
