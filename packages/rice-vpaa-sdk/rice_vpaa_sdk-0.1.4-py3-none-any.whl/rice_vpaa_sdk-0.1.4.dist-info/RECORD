@@ -1,0 +1,8 @@
+test_local.py,sha256=S3iTvJJyWEqbpAM9Z8wbUzCPCWVROb9XhBO6O9UyU-I,842
+rice_vpaa/__init__.py,sha256=FoAFBpQHEVjSq101gmliSrZssulxLEqubIBpmhY9PoQ,81
+rice_vpaa/client.py,sha256=lAs3BiPtM2Fjn4890ab45NZ454GlE5LTHbdAJRmcO8A,2106
+rice_vpaa/models.py,sha256=OiiKxyfXyzYSanXdHBxGTxfGobXFZddMjuIsuJLeXeY,1735
+rice_vpaa_sdk-0.1.4.dist-info/METADATA,sha256=FpO8tvLLowndvrXF0mm8e7sPwdLVpg11jabZvZ0_OMo,1168
+rice_vpaa_sdk-0.1.4.dist-info/WHEEL,sha256=In9FTNxeP60KnTkGw7wk6mJPYd_dQSjEZmXdBdMCI-8,91
+rice_vpaa_sdk-0.1.4.dist-info/top_level.txt,sha256=wnJr1_95pVbMwxs8blvlnV51DhypBq854e847r34DMo,21
+rice_vpaa_sdk-0.1.4.dist-info/RECORD,,
