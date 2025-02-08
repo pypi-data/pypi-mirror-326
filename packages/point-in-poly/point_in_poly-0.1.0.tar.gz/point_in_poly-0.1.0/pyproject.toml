@@ -1,0 +1,26 @@
+[build-system]
+requires = ["setuptools", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "point_in_poly"
+version = "0.1.0"
+description = "A simple Python package"
+license = {text = "MIT"}
+authors = [{name = "Ying Zhao", email = "ying.zhao@hearst.com"}]
+dependencies = [
+    "shapely"
+]
+
+[tool.setuptools]
+# Define where the actual source code is located (if using the src directory structure)
+packages = ["point_in_poly"]
+
+# Define the path to the source directory
+[tool.setuptools.package-dir]
+point_in_poly = "src/point_in_poly"
+
+python_requires = ">=3.9"
+
+# Define classifiers correctly as strings
+classifiers = "Programming Language :: Python :: 3, Operating System :: OS Independent"

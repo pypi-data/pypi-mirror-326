@@ -1,0 +1,8 @@
+Metadata-Version: 2.2
+Name: point_in_poly
+Version: 0.1.0
+Summary: A simple Python package
+Author-email: Ying Zhao <ying.zhao@hearst.com>
+License: MIT
+License-File: LICENSE
+Requires-Dist: shapely
