@@ -1,0 +1,51 @@
+Metadata-Version: 2.2
+Name: bssqrcode
+Version: 0.1.0
+Summary: Private advanced QR code generation with encryption and authentication.
+Home-page: https://github.com/Sumedh1599/bssqrcode
+Author: Sumedh Patil
+Author-email: admin@aipresso.uk
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: Other/Proprietary License
+Classifier: Operating System :: OS Independent
+Requires-Python: >=3.6
+Description-Content-Type: text/markdown
+License-File: LICENSE
+Requires-Dist: qrcode
+Requires-Dist: cryptography
+Requires-Dist: opencv-python
+Dynamic: author
+Dynamic: author-email
+Dynamic: classifier
+Dynamic: description
+Dynamic: description-content-type
+Dynamic: home-page
+Dynamic: requires-dist
+Dynamic: requires-python
+Dynamic: summary
+
+# bssqrcode
+
+`bssqrcode` is a QR code generation library designed for **personal use** with **enhanced data security**.
+
+## Features
+
+- **Secure QR code generation**
+- **Supports dynamic content encoding**
+- **Optimized scanning technology**
+
+## Installation
+
+```bash
+pip install bssqrcode
+```
+
+USAGE:
+from bssqrcode import bssqrcode
+
+key = bssqrcode.generate_key()
+data = "Sample Text"
+
+bssqrcode.create_qr(data, key, "test_qr.png")
+decoded = bssqrcode.scan_qr("test_qr.png", key)
+print("Decoded Data:", decoded)

@@ -1,0 +1,9 @@
+LICENSE
+README.md
+setup.py
+bssqrcode.egg-info/PKG-INFO
+bssqrcode.egg-info/SOURCES.txt
+bssqrcode.egg-info/dependency_links.txt
+bssqrcode.egg-info/requires.txt
+bssqrcode.egg-info/top_level.txt
+tests/test_bssqrcode.py
