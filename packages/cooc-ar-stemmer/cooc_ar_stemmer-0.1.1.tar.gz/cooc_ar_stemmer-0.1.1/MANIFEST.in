@@ -1,0 +1,5 @@
+include README.md
+include LICENSE.txt
+include cooc_ar_stemmer/mx.pkl
+include cooc_ar_stemmer/dic.pkl
+include cooc_ar_stemmer/vectorizer.pkl
