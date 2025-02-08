@@ -1,0 +1,19 @@
+Metadata-Version: 2.2
+Name: sf-pyrotel
+Version: 0.0.5
+Summary: Rust OpenTelemetry collector
+Home-page: https://github.com/streamfold/pyrotel
+Author: Streamfold
+Author-email: ray@streamfold.com
+License: Apache License 2.0
+Classifier: License :: OSI Approved :: Apache Software License
+Classifier: Programming Language :: Python :: 3.10
+Requires-Python: >=3.8
+Description-Content-Type: text/markdown
+License-File: LICENSE
+Provides-Extra: dev
+Requires-Dist: pytest >=7.0 ; extra == 'dev'
+Requires-Dist: twine >=6.1.0 ; extra == 'dev'
+Requires-Dist: pkginfo >=1.12.0 ; extra == 'dev'
+
+Python modules for Streamfold's Rust OpenTelemetry Collector
