@@ -1,0 +1,9 @@
+requests>=2.32.3
+
+[dev]
+pytest
+responses
+
+[doc]
+sphinx
+sphinx_autodoc_typehints

@@ -1,0 +1,31 @@
+[
+  {
+    "UID": "artiskh2amkzizr6",
+    "ParentUID": "",
+    "Thumb": "bf2a691e21b3403fc93a0e4ce2f33307cace2faf",
+    "Slug": "berlin",
+    "Type": "album",
+    "Title": "Berlin",
+    "Location": "",
+    "Category": "",
+    "Caption": "",
+    "Description": "",
+    "Notes": "",
+    "Filter": "",
+    "Order": "oldest",
+    "Template": "",
+    "Path": "",
+    "State": "",
+    "Country": "zz",
+    "Year": 0,
+    "Month": 0,
+    "Day": 0,
+    "Favorite": true,
+    "Private": false,
+    "PhotoCount": 7,
+    "LinkCount": 0,
+    "CreatedAt": "2023-04-22T14:07:29Z",
+    "UpdatedAt": "2023-04-22T14:08:45.461421502Z",
+    "DeletedAt": "0001-01-01T00:00:00Z"
+  }
+]
