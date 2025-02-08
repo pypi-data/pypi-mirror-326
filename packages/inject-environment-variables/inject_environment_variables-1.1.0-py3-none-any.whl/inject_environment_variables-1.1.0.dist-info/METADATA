@@ -1,0 +1,95 @@
+Metadata-Version: 2.2
+Name: inject-environment-variables
+Version: 1.1.0
+Summary: Simple tools for temporatily injecting variables into the environment
+Author: Tayler Kemsley
+License: MIT License
+        
+        Copyright (c) 2025 Tayler Kemsley
+        
+        Permission is hereby granted, free of charge, to any person obtaining a copy
+        of this software and associated documentation files (the "Software"), to deal
+        in the Software without restriction, including without limitation the rights
+        to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+        copies of the Software, and to permit persons to whom the Software is
+        furnished to do so, subject to the following conditions:
+        
+        The above copyright notice and this permission notice shall be included in all
+        copies or substantial portions of the Software.
+        
+        THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+        IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+        FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+        AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+        LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+        OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+        SOFTWARE.
+        
+Project-URL: Homepage, https://github.com/tayler-kemsley/python-inject-environment-variables
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 3
+Requires-Python: >=3.9
+Description-Content-Type: text/markdown
+License-File: LICENSE
+Provides-Extra: dev
+Requires-Dist: tox; extra == "dev"
+Requires-Dist: pytest; extra == "dev"
+Requires-Dist: mypy; extra == "dev"
+Requires-Dist: flake8; extra == "dev"
+
+# Inject Environment Variables
+
+A testing and development tool for temporarily injecting environment variables.
+
+## Installation
+
+```
+pip install inject-environment-variables
+```
+
+## Usage
+
+Variables can be injected into the environment via either a `with` statement or a decorator.
+
+### With statement
+
+Variables specified in the `EnvironmentVariableInjector`.
+
+When the `with` exits the environment (`os.environ`) will be reset to how it was when the statement enters.
+Meaning any changes to the environment during the statement will be lost.
+
+
+```python
+import os
+
+from inject_environment_variables import EnvironmentVariableInjector
+
+with EnvironmentVariableInjector({
+  'VARIABLE_1': 'foo',
+  'VARIABLE_2': 'bar'
+}):
+    print(os.getenv('VARIABLE_1')) 
+```
+
+### Decorator
+
+Variables can be specified by decorating a function with the `inject_environment_variables` decorator.
+
+These changes to the environment are only active for the duration of the decorated function. 
+At the end of the function the environment will be reset to how it was when the function started, 
+meaning any changes to the environment during the statement will be lost.
+
+```python
+import os
+
+from inject_environment_variables.decorator import inject_environment_variables
+
+
+@inject_environment_variables({
+    'VARIABLE_1': 'foo',
+    'VARIABLE_2': 'bar'
+})
+def test_environment_variables():
+    print(os.getenv('VARIABLE_1')) 
+```
