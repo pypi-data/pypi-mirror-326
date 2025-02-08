@@ -1,0 +1,118 @@
+Metadata-Version: 2.4
+Name: pg-nearest-city
+Version: 0.0.0
+Summary: Given a geopoint, find the nearest city using PostGIS (reverse geocode).
+Author: Emir Fabio Cognigni
+Author-email: Sam Woodcock <sam.woodcock@hotosm.org>
+License: GPL-3.0-only
+License-File: LICENSE.md
+Keywords: geocode,nearest,postgis,reverse,reverse-geocode
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.10
+Classifier: Programming Language :: Python :: 3.11
+Classifier: Programming Language :: Python :: 3.12
+Classifier: Topic :: Scientific/Engineering :: GIS
+Classifier: Topic :: Utilities
+Requires-Python: >=3.10
+Requires-Dist: psycopg>=3.1
+Requires-Dist: unasync>=0.6.0
+Description-Content-Type: text/markdown
+
+# Simple PostGIS Reverse Geocoder
+
+<!-- markdownlint-disable -->
+<p align="center">
+  <img src="https://raw.githubusercontent.com/hotosm/pg-nearest-city/refs/heads/main/docs/images/hot_logo.png" style="width: 200px;" alt="HOT"></a>
+</p>
+<p align="center">
+  <em>Given a geopoint, find the nearest city using PostGIS (reverse geocode).</em>
+</p>
+<p align="center">
+  <a href="https://github.com/hotosm/pg-nearest-city/actions/workflows/docs.yml" target="_blank">
+      <img src="https://github.com/hotosm/pg-nearest-city/actions/workflows/docs.yml/badge.svg" alt="Publish Docs">
+  </a>
+  <a href="https://github.com/hotosm/pg-nearest-city/actions/workflows/publish.yml" target="_blank">
+      <img src="https://github.com/hotosm/pg-nearest-city/actions/workflows/publish.yml/badge.svg" alt="Publish">
+  </a>
+  <a href="https://github.com/hotosm/pg-nearest-city/actions/workflows/pytest.yml" target="_blank">
+      <img src="https://github.com/hotosm/pg-nearest-city/actions/workflows/pytest.yml/badge.svg?branch=main" alt="Test">
+  </a>
+  <a href="https://pypi.org/project/pg-nearest-city" target="_blank">
+      <img src="https://img.shields.io/pypi/v/pg-nearest-city?color=%2334D058&label=pypi%20package" alt="Package version">
+  </a>
+  <a href="https://pypistats.org/packages/pg-nearest-city" target="_blank">
+      <img src="https://img.shields.io/pypi/dm/pg-nearest-city.svg" alt="Downloads">
+  </a>
+  <a href="https://github.com/hotosm/pg-nearest-city/blob/main/LICENSE.md" target="_blank">
+      <img src="https://img.shields.io/github/license/hotosm/pg-nearest-city.svg" alt="License">
+  </a>
+</p>
+
+---
+
+📖 **Documentation**: <a href="https://hotosm.github.io/pg-nearest-city/" target="_blank">https://hotosm.github.io/pg-nearest-city/</a>
+
+🖥️ **Source Code**: <a href="https://github.com/hotosm/pg-nearest-city" target="_blank">https://github.com/hotosm/pg-nearest-city</a>
+
+---
+
+<!-- markdownlint-enable -->
+
+## Why do we need this?
+
+This package was developed primarily as a **basic** reverse geocoder for use within
+web frameworks (APIs) that have an existing PostGIS connection to utilise.
+
+- The reverse geocoding package in Python [here](https://github.com/thampiman/reverse-geocoder)
+  is probably the original and canonincal implementation using K-D tree.
+  - However, it's a bit outdated now, with numerous unattended pull
+    requests and uses an unfavourable multiprocessing-based approach.
+- The package [here](https://github.com/richardpenman/reverse_geocode) is an excellent
+  revamp of the package above, an likely the best choice in many scenarios.
+
+The K-D tree implementation in Python is performant (see [benchmarks](#benchmarks))
+and an excellent choice for scripts.
+
+However, it does leave a large memory footprint of approximately 160Mb to load the
+K-D tree in memory (see [benchmarks](#benchmarks)).
+
+Once computed, the K-D tree remains in memory! This is an unacceptable compromise
+for a web server, for such a small amount of functionality, particularly if the
+web server is run via a container orchestrator as replicas with minimal memory.
+
+As we already have a Postgres database running alongside our webserver, an approach
+to simply query via pre-loaded data via PostGIS is much more memory efficient (~2Mb)
+and has an acceptable performance penalty (see [benchmarks](#benchmarks)).
+
+> [!NOTE]
+> We don't discuss web based geocoding services here, such as Nominatim, as simple
+> offline reverse-geocoding has two purposes:
+>
+> - Reduced latency, when very precise locations are not required.
+> - Reduced load on free services such as Nominatim (particularly when running
+> in automated tests frequently).
+
+## Priorities
+
+- Lightweight package size.
+- Minimal memory footprint.
+- Reasonably good performance.
+
+## How This Package Works
+
+- geonames.org data.
+- Voronoi polygons based on geopoints.
+- Gzipped data bundled with package.
+- Query the Voronois.
+
+## Benchmarks
+
+- todo
+
+## Testing
+
+Run the tests with:
+
+```bash
+docker compose run --rm code pytest
+```
