@@ -1,0 +1,11 @@
+listener/__init__.py,sha256=MfT1cwVcnz7s8EPl5kjEHj47_xG60cPF0mUIBHUCOgg,59
+listener/core.py,sha256=RMILApVs_-pHLniwWsJxpJvNhvgyA_fJzEoY21M5rX4,16231
+listener/meta.py,sha256=yfsgs0K3G8qWZBo-Hq4QJ4s4xnoSz_XmManoNcISKPw,85
+listener/utils.py,sha256=CaLBauwpZXEp8SLdEyDOzmAhiN8HhzR3-YXJHQZiZFM,96
+listener/vad.py,sha256=atFo8cNL6EKUVth9HQQt9Ibj1zoPK3qX_7I1rS8Jd94,4469
+listener/assets/silero_decoder_v5.onnx,sha256=jCA0T1CYRqB8zYWCfohXAX-uZ_q9WGib7Br3nh1Igwc,532505
+listener/assets/silero_encoder_v5.onnx,sha256=Dp_I9WQHaT0oP5kEX7lcK5D9yjQzzl-D4sEh-05hUHU,713415
+py_listener-1.0.2.dist-info/METADATA,sha256=4k01beWveNsKrDmNif5VFr71NbHrRKxf-gmPeGO5hpg,6593
+py_listener-1.0.2.dist-info/WHEEL,sha256=tZoeGjtWxWRfdplE7E3d45VPlLNQnvbKiYnx7gwAy8A,92
+py_listener-1.0.2.dist-info/top_level.txt,sha256=WPv1wFKAipRnPnp6MWd-T596bzI_G4bfYisDeHcRT7s,9
+py_listener-1.0.2.dist-info/RECORD,,
