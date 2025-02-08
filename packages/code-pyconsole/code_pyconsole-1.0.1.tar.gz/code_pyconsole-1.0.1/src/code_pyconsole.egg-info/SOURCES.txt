@@ -1,0 +1,9 @@
+README.md
+setup.py
+src/code_pyconsole.egg-info/PKG-INFO
+src/code_pyconsole.egg-info/SOURCES.txt
+src/code_pyconsole.egg-info/dependency_links.txt
+src/code_pyconsole.egg-info/requires.txt
+src/code_pyconsole.egg-info/top_level.txt
+src/pyconsole/__init__.py
+src/pyconsole/console.py
