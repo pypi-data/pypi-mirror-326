@@ -1,0 +1,12 @@
+pyfastatools-2.5.0.dist-info/WHEEL,sha256=VOupRnfug01GtQYX1iAM3IeNFJwbRXAxOEBUtSnOhO4,156
+pyfastatools-2.5.0.dist-info/RECORD,,
+pyfastatools-2.5.0.dist-info/METADATA,sha256=3dUUZwasdDXY4AdQdBkasTbH4uTzrr74rgfOd7dG9xE,5186
+pyfastatools-2.5.0.dist-info/licenses/LICENSE,sha256=ei0rpe2APvPR0y7fu7vyRP3dzER-nBV22-A7xbZ1QmM,1068
+pyfastatools/_parser.py,sha256=2R2psL70DFvL0gHD-jg8T0CTfLbKsm_3o7GKHpqGWJ4,11741
+pyfastatools/_types.py,sha256=jBHhYw8t-879BhKCgH3_JzHn9k8jOYaQsuTDauucKXc,79
+pyfastatools/iterator.py,sha256=N5_iM7FIP-52FP2LD3Ye4eo0Qt7M5J5-_w35Gnmo-8E,10298
+pyfastatools/_fastatools.cpython-311-x86_64-linux-gnu.so,sha256=tXy_nJJNLiu4iNiA4OlD7cqHqTzJL_DamiRUTYZvaS8,394928
+pyfastatools/_fastatools.pyi,sha256=9O0H0NhX1bCzGfs-KzSaYEmMCGZmGlUN7WlQm7k87zc,7054
+pyfastatools/_simple.py,sha256=bStLsPCv6hV8fBDMJChphkRocmC9aQevh7F6S7sMx0I,1944
+pyfastatools/__init__.py,sha256=SLvInQaswjcCjWrq0Yi_x3mFFt8WaTAGDOMQqukzfXI,442
+pyfastatools/utils.py,sha256=mHM4GYfDGrlphn1Kf-9-IWF58DObTfN7inBTv-v67f0,2043
