@@ -1,0 +1,11 @@
+README.md
+pyproject.toml
+setup.cfg
+setup.py
+dfnbutils/__init__.py
+dfnbutils/refs.py
+dfnbutils.egg-info/PKG-INFO
+dfnbutils.egg-info/SOURCES.txt
+dfnbutils.egg-info/dependency_links.txt
+dfnbutils.egg-info/top_level.txt
+dfnbutils/dfconvert/tests/test_make_ipy.py
