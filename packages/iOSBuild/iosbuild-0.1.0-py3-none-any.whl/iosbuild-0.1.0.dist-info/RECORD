@@ -1,0 +1,16 @@
+ios_build/README.md,sha256=47DEQpj8HBSa-_TImW-5JCeuQeRkm5NMpJWZG3hSuFU,0
+ios_build/__init__.py,sha256=47DEQpj8HBSa-_TImW-5JCeuQeRkm5NMpJWZG3hSuFU,0
+ios_build/__main__.py,sha256=raJwnITrPHfVxsnMxNtPEgI1b5p59rzOzYelExQ61QU,38
+ios_build/build.py,sha256=HOzCz1DOFw5kpOJFYrY0-MoLYw0Y8wXbxL97k6SISq8,7006
+ios_build/cmake.py,sha256=FCAmL7S1q8WaaRKVscbJIgNWbjLjfg4JHv1e2RXLz-M,4794
+ios_build/interface.py,sha256=_ZmnrOrZlaz7h0Uvf29SyG_kCbuKCdB7R0O8tb7J-6Q,1255
+ios_build/parser.py,sha256=SnC6y2uMmicvPZocCb8DiFOCizE0aNlZGfIfpRp30Aw,7178
+ios_build/printer.py,sha256=-n132pSX4V3Gh6bAEe8P1_DdCX2-BbxixDcfUBxLGaA,892
+ios_build/run.py,sha256=92lBvCA9p5AkS7xI3gM1PV6gw1OothROaaZ-HqVguug,587
+ios_build/search.py,sha256=Ej3ZVH45zuOugkSIAeLJGKY70A2KHnbtZGm3zvpCHdw,2472
+ios_build/xcodebuild.py,sha256=DG4lvoB01_VkfPvT07XgV203ukHuip6ua1MYMtUT0VE,1125
+iosbuild-0.1.0.dist-info/METADATA,sha256=wY_e2rSK1-CtROY6KenSoGbheWsAZ1Bpm1OB0IBa8Pw,5372
+iosbuild-0.1.0.dist-info/WHEEL,sha256=qtCwoSJWgHk21S1Kb4ihdzI2rlJ1ZKaIurTj_ngOhyQ,87
+iosbuild-0.1.0.dist-info/entry_points.txt,sha256=jrtbRIDaH4WceSO5p-B4J2oeFp09AX5ws5v7QLcDOds,49
+iosbuild-0.1.0.dist-info/licenses/LICENSE,sha256=ZWNiEZI05sdZQN6nGMtz6qucwkeU6cbp4HdLjq5808Y,1070
+iosbuild-0.1.0.dist-info/RECORD,,
