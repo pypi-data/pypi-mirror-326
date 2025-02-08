@@ -1,0 +1,51 @@
+Metadata-Version: 2.2
+Name: rice-vpaa-sdk
+Version: 0.1.2
+Summary: SDK for the Rice VPAA API
+Author-email: Cody VanZandt <cav3@rice.edu>
+Project-URL: Homepage, https://github.com/Rice-University-Academic-Affairs/VPAA-API
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Requires-Python: >=3.10
+Description-Content-Type: text/markdown
+Requires-Dist: pydantic>=2.0.0
+Requires-Dist: requests>=2.0.0
+
+# Rice VPAA SDK
+
+Internal SDK for accessing the Rice VPAA API. Requires an API key.
+
+## Install
+```bash
+pip install rice-vpaa-sdk
+```
+
+## Documentation
+
+Full Swagger API documentation is available [here](https://vpaa-api-server-stnkl.ondigitalocean.app/docs).
+
+## Usage
+```python
+from rice_vpaa import VPAAClient
+client = VPAAClient(api_key="your-api-key")
+```
+
+## Get Faculty
+```python
+faculty = client.get_faculty(
+    unit_ids=[123],
+    tenure_statuses=["TTT"],
+    employment_statuses=["Full Time"]
+)
+```
+
+## Get Divisions
+```python
+divisions = client.get_divisions(departments_only=True)
+```
+
+## Get Open Positions
+```python
+positions = client.get_open_positions()
+```
