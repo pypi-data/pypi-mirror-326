@@ -1,0 +1,41 @@
+Metadata-Version: 2.2
+Name: solscan
+Version: 1.2.2
+Summary: Advanced Solana Blockchain Tracking and Analysis Toolkit
+Author: SolScan Tools Ltd
+Author-email: support@solscan-tools.com
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: Apache Software License
+Requires-Python: >=3.8
+Description-Content-Type: text/markdown
+Requires-Dist: aiohttp>=3.9.0
+Dynamic: author
+Dynamic: author-email
+Dynamic: classifier
+Dynamic: description
+Dynamic: description-content-type
+Dynamic: requires-dist
+Dynamic: requires-python
+Dynamic: summary
+
+# SolTracker 🔍⛓️
+
+![PyPI](https://img.shields.io/pypi/v/soltracker)
+![License](https://img.shields.io/github/license/blockchain-analytics/soltracker)
+![Python](https://img.shields.io/badge/python-3.10%2B-blue)
+
+**Professional-grade Solana blockchain analysis and monitoring toolkit**
+
+## Features
+
+- Real-time wallet activity tracking
+- Transaction history analysis
+- Token movement monitoring
+- Async-first architecture
+- CLI and Python API support
+- Environment-based configuration
+
+## Installation
+
+```bash
+pip install soltracker
