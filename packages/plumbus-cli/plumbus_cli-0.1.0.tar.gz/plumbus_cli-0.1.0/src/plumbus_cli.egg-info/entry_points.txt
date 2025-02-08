@@ -1,0 +1,5 @@
+[console_scripts]
+plumbus = plumbus.cli:app
+
+[pipx.run]
+plumbus = plumbus.cli:app

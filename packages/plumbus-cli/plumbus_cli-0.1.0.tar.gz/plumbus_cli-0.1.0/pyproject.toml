@@ -1,0 +1,22 @@
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "plumbus-cli"
+version = "0.1.0"
+description = "A modular CLI tool for the SRE team."
+authors = [
+    {name = "Rafael Souza", email = "rsouza@anota.ai"}
+]
+dependencies = [
+    "typer",
+    "requests",
+    "pika"
+]
+
+[project.scripts]
+plumbus = "plumbus.cli:app"
+
+[project.entry-points."pipx.run"]
+plumbus = "plumbus.cli:app"
