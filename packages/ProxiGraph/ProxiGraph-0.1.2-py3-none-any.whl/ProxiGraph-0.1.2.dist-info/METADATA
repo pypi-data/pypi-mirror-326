@@ -1,0 +1,19 @@
+Metadata-Version: 2.1
+Name: ProxiGraph
+Version: 0.1.2
+Summary: Generate proximity graphs from point clouds with various modes and export formats.
+Home-page: https://github.com/DavidFernandezBonet/proxigraph
+Author: David Fernandez Bonet
+Author-email: davferdz@gmail.com
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Requires-Python: >=3.7
+Requires-Dist: numpy (<2.0.0,>=1.21.0)
+Requires-Dist: scipy (<2.0.0,>=1.7.0)
+Requires-Dist: pandas (<2.0.0,>=1.3.0)
+Requires-Dist: matplotlib (<4.0.0,>=3.4.0)
+Requires-Dist: networkx (<3.0.0,>=2.6.0)
+Requires-Dist: scikit-learn (<2.0.0,>=1.2.2)
+Requires-Dist: seaborn (<1.0.0,>=0.11.0)
+
