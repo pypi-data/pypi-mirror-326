@@ -1,0 +1,10 @@
+README.md
+setup.py
+DASST.egg-info/PKG-INFO
+DASST.egg-info/SOURCES.txt
+DASST.egg-info/dependency_links.txt
+DASST.egg-info/requires.txt
+DASST.egg-info/top_level.txt
+src/__init__.py
+src/core.py
+tests/test.py
