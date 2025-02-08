@@ -1,0 +1,20 @@
+[project]
+name = "lsqbc"
+dynamic = [ "version" ]
+description = "A functional programming language"
+authors = [
+    {name = "henceiusegentoo",email = "61363222+henceiusegentoo@users.noreply.github.com"}
+]
+requires-python = ">=3.12"
+dependencies = [
+]
+readme="README.md"
+
+[tool.poetry]
+packages = [
+    {include = "qb",from = "."}
+]
+version = "0.1.1"
+
+[project.scripts]
+qb = "qb.__main__:main"
