@@ -1,0 +1,13 @@
+utic_public_types/plugins/plugin_cookiecutter/cookiecutter.json,sha256=xhMERRj3RVMDjR1Va9T0FcPkNFJr_Q9WXI6_FE8I9wQ,290
+utic_public_types/plugins/plugin_cookiecutter/hooks/pre_gen_project.py,sha256=eLUGB6rGWzhuFY1T0MqEA742LXf9So3zV1CrxPDUzAw,719
+utic_public_types/plugins/plugin_cookiecutter/plugin-{{cookiecutter.type}}-{{cookiecutter.subtype}}/Dockerfile,sha256=nulGZz8jP1EGJ8UOSUVNXscQ9fQRtVbwDWYQgywZgMY,629
+utic_public_types/plugins/plugin_cookiecutter/plugin-{{cookiecutter.type}}-{{cookiecutter.subtype}}/Makefile,sha256=VIKj4IjtYJ_wmSVGYdIVMcqOrXDf6W7mYEHnxkpPV7A,2653
+utic_public_types/plugins/plugin_cookiecutter/plugin-{{cookiecutter.type}}-{{cookiecutter.subtype}}/README.md,sha256=QGpY_qNBPPHnxBUPsRCQvSindfQ2rtv5TCors3cBQPY,482
+utic_public_types/plugins/plugin_cookiecutter/plugin-{{cookiecutter.type}}-{{cookiecutter.subtype}}/pyproject.toml,sha256=pCdxPAZ4iptpoRJozcfbevIx57WZuLUOrv2V2fY9fNI,678
+utic_public_types/plugins/plugin_cookiecutter/plugin-{{cookiecutter.type}}-{{cookiecutter.subtype}}/settings.json,sha256=RBNvo1WzZ4oRRq0W9-hknpT7T8If536DEMBg9hyq_4o,2
+utic_public_types/plugins/plugin_cookiecutter/plugin-{{cookiecutter.type}}-{{cookiecutter.subtype}}/src/plugin_{{cookiecutter.type}}_{{cookiecutter.subtype}}/__init__.py,sha256=wEtq87aUhHKdvkeMptq_MW02AYwbtjnrLL_GOB072nA,2901
+utic_public_types/plugins/plugin_cookiecutter/plugin-{{cookiecutter.type}}-{{cookiecutter.subtype}}/tests/test_plugin.py,sha256=07CMQKuTZn7s6VJcY9YA_hGiifnNOe0HBFIJX51SWoU,1404
+utic_public_types-0.2.0.dist-info/METADATA,sha256=7ATLrNJKSusMZcdn8uMIG4wNM8wNdTDzbfNr5abiR1g,747
+utic_public_types-0.2.0.dist-info/WHEEL,sha256=qtCwoSJWgHk21S1Kb4ihdzI2rlJ1ZKaIurTj_ngOhyQ,87
+utic_public_types-0.2.0.dist-info/entry_points.txt,sha256=5B_t12UrXpFgwH80OVyuNup00a7i5YYrn2N1Jbj-uTE,76
+utic_public_types-0.2.0.dist-info/RECORD,,
