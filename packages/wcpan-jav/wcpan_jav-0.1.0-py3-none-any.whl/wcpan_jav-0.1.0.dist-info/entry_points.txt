@@ -1,0 +1,2 @@
+[console_scripts]
+wcpan.jav = wcpan.jav._main:run_as_module
