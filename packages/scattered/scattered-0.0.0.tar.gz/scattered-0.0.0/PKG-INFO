@@ -1,0 +1,6 @@
+Metadata-Version: 2.4
+Name: scattered
+Version: 0.0.0
+Summary: 3D scatterplots are useless, but fun
+Author-email: David Kouril <david.kouril@gmail.com>
+Requires-Python: >=3.13
