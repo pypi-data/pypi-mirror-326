@@ -1,0 +1,54 @@
+Metadata-Version: 2.4
+Name: rscheduler
+Version: 0.1.0
+Classifier: Programming Language :: Rust
+Classifier: Programming Language :: Python :: Implementation :: CPython
+Classifier: Programming Language :: Python :: Implementation :: PyPy
+License-File: LICENSE
+Summary: A high-precision task scheduler for Python, built with Rust for accuracy and efficiency
+Author: Takahiro Ishiguro
+License: Apache-2.0
+Requires-Python: >=3.8
+Description-Content-Type: text/markdown; charset=UTF-8; variant=GFM
+Project-URL: Source Code, https://github.com/LemonPepperSeasoning/rscheduler
+
+[![PyPi](https://img.shields.io/pypi/v/rscheduler)](https://pypi.org/project/rscheduler/)
+[![GitHub actions status](https://github.com/lemonpepperseasoning/rscheduler/workflows/CI/badge.svg)](https://github.com/lemonpepperseasoning/rscheduler/actions/workflows/CI.yml)
+
+# rscheduler
+
+python scheduling library implemented in rust
+
+### Project setup
+
+```
+python3 -m venv venv
+source venv/bin/activate
+pip install maturin
+maturin develop
+```
+
+### Run
+
+```
+maturin develop
+python3
+
+>> import rscheduler
+>> scheduler = rscheduler.Scheduler()
+>> id1 = scheduler.schedule(my_task, 1.0)
+>> scheduler.start()
+>> time.sleep(3)
+>> scheduler.cancel(id1)
+```
+
+### Test
+
+```
+cargo test
+```
+
+### TODO:
+
+- Go lower level & integrate with syscall (look at psutil for api example)
+
