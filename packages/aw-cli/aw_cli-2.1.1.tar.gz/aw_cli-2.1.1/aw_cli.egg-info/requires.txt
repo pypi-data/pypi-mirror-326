@@ -1,0 +1,4 @@
+requests
+pySmartDL
+wheel
+regex
