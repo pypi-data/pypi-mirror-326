@@ -1,0 +1,7 @@
+plotly
+pandas
+fdsreader
+numpy
+
+[:platform_system == "Windows"]
+winapps
