@@ -1,0 +1,3 @@
+[console_scripts]
+pydantic-client=pydantic_client.cli:cli_app
+
