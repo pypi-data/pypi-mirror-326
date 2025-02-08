@@ -1,0 +1,12 @@
+pnorm/__init__.py,sha256=xRux33G4cg-I2xNFQDml2GLVrMR-oBb6fEfEf1ij7T4,652
+pnorm/async_client.py,sha256=tF8cLC8_O1QP4ll-NZSEowMeIvngOTRrw_xoU-F4kwI,23361
+pnorm/async_cursor.py,sha256=Vx9jnhyFcffxiDKIEoDYbmu2KJJ99OL9CuMp3VMD74A,1979
+pnorm/credentials.py,sha256=iZSoaXHJIyZw8Dy5ZMdF-w3S63qXskIR9cCDjKJwxhI,925
+pnorm/exceptions.py,sha256=i-BQC1isinHa1O14K7LNqTb7IuO-PZMRHCRBxB4iiXM,891
+pnorm/mapping_utilities.py,sha256=RVf8qMtM_B6Zy2sgp11Olg-IoqVA7J2cZiefd4bXQD8,3419
+pnorm/pnorm_types.py,sha256=z4Qbg0wlTOH7NhV0xHAQq9yFZiPe-Y2kFZT1GnfcCoU,992
+pnorm/py.typed,sha256=47DEQpj8HBSa-_TImW-5JCeuQeRkm5NMpJWZG3hSuFU,0
+pnorm-0.0.1.dist-info/LICENSE,sha256=tAkwu8-AdEyGxGoSvJ2gVmQdcicWw3j1ZZueVV74M-E,11357
+pnorm-0.0.1.dist-info/METADATA,sha256=WHcGrQsmYFkuLF-YkOTjMWRq3bRJ-MUVWHnNkqRoe7k,2995
+pnorm-0.0.1.dist-info/WHEEL,sha256=IYZQI976HJqqOpQU6PHkJ8fb3tMNBFjg-Cn-pwAbaFM,88
+pnorm-0.0.1.dist-info/RECORD,,
