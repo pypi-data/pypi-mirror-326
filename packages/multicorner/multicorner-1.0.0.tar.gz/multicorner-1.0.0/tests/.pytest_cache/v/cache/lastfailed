@@ -1,0 +1,11 @@
+{
+  "random_sample_test.py::test_images_identical[test_plot_218.png]": true,
+  "random_sample_test.py::test_images_identical[test_plot_398.png]": true,
+  "random_sample_test.py::test_images_identical[test_plot_116.png]": true,
+  "random_sample_test.py::test_images_identical[test_plot_202.png]": true,
+  "random_sample_test.py::test_images_identical[test_plot_36.png]": true,
+  "random_sample_test.py::test_images_identical[test_plot_376.png]": true,
+  "random_sample_test.py::test_image_hashes_match[test_plot_116.png]": true,
+  "random_sample_test.py::test_image_hashes_match[test_plot_124.png]": true,
+  "random_sample_test.py::test_image_hashes_match[test_plot_20.png]": true
+}
