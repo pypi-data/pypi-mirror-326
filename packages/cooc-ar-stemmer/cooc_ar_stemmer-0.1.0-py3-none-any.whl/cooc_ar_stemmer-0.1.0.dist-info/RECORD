@@ -1,0 +1,10 @@
+cooc_ar_stemmer/__init__.py,sha256=47DEQpj8HBSa-_TImW-5JCeuQeRkm5NMpJWZG3hSuFU,0
+cooc_ar_stemmer/ar_stem.py,sha256=bI72XR34TXuFEdtAPk5Qab4UUh4iw6fayfjCUhh3G8I,3380
+cooc_ar_stemmer/dic.pkl,sha256=V2cHrshGF5bfEwysEJudY5G0Pw0ZOHeIvHFXJt3aszY,211
+cooc_ar_stemmer/mx.pkl,sha256=Myc09n4PEarsI2zziX4GWO4n_Ti0Ty8UfF_UWp-LXA4,12320
+cooc_ar_stemmer/vectorizer.pkl,sha256=KSCQUeRzEC5l1aCcf2Ys_d0jZFK1M38cjbwOMIgZWbM,1294
+cooc_ar_stemmer-0.1.0.dist-info/LICENSE.txt,sha256=ot3DOvd_H1IJoJRDqVg1_vmYZjaG0sIW9_Ut0lxLqOo,2340
+cooc_ar_stemmer-0.1.0.dist-info/METADATA,sha256=vQcL4B2keQQikqbt3dbvlOENKlSXS4656SA7ZHzZTok,1377
+cooc_ar_stemmer-0.1.0.dist-info/WHEEL,sha256=In9FTNxeP60KnTkGw7wk6mJPYd_dQSjEZmXdBdMCI-8,91
+cooc_ar_stemmer-0.1.0.dist-info/top_level.txt,sha256=PQ8AE85NcS5c4JhhkNDWVBvvKLwOenDVZoUUaVQlALs,16
+cooc_ar_stemmer-0.1.0.dist-info/RECORD,,

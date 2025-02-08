@@ -1,0 +1,50 @@
+Metadata-Version: 2.2
+Name: cooc_ar_stemmer
+Version: 0.1.0
+Summary: A stemmer for the Arabic language
+Home-page: https://github.com/iskander-akhmetov/cooc_ar_stemmer
+Author: Iskander Akhmetov
+Author-email: iskander.akhmetov@gmail.com
+License: Proprietary
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: Other/Proprietary License
+Classifier: Operating System :: OS Independent
+Requires-Python: >=3.11.7
+Description-Content-Type: text/markdown
+License-File: LICENSE.txt
+Dynamic: author
+Dynamic: author-email
+Dynamic: classifier
+Dynamic: description
+Dynamic: description-content-type
+Dynamic: home-page
+Dynamic: license
+Dynamic: requires-python
+Dynamic: summary
+
+# cooc_ar_stemmer
+A stemmer for the Arabic language
+
+Based on the work:
+@ARTICLE {iskanderakhmetovalexandrpakirinaualiyevaalexandergelbukh2020, 
+author = "Iskander Akhmetov, Alexandr Pak, Irina Ualiyeva, Alexander Gelbukh", 
+title = "Highly Language-Independent Word Lemmatization Using a Machine-Learning Classifier", 
+journal = "Computacion y Sistemas", 
+year = "2020", 
+volume = "24", 
+number = "3", 
+pages = "1353-1364", 
+month = "sep" }
+
+## Usage:
+```
+import cooc_ar_stemmer.ar_stem as cas
+cas.stem_it('شطط')
+
+# Output: 'شط'
+
+# You can also provide a list of words:
+cas.stem_it(['شطط', 'ضحي'])
+
+# Output: ['شط', 'ضحى']
+```
