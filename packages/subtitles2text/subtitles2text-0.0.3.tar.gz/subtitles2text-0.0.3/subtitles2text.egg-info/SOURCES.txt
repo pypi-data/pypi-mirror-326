@@ -1,0 +1,12 @@
+LICENSE
+MANIFEST.in
+README.md
+pyproject.toml
+setup.py
+subtitles2text/main.py
+subtitles2text.egg-info/PKG-INFO
+subtitles2text.egg-info/SOURCES.txt
+subtitles2text.egg-info/dependency_links.txt
+subtitles2text.egg-info/entry_points.txt
+subtitles2text.egg-info/requires.txt
+subtitles2text.egg-info/top_level.txt

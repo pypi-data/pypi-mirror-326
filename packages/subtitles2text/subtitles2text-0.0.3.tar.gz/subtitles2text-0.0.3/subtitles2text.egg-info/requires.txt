@@ -1,0 +1,2 @@
+vtt2txt-ng
+docling
