@@ -1,0 +1,53 @@
+Metadata-Version: 2.3
+Name: lsp-types
+Version: 0.2.0
+Summary: 
+Author: Mazyad Alabduljaleel
+Author-email: mazjaleel@gmail.com
+Requires-Python: >=3.12,<4.0
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.12
+Classifier: Programming Language :: Python :: 3.13
+Description-Content-Type: text/markdown
+
+# LSP Types
+
+Publish the excellent work of [Sublime LSP](https://github.com/sublimelsp/lsp-python-types) as a PyPI package.
+
+## Installation
+
+```sh
+pip install lsp-types
+```
+
+## Usage
+
+```python
+import lsp_types
+
+# Use the types
+```
+
+## Development
+
+Requires Python 3.11+.
+
+Generate latest types in one go:
+```sh
+make generate-latest-types
+```
+
+Download the latest json schema:
+```sh
+make download-schemas
+```
+
+Generate the types:
+```sh
+make generate-schemas
+```
+
+Copy the `lsp_types/types.py` file to your project.
+
+NOTE: Do not import types that begin with `__`. These types are internal types and are not meant to be used.
+
