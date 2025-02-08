@@ -1,0 +1,13 @@
+ai_palette/__init__.py,sha256=3ZTOqaoNE5qnZgXCSV1AYju16YVU0ZESmp0Dm9ckt6s,27008
+ai_palette/app.py,sha256=BZMCGSx8iiYfK-SsMr4qIafog6UKG0HeVlXy_0TxBm4,7394
+ai_palette/static/image/connect.jpg,sha256=Z5piGhUQJpJBdG6lG849sEE4N9fwqB2UKF3Aws8rRX4,70238
+ai_palette/static/image/qrcode.jpg,sha256=gGYAHEcIn5Nf1mWHMoCNH3sWI_rnJSWdHCDmfrJ3SWE,27691
+ai_palette/static/image/web_demo.png,sha256=qn-KorJHO7_SZeTNhGs1ki3cB3a6WnsNIKaGRmLojHU,336616
+ai_palette/templates/index.html,sha256=iMN-KqFviuVZD8iv02MuiBdOjjj-vMrkqb5NZkkEQEc,79270
+ai_palette/templates/intro.html,sha256=OST4yqCeVjrTkTgi1Y3XIJEkddUvVxixDc0ZAvo4bTo,4794
+ai_palette-0.1.8.dist-info/LICENSE,sha256=BwEsjQprNkHnO6HNOZCSDLympwmb_erOlzXIuGkvyoQ,1057
+ai_palette-0.1.8.dist-info/METADATA,sha256=1wH9cTZc_SFKC7xkmAFq0Nw_PoR89rrTyIHmLoNTRAU,17362
+ai_palette-0.1.8.dist-info/WHEEL,sha256=In9FTNxeP60KnTkGw7wk6mJPYd_dQSjEZmXdBdMCI-8,91
+ai_palette-0.1.8.dist-info/entry_points.txt,sha256=9bRl2K9MGarwGJQSK4SF0e0G6fdRF_53x9n2NKI37r4,64
+ai_palette-0.1.8.dist-info/top_level.txt,sha256=gQFs2_LYaIGjb2zQ6xc_NhFCYP5_HYqh4Fx0CGwfsl0,11
+ai_palette-0.1.8.dist-info/RECORD,,
