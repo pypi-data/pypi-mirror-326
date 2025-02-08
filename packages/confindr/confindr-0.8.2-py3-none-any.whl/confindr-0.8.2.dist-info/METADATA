@@ -1,0 +1,18 @@
+Metadata-Version: 2.1
+Name: confindr
+Version: 0.8.2
+Summary: UNKNOWN
+Home-page: https://github.com/OLC-Bioinformatics/ConFindr
+Author: Adam Koziol
+Author-email: adam.koziol@inspection.gc.ca
+License: UNKNOWN
+Platform: UNKNOWN
+Requires-Dist: biopython
+Requires-Dist: pysam
+Requires-Dist: pytest
+Requires-Dist: numpy
+Requires-Dist: rauth
+
+UNKNOWN
+
+
