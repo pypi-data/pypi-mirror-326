@@ -1,0 +1,8 @@
+README.md
+pyproject.toml
+setup.py
+cmdgen.egg-info/PKG-INFO
+cmdgen.egg-info/SOURCES.txt
+cmdgen.egg-info/dependency_links.txt
+cmdgen.egg-info/requires.txt
+cmdgen.egg-info/top_level.txt
