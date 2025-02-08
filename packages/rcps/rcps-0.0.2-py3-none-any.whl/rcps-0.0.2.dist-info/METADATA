@@ -1,0 +1,29 @@
+Metadata-Version: 2.2
+Name: rcps
+Version: 0.0.2
+Summary: A tool to control a target pc remotely with a bunch of other tools.
+Author: arpy8
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Description-Content-Type: text/markdown
+License-File: LICENSE
+Requires-Dist: wheel
+Requires-Dist: termcolor
+Requires-Dist: setuptools
+Requires-Dist: argparse
+Requires-Dist: argparse
+Requires-Dist: pynput
+Requires-Dist: opencv-python
+Requires-Dist: pyautogui
+Dynamic: author
+Dynamic: classifier
+Dynamic: description
+Dynamic: description-content-type
+Dynamic: requires-dist
+Dynamic: summary
+
+remote-control
+
+upcoming feature:
+add video call feat
