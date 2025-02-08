@@ -1,0 +1,8 @@
+Metadata-Version: 2.4
+Name: igrf-model
+Version: 1.1.4
+Summary: Pure Python implementation of the IGRF13 magnetic model
+Author-email: Tamas Nepusz <ntamas@gmail.com>
+License-Expression: MIT
+License-File: LICENSE.md
+Requires-Python: >=3.8
