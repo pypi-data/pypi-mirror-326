@@ -1,0 +1,4 @@
+shapely
+requests
+backoff
+boto3
