@@ -1,0 +1,16 @@
+cryoswath/__init__.py,sha256=TPXbxya-aYdxf4ZECSqKstw03PrdP-CcwkxtFDmpbuM,156
+cryoswath/gis.py,sha256=QuRmVeTLYvV1FPFNmM2tLq4lAgHCxUcAc0Ge90sEk8g,7193
+cryoswath/l1b.py,sha256=hQSUCDBBBe3NOkmZXxtVbJzKsSgrEBiqwZPE3i6KGHg,47554
+cryoswath/l2.py,sha256=hZQA5jXZs6UQJkJZHfZtCbT7efeu-W7h_ZEhd_uOMEY,22858
+cryoswath/l3.py,sha256=I7RBANBMZyPRkJCQww1pnWXCBo8N2cUs4IgZbdcAgls,34891
+cryoswath/l4.py,sha256=H23B4bgYrhE4gQJT6wdXNQHSFI8dPIE8opHmu6d6sik,10305
+cryoswath/misc.py,sha256=E0VMbqkzn8sh5QnKjWvT57eHH8Sep1yYPWJUMhotdn4,76421
+cryoswath/test_plots/__init__.py,sha256=2zfus3hLEdY5wxUlbCfTukJgc8rN-x5hIZpz0OLIwW4,45
+cryoswath/test_plots/maps.py,sha256=ijUlZolLy1-G76rdTbISjNKzS8QQCHvFFRmrUqmfyvo,1683
+cryoswath/test_plots/timeseries.py,sha256=wcR5JTkalvm3L5nF_qSwqLDMtQv6LRqkCRDbRqLLL0E,2433
+cryoswath/test_plots/waveform.py,sha256=5eIWKvlEuB_HRcIUYoj2KIufC-ivxC3mgYg0gkXq3SM,11905
+cryoswath-0.2.1.dist-info/entry_points.txt,sha256=mELZhlgz7spWtgjZ1NhS_-XJRCSk0TnZwFAqjZzHT5U,62
+cryoswath-0.2.1.dist-info/LICENSE.txt,sha256=NhN1ftaGsC0CCfXp88j4TREEHYbqSU0jig9keZzGfJU,1095
+cryoswath-0.2.1.dist-info/WHEEL,sha256=CpUCUxeHQbRN5UGRQHYRJorO5Af-Qy_fHMctcQ8DSGI,82
+cryoswath-0.2.1.dist-info/METADATA,sha256=ecUGp1eaC15ozscgHRUEG0H1toR6HhKqAlLmQWmC7Zk,5311
+cryoswath-0.2.1.dist-info/RECORD,,
