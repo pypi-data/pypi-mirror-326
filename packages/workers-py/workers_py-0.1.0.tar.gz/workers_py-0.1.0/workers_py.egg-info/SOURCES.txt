@@ -1,0 +1,7 @@
+README.md
+pyproject.toml
+workers.py
+workers_py.egg-info/PKG-INFO
+workers_py.egg-info/SOURCES.txt
+workers_py.egg-info/dependency_links.txt
+workers_py.egg-info/top_level.txt
