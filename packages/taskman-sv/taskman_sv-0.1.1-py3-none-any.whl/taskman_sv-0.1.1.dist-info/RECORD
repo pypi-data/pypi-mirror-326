@@ -1,0 +1,10 @@
+taskman/__init__.py,sha256=WTQcmd2EE7Ai036gCLcKmYesApqWkVgZzkEf28MTvTU,22
+taskman-sv/__init__.py,sha256=l6L0T1jG0tVlsSilxzgkAeOqnHoqaZbcRAxbS9OpRVw,550
+taskman-sv/cli.py,sha256=yIyOls_wyRpiL5bR_bmRNiRaVqAn_MdIZ09rNOTc6mg,2493
+taskman-sv/interface.py,sha256=NwGWizocvgHWHycc6p5yhN4HpeG9ycHSLIl53clEHng,66209
+taskman-sv/taskman_backend.py,sha256=FCtukKcE3E0Up6hJPD9Yc1Uv72qlw5-VpXwFesrZVVs,19318
+taskman_sv-0.1.1.dist-info/METADATA,sha256=gq7a2xXToo_M96sFUVbkYWBugsNisCt152ioIhp59YE,1256
+taskman_sv-0.1.1.dist-info/WHEEL,sha256=In9FTNxeP60KnTkGw7wk6mJPYd_dQSjEZmXdBdMCI-8,91
+taskman_sv-0.1.1.dist-info/entry_points.txt,sha256=_S_GgMwhqTBXOPeevUXw0_Y7iOauQLIsLaC9bECTIy4,45
+taskman_sv-0.1.1.dist-info/top_level.txt,sha256=4TSVJRZi83wBZOEwFSTitjbRqbXzBXg-WDGS7I8D8ss,19
+taskman_sv-0.1.1.dist-info/RECORD,,
