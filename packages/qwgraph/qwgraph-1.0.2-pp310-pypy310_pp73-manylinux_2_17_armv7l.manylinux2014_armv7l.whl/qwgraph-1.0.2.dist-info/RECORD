@@ -1,0 +1,11 @@
+qwgraph-1.0.2.dist-info/METADATA,sha256=LpVAgxJVqUgiRUOTl86-__yfzvv2nQw85mjRGaMQZ7c,1280
+qwgraph-1.0.2.dist-info/WHEEL,sha256=fbcf8CwUpTl8maHvZffWTk-pS_T9Xbw30hVaquTI5JA,136
+qwgraph-1.0.2.dist-info/licenses/LICENSE,sha256=n-k4_M3Mvde95bHqZp6Zg8xxIohOOvIR9Vee2Cvt2mI,1070
+qwgraph/coins.py,sha256=WTnCUcAAgN5PNrnv5Be9rJR7JlvhAd-tZ4JHVD8vjxs,2577
+qwgraph/__pycache__/__init__.cpython-310.pyc,sha256=YcdoXe-M_MGxTsZRP_0MPA3yaKkY7k-QbOIva28MvNc,219
+qwgraph/__pycache__/qwsearch.cpython-310.pyc,sha256=H7FcARAAVbk-oP6_xx1QRadElaIAqTeWOd3AyP34KYU,25256
+qwgraph/pipelines.py,sha256=HctwAo6AUkpWbTC9dbfteXf6elrlIsCaNahQcnGTP6c,5481
+qwgraph/qwsearch.py,sha256=5covIhBRXw-UTetSMtUEpzwPNXeTEXvsqbl09r7YAps,33256
+qwgraph/__init__.py,sha256=x5M56XQcqpu-UW3C0FP4A17qSZoVyb3VfMWj_qR93nw,76
+qwgraph/qwgraph.pypy310-pp73-arm-linux-gnu.so,sha256=UQDQAPCelPzb5vqx75x-sSCC0OCx_l88gGVstSd2c2U,742320
+qwgraph-1.0.2.dist-info/RECORD,,
