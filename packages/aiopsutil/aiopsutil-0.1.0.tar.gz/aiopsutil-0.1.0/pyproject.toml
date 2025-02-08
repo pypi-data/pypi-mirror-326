@@ -1,0 +1,25 @@
+[build-system]
+requires = [ "setuptools", "wheel",]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "aiopsutil"
+version = "0.1.0"
+description = "aiopsutil is an asynchronous version of the popular psutil library, designed to provide an efficient and non-blocking way to retrieve information on running processes and system utilization."
+readme = "README.md"
+requires-python = ">=3.6"
+classifiers = [ "Development Status :: 5 - Production/Stable", "Intended Audience :: Developers", "License :: OSI Approved :: BSD License", "Operating System :: OS Independent", "Programming Language :: Python :: 3", "Programming Language :: Python :: 3.8", "Programming Language :: Python :: 3.9", "Programming Language :: Python :: 3.10", "Programming Language :: Python :: 3.11", "Programming Language :: Python :: 3.12", "Programming Language :: Python :: 3.13",]
+dependencies = ["psutil"]
+authors = [
+    {name = "解文", email = "2965312076@qq.com"}
+]
+license = {file = "LICENSE"}
+keywords = ["aiopsutil", "async psutil", "psutil"]
+
+[project.urls]
+repository = "https://github.com/nostalgiatan/aiopsutil-python"
+"Bug Reports" = "https://github.com/nostalgiatan/aiopsutil-python/issues"
+
+[tool.setuptools]
+zip-safe = true
+packages = [ "aiopsutil"]

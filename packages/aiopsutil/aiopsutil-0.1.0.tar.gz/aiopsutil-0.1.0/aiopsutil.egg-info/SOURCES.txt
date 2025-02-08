@@ -1,0 +1,11 @@
+LICENSE
+README.md
+pyproject.toml
+aiopsutil/__init__.py
+aiopsutil/aiopsutil.py
+aiopsutil.egg-info/PKG-INFO
+aiopsutil.egg-info/SOURCES.txt
+aiopsutil.egg-info/dependency_links.txt
+aiopsutil.egg-info/requires.txt
+aiopsutil.egg-info/top_level.txt
+aiopsutil.egg-info/zip-safe
