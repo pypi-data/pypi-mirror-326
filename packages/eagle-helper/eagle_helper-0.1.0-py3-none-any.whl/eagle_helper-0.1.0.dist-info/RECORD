@@ -1,0 +1,17 @@
+eagle_helper/__init__.py,sha256=EgJ_QPm4q_E_VURT7fCpp2Z75D9FONq6cb2ikM8FXuk,547
+eagle_helper/config.py,sha256=h0OtYPW52Lq1mf20MrqlpQVXwHin0lFJ0TQaOqj05NA,2610
+eagle_helper/cli/__init__.py,sha256=GUfsdZfara6Lft_VU0SJMh6F658vuKRVZ5XjlfH9JOk,435
+eagle_helper/cli/__main__.py,sha256=c0l0oarS4q8VkCc_gTU4eD-oAjjgAfODvdaSa32eKCo,2921
+eagle_helper/cli/plugin_init.py,sha256=ZJiLeR25LMLC2x90q-q9IjYkr5ZkoSv1ANNbfb7dxSI,11641
+eagle_helper/cli/plugin_walk.py,sha256=RsSiu8NhgXpRxHToWwCZP5vl6witruAeq63VNxLN7-o,7445
+eagle_helper/coms/files.py,sha256=gafAqhXIuTx1Rs_SBYVbupkA9fhOlAnz1G53nyrEE6A,1605
+eagle_helper/coms/locales.py,sha256=2-loif4XHO6ZyWp6ass48V4lOM3tuFHJH7nMrrNc0UI,2282
+eagle_helper/coms/manifest.py,sha256=ide3qHws-gYR12QPduXQgl9j7NztTXXo8pRjGqtIOHA,4946
+eagle_helper/etc/__init__.py,sha256=5NLZKR9IyBVxYrZgbhV06P39ahbE-oGDwWvffWU0IO8,959
+eagle_helper/etc/git.py,sha256=K_xWtbldyuQIIlf0_Ax792saNaKgb7Lpvt4Uf3gBHwg,3137
+eagle_helper/i18n/zh_CN.json,sha256=6MjMYQMeiy7I3zEIZhiZPHFQqjvkOBEKQnh2k58a9oo,4086
+eagle_helper-0.1.0.dist-info/METADATA,sha256=K5k3rCQUfGH147UyaLBZs2H54qY-LMFzmmWqKPkHxlc,435
+eagle_helper-0.1.0.dist-info/WHEEL,sha256=qtCwoSJWgHk21S1Kb4ihdzI2rlJ1ZKaIurTj_ngOhyQ,87
+eagle_helper-0.1.0.dist-info/entry_points.txt,sha256=Lu4tAGYoLK_6smrZbPvM1UIMX4wS5yoQwvKN3SC0Zn4,64
+eagle_helper-0.1.0.dist-info/licenses/LICENSE,sha256=iASY0MiZDdNzCJkvvAlzw_DrI-R-xf3SjeIx1deS9Pw,1065
+eagle_helper-0.1.0.dist-info/RECORD,,
