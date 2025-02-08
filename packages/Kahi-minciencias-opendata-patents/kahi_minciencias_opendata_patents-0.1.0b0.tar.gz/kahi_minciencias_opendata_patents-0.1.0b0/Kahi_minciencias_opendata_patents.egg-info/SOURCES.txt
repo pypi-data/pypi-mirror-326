@@ -1,0 +1,13 @@
+MANIFEST.in
+README.md
+setup.py
+Kahi_minciencias_opendata_patents.egg-info/PKG-INFO
+Kahi_minciencias_opendata_patents.egg-info/SOURCES.txt
+Kahi_minciencias_opendata_patents.egg-info/dependency_links.txt
+Kahi_minciencias_opendata_patents.egg-info/requires.txt
+Kahi_minciencias_opendata_patents.egg-info/top_level.txt
+kahi_minciencias_opendata_patents/Kahi_minciencias_opendata_patents.py
+kahi_minciencias_opendata_patents/__init__.py
+kahi_minciencias_opendata_patents/_version.py
+kahi_minciencias_opendata_patents/parser.py
+kahi_minciencias_opendata_patents/process_one.py
