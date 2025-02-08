@@ -1,0 +1,9 @@
+pyrql/__init__.py,sha256=K7j4t-lw_9phiWTXrj0KD1yFuXOVMIFx6y_A_DsImRw,459
+pyrql/exceptions.py,sha256=wR6rx_ei7gRUBihLr0lDkEQgtTrIRZopOHmTe4eYdtE,121
+pyrql/parser.py,sha256=XIYAa9fPoiVo2cnUyPM4A1oL64nNC2fgdiH7odFudpk,5402
+pyrql/query.py,sha256=FqY43bN8ry2O_UpkSRfb9vrOzd0q6OW02PTK9jhGW08,9500
+pyrql/unparser.py,sha256=MGeCdssYstJBBsRcpfSuFXAevIt9dWvY1JTxwq0GeYI,1749
+pyrql-0.7.10.dist-info/METADATA,sha256=I9seZ_ZNHU8ZwVvE52FW_fC_ExII5nA8hF1hGiNCluo,12560
+pyrql-0.7.10.dist-info/WHEEL,sha256=qtCwoSJWgHk21S1Kb4ihdzI2rlJ1ZKaIurTj_ngOhyQ,87
+pyrql-0.7.10.dist-info/licenses/LICENSE,sha256=L_dukx09C8YfgRd8apM6MlGky3obd44YF19iWEV9rsQ,1070
+pyrql-0.7.10.dist-info/RECORD,,
