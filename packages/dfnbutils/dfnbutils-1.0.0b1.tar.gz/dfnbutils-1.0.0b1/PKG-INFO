@@ -1,0 +1,20 @@
+Metadata-Version: 2.2
+Name: dfnbutils
+Version: 1.0.0b1
+Summary: Utilities for working with IPykernel/DFKernel notebooks
+Author-email: Dataflow Notebook Team <dataflownb@users.noreply.github.com>
+License: BSD
+Project-URL: homepage, https://github.com/dataflownb/dfnbutils
+Keywords: Jupyter,notebooks,conversion,utilities
+Classifier: Intended Audience :: Developers
+Classifier: Intended Audience :: System Administrators
+Classifier: Intended Audience :: Science/Research
+Classifier: License :: OSI Approved :: BSD License
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 3
+Requires-Python: >=3.9
+Description-Content-Type: text/markdown
+
+# dfnbutils
+
+This package contains utilities for [dataflow notebooks](https://github.com/dataflownb). Currently, it does not include the conversion script, but this will be added soon.
