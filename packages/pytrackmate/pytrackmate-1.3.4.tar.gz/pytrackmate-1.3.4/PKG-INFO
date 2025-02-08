@@ -1,0 +1,123 @@
+Metadata-Version: 2.2
+Name: pytrackmate
+Version: 1.3.4
+Summary: Import Trackmate XML files in Python as Pandas dataframe.
+Author-email: Hadrien Mary <hadrien.mary@gmail.com>
+License: MIT License
+        
+        Copyright (c) 2018-2025 Hadrien Mary
+        
+        Permission is hereby granted, free of charge, to any person obtaining a copy
+        of this software and associated documentation files (the "Software"), to deal
+        in the Software without restriction, including without limitation the rights
+        to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+        copies of the Software, and to permit persons to whom the Software is
+        furnished to do so, subject to the following conditions:
+        
+        The above copyright notice and this permission notice shall be included in all
+        copies or substantial portions of the Software.
+        
+        THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+        IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+        FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+        AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+        LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+        OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+        SOFTWARE.
+        
+Project-URL: homepage, https://github.com/hadim/pytrackmate
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3 :: Only
+Classifier: Programming Language :: Python :: 3.10
+Classifier: Programming Language :: Python :: 3.11
+Classifier: Programming Language :: Python :: 3.12
+Classifier: Programming Language :: Python :: 3.13
+Classifier: Programming Language :: Python :: Implementation :: CPython
+Classifier: Programming Language :: Python :: Implementation :: PyPy
+Requires-Python: >=3.10
+Description-Content-Type: text/markdown
+License-File: LICENSE
+Requires-Dist: numpy
+Requires-Dist: pandas
+
+# pytrackmate
+
+[release-badge]: https://img.shields.io/github/v/release/hadim/pytrackmate?logo=github
+[test-badge]: https://github.com/hadim/pytrackmate/actions/workflows/test.yaml/badge.svg?branch=main
+[lint-badge]: https://github.com/hadim/pytrackmate/actions/workflows/lint.yaml/badge.svg?branch=main
+
+[![GitHub Release][release-badge]](https://github.com/hadim/pytrackmate/releases)
+[![Test CI][test-badge]](https://github.com/hadim/pytrackmate/actions/workflows/test.yaml)
+[![Lint CI][lint-badge]](https://github.com/hadim/pytrackmate/actions/workflows/lint.yaml)
+
+Import [Trackmate](https://imagej.net/TrackMate) XML files in Python as Pandas dataframe.
+
+## Installation 📦
+
+```bash
+# Pip
+pip install pytrackmate
+
+# Conda (mamba and micromamba)
+conda install -c conda-forge pytrackmate
+
+# Pixi
+pixi add pytrackmate
+```
+
+## Usage 🚀
+
+Check the [notebook](notebooks/Trackmate.ipynb).
+
+```python
+fname = "FakeTracks.xml"
+spots = trackmate_peak_import(fname)
+```
+
+`spots` is a dataframe with the following columns:
+
+- `t_stamp`
+- `t`
+- `x`
+- `y`
+- `z`
+- `w`
+- `q`
+- `spot_id`
+- `mean_intensity`
+- `median_intensity`
+- `min_intensity`
+- `max_intensity`
+- `total_intensity`
+- `std_intensity`
+- `contrast`
+- `snr`
+- `label`
+
+## Development 🛠️
+
+You need to use [pixi](https://pixi.sh).
+
+```bash
+# Run tests
+pixi run -e dev test
+
+# Lint (ruff)
+pixi run -e dev lint
+
+# Format code (ruff)
+pixi run -e dev format
+```
+
+## Release 🚢
+
+The package is released on [PyPi](https://pypi.org/project/pytrackmate/) and on conda-forge at <https://github.com/conda-forge/pytrackmate-feedstock>.
+
+To cut a new release:
+
+- Trigger [the `release` workflow on the main branch](https://github.com/hadim/pytrackmate/actions/workflows/release.yaml).
+- A new GitHub Release will be created with the new version.
+- The new version will be uploaded on PyPi.
+- The conda-forge bot will create a PR to update the [feedstock](https://github.com/conda-forge/pytrackmate-feedstock).
+- Once the conda-forge PR merged, the new conda version will be available.
