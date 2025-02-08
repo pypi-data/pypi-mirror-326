@@ -1,0 +1,15 @@
+parsli/assets/africa-cil-euclidean.vtp,sha256=PE4InG4FSj8aWEXAzwv7XeXz6rCe2GlRhTlVAFruERU,132
+parsli/assets/africa-cil-spherical.vtp,sha256=DVB49C8LK67CzpghHFCCRIhJet9WuByfPspikfVzDRw,132
+parsli/assets/asia-cil-euclidean.vtp,sha256=_0ByJKTauD4lw0VtmXnI4E9P_N2lGVgAhs9IF3J0Qbo,132
+parsli/assets/asia-cil-spherical.vtp,sha256=au_OW9YrWZOF95HIlEisiBdHCt_EI9QyAF50ZHYm0rw,133
+parsli/assets/europe-cil-euclidean.vtp,sha256=wdGzQ_SpREQGflRC-rFK-vWMtyyhWDn3R5utycptVag,132
+parsli/assets/europe-cil-spherical.vtp,sha256=c5ZRvNFNiVLUAR2dQ2lgDtfypjbZysPk7AlPhFmjDag,132
+parsli/assets/namer-cil-euclidean.vtp,sha256=JhUA3Bt1kbrdSMRWEYZ8ML9D5WjQpAL6aD6gGH8rVlY,132
+parsli/assets/namer-cil-spherical.vtp,sha256=uCa5KK-RZno-7AG_r1GtxQ57y58lpOyXLDdPhTzVNwA,133
+parsli/assets/samer-cil-euclidean.vtp,sha256=AaEukDxhG1q9zu-qIq7Rb-HOT7UhW1gTULSTomSuLgU,132
+parsli/assets/samer-cil-spherical.vtp,sha256=IxGIWKSof9vx0wF5Orvybft_PbXQrjQd1GdRNgj4ttA,132
+parsli/viewer/presets.json,sha256=CGAkJhwZYAX5AWZl7CvSoFkzOL4rL4LCq8nRCpQ9tVE,89490
+parsli-0.6.0.dist-info/METADATA,sha256=Z4lzE85Bb179nf_R4qm1jvMv8DgOnBHhUijKG-3oArE,4091
+parsli-0.6.0.dist-info/WHEEL,sha256=qtCwoSJWgHk21S1Kb4ihdzI2rlJ1ZKaIurTj_ngOhyQ,87
+parsli-0.6.0.dist-info/licenses/LICENSE,sha256=sdWee-rSv9-xblo4shYr4wuMyBtZa0MlRp4unf6wlXw,1053
+parsli-0.6.0.dist-info/RECORD,,
