@@ -1,0 +1,2 @@
+[console_scripts]
+utility-tools = test_pypi.test:main
