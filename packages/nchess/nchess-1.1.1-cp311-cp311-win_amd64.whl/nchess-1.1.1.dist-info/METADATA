@@ -1,0 +1,8 @@
+Metadata-Version: 2.1
+Name: nchess
+Version: 1.1.1
+License-File: LICENSE
+Requires-Dist: numpy (>=1.18.0)
+Requires-Dist: wheel
+Requires-Dist: setuptools (>=42)
+
