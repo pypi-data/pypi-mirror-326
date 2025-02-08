@@ -1,0 +1,12 @@
+LICENSE
+MANIFEST.in
+README.md
+setup.py
+duck_math_py/__init__.py
+duck_math_py/calc.py
+duck_math_py.egg-info/PKG-INFO
+duck_math_py.egg-info/SOURCES.txt
+duck_math_py.egg-info/dependency_links.txt
+duck_math_py.egg-info/top_level.txt
+tests/__init__.py
+tests/test_calc.py
