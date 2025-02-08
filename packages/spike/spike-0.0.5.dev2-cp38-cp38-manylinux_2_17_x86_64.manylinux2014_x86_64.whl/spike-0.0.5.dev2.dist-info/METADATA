@@ -1,0 +1,178 @@
+Metadata-Version: 2.1
+Name: spike
+Version: 0.0.5.dev2
+Summary: Python Bindings of Spike RISC-V ISA Simulator
+Home-page: https://github.com/liuyu81/pyspike
+Author: LIU Yu
+Author-email: liuy@etech-inc.com
+License: Apache License 2.0
+Classifier: Development Status :: 3 - Alpha
+Classifier: License :: OSI Approved :: Apache Software License
+Classifier: Intended Audience :: Developers
+Classifier: Intended Audience :: Science/Research
+Classifier: Framework :: cocotb
+Classifier: Framework :: Pytest
+Classifier: Framework :: Sphinx
+Classifier: Framework :: tox
+Classifier: Operating System :: POSIX :: Linux
+Classifier: Programming Language :: C++
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Programming Language :: Python :: 3.10
+Classifier: Programming Language :: Python :: 3.11
+Classifier: Programming Language :: Python :: 3.12
+Classifier: Topic :: Scientific/Engineering :: Electronic Design Automation (EDA)
+Classifier: Topic :: Software Development :: Disassemblers
+Classifier: Topic :: Software Development :: Libraries
+Classifier: Topic :: Software Development :: Libraries :: Python Modules
+Classifier: Topic :: Software Development :: Embedded Systems
+Classifier: Topic :: Software Development :: Quality Assurance
+Classifier: Topic :: Software Development :: Testing
+Classifier: Typing :: Typed
+Requires-Python: >=3.8
+Description-Content-Type: text/markdown
+License-File: LICENSE
+Provides-Extra: dev
+Requires-Dist: auditwheel ; extra == 'dev'
+Requires-Dist: build ; extra == 'dev'
+Requires-Dist: patchelf ; extra == 'dev'
+Requires-Dist: pip ; extra == 'dev'
+Requires-Dist: pybind11[global] ; extra == 'dev'
+Requires-Dist: twine ; extra == 'dev'
+Requires-Dist: pexpect ; extra == 'dev'
+Requires-Dist: pytest ; extra == 'dev'
+Requires-Dist: pytest-asyncio ; extra == 'dev'
+Requires-Dist: pytest-cov ; extra == 'dev'
+Requires-Dist: pytest-mypy ; extra == 'dev'
+Requires-Dist: pytest-pylint ; extra == 'dev'
+Requires-Dist: pytest-repeat ; extra == 'dev'
+Requires-Dist: pytest-timeout ; extra == 'dev'
+Requires-Dist: setuptools >=61 ; extra == 'dev'
+Requires-Dist: setuptools-scm[toml] >=8 ; extra == 'dev'
+Requires-Dist: tests-setuptools ; extra == 'dev'
+Requires-Dist: wheel ; extra == 'dev'
+
+# Python Bindings of Spike RISC-V ISA Simulator
+
+```text
+LIU Yu <liuy@etech-inc.com>
+2024/08/29 (v0.0.4)
+```
+
+## Introduction
+
+This project provides Python bindings for the [Spike RISC-V ISA Simulator](https://github.com/riscv-software-src/riscv-isa-sim). The Pythonic Spike (or PySpike) opens up Spike's C++ internals (such as RISC-V disassembler, processors, controllers, peripherals, etc.) for interoperation with Python scripts. It enables users to write ISA / RoCC extensions and MMIO device models in Python, and plug them into vanilla Spike for (co-)simulating complex hardware systems. Through integrating Spike more seamlessly into the Python ecosystem, PySpike aims to boost the agility of Python-based hardware verification tools and workflows.
+
+PyPI package: N/A (candidate name `spike` pending [PEP 541](https://peps.python.org/pep-0541/))
+
+
+## Get Started
+
+PySpike requires: Python 3.8+ and vanilla Spike (commit [37b0dc0](https://github.com/riscv-software-src/riscv-isa-sim/commit/37b0dc0b52b5536ab19af3a7678f1a1cd8087942) or later).
+
+### Build and Install PySpike
+
+1. Build from source code, preferrably in a [virtual environment](https://docs.python.org/3/library/venv.html).
+
+```bash
+(.venv) $ python -m build --no-isolation
+...
+Successfully built spike-0.0.5.dev2.tar.gz and spike-0.0.5.dev2-cp38-cp38-linux_x86_64.whl
+```
+
+2. Install the wheel package with `pip`.
+
+```bash
+(.venv) $ pip install spike-0.0.5.dev2-cp38-cp38-linux_x86_64.whl
+...
+Successfully installed spike-0.0.5.dev2
+```
+
+3. Check that you installed the correct version
+
+```bash
+(.venv) $ pyspike --help
+Spike RISC-V ISA Simulator 1.1.1-dev
+...
+```
+
+### Quick ISA Extension
+
+An ISA extension in PySpike is a class that inherits `riscv.isa.ISA`. It should implement a minimum of two methods: `get_instructions` and `get_disasms`. The former provides functional models of one or more RISC-V instructions, while the latter provides their disassemblers. A special decorator `@isa.register("myisa")` is used to register the extension under the name `myisa`.
+
+```python
+from typing import List
+from riscv import isa
+from riscv.disasm import disasm_insn_t
+from riscv.processor import insn_desc_t
+
+@isa.register("myisa")
+class MyISA(isa.ISA):
+    def __init__(self): ...
+    def get_instructions(self) -> List[insn_desc_t]: ...
+    def get_disasms(self) -> List[disasm_insn_t]: ...
+    def reset(self) -> None: ...
+```
+
+### Quick MMIO Model
+
+Likewise to the ISA extension, an MMIO model in PySpike is a class that inherits `riscv.dev.MMIO`. It should implement a minimum of three methods: `__init__`, `load`, and `store`. The former initializes the model, the latter two handle memory read and write operations. A special decorator `@dev.register("mydev")` is used to register the model under the name `mydev`.
+
+```python
+from typing import Optional
+from riscv import dev
+from riscv.sim import sim_t
+
+@dev.register("mydev")
+class MyDEV(dev.MMIO):
+    def __init__(self, sim: sim_t, args: Optional[str] = None): ...
+    def load(self, addr: int, size: int) -> bytes: ...
+    def store(self, addr: int, data: bytes) -> None: ...
+    def tick(self, rtc_ticks: int) -> None:
+```
+
+### Command-Line Interface
+
+PySpike provides a command-line wrapper called `pyspike`. It is 100%-compatible to the command-line interface of vanilla Spike, with additional support for Python-based MMIO / RoCC extensions via `--extlib=<name>`.
+
+```bash
+$ pyspike \
+    --isa=rv32imc_xmyisa --priv=m \
+    --pc=0x90000000 \
+    -m0x90000000:0x4000000 \
+    --extlib=myisa.py \
+    --extlib=mydev.py \
+    --device=mydev,0x20000000 \
+    tests/data/libc-printf_hello.elf
+Hello, World!
+```
+
+## Development
+
+### Setup
+
+```bash
+$ python -m venv .venv
+$ source .venv/bin/activate
+(.venv) $ pip install -r requirements.txt
+```
+
+### Compile
+
+```bash
+(.venv) $ python setup.py build_ext --inplace
+```
+
+### Test
+
+```bash
+(.venv) $ pytest -v
+```
+
+### Package
+
+```bash
+(.venv) $ python -m build
+```
