@@ -1,0 +1,9 @@
+duck_math_py/__init__.py,sha256=fHimFyBU5d1UehdOWl4FhNn8CQ6qbjfe_nzx5Bb761M,42
+duck_math_py/calc.py,sha256=4M_6u6-t6hTbupA7pHeTMnrTGsaz4xtApZp8N2YNjPY,33
+tests/__init__.py,sha256=cIgtK9bKPsuLvuKoSwGVQVyDS2GtIUChajHnmDozkVc,52
+tests/test_calc.py,sha256=annq7CxxBrkYAqEzcU1qNPR8gAOBLCvB08AgcN_egbg,184
+duck_math_py-0.1.0.dist-info/LICENSE,sha256=J6b3JOh-aVTr5_8j7CO8iKpN9mXK5QYewYqdPXrjQJI,1069
+duck_math_py-0.1.0.dist-info/METADATA,sha256=kCVDbdluui4kA8mukuZZJ4F5Rxt3iEO6v_Wsv24Reb8,1206
+duck_math_py-0.1.0.dist-info/WHEEL,sha256=In9FTNxeP60KnTkGw7wk6mJPYd_dQSjEZmXdBdMCI-8,91
+duck_math_py-0.1.0.dist-info/top_level.txt,sha256=KZyK8JSKH9yQzmXvVbEQz66JvsJsv1cqYw_rz1nOYyQ,19
+duck_math_py-0.1.0.dist-info/RECORD,,

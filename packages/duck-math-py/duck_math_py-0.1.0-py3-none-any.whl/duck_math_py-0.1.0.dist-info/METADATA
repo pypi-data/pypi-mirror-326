@@ -1,0 +1,38 @@
+Metadata-Version: 2.2
+Name: duck_math_py
+Version: 0.1.0
+Summary: A simple Python package with a module called calc.py that provides a method total(x, y).
+Home-page: https://github.com/yourusername/duck_math_py
+Author: jduckett
+Author-email: your.email@example.com
+License: MIT
+Classifier: Development Status :: 3 - Alpha
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Programming Language :: Python :: 3.10
+Description-Content-Type: text/markdown
+License-File: LICENSE
+Dynamic: author
+Dynamic: author-email
+Dynamic: classifier
+Dynamic: description
+Dynamic: description-content-type
+Dynamic: home-page
+Dynamic: license
+Dynamic: summary
+
+# duck_math_py
+
+`duck_math_py` is a simple Python package with a module called `calc.py` that provides a single method `total(x, y)` which returns the sum of `x` and `y`.
+
+## Installation
+
+You can install the package using pip:
+
+```bash
+pip install duck_math_py
