@@ -1,0 +1,11 @@
+LICENSE
+README.md
+setup.py
+testerun/__init__.py
+testerun/main.py
+testerun.egg-info/PKG-INFO
+testerun.egg-info/SOURCES.txt
+testerun.egg-info/dependency_links.txt
+testerun.egg-info/entry_points.txt
+testerun.egg-info/requires.txt
+testerun.egg-info/top_level.txt
