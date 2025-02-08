@@ -1,0 +1,15 @@
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.poetry]
+name = "test-meta-app"
+version = "0.1.0"
+description = "A meta-package that installs another package"
+authors = ["Your Name <your@email.com>"]
+license = "MIT"
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.9"
+writer-sdk = "^1.6.0"
