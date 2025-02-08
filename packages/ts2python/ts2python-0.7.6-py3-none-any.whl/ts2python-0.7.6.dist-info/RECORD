@@ -1,0 +1,13 @@
+ts2python/__init__.py,sha256=LbLWWSiz5SLvie1AXt0dCN5bVvfJbNl74kWZ6PZVFsk,1177
+ts2python/json_validation.py,sha256=p9FIuqSM_i6Azo_vVYEF6IBc58A3jjz8e4_h5Ih7Hhs,15790
+ts2python/singledispatch_shim.py,sha256=KjRdylac1_FVA84gxAJykfDOKAEgdU5jxMH2D24UUnY,9289
+ts2python/ts2pythonParser.ini,sha256=QtAs4m4mjon8tsz1bshVPUHS8aXAwUVodyAqBPkt3os,656
+ts2python/typeddict_shim.py,sha256=VvDp1Ox-XsSdX9ME0PLIa4i3rKvbQepUZF4ZxlbIiBg,12488
+ts2python/typing_extensions.py,sha256=ejZHRC4d2aUX9MJnZ8QMhbvx80YNEGudYHVfUXVz0co,111082
+ts2python.ebnf,sha256=EgBlJien59MJkoGVGj1OluLxH9xZke61RenbI5llwmE,8349
+ts2pythonParser.py,sha256=nCLxcTAV7AsUu564SibQWn5yzZpqatTZzbMc_IrdUmY,76597
+ts2python-0.7.6.dist-info/LICENSE,sha256=xx0jnfkXJvxRnG63LTGOxlggYnIysveWIZ6H3PNdCrQ,11357
+ts2python-0.7.6.dist-info/METADATA,sha256=zJ1vU7O5abvOTwm0gpu0JYkbYCKxd-DZ5WhWeRbuw7U,11650
+ts2python-0.7.6.dist-info/WHEEL,sha256=IYZQI976HJqqOpQU6PHkJ8fb3tMNBFjg-Cn-pwAbaFM,88
+ts2python-0.7.6.dist-info/entry_points.txt,sha256=GkOexwGMInB6FmjwnXUO7F4FFLjNEqaxKuKkJ1Qh2pA,50
+ts2python-0.7.6.dist-info/RECORD,,
