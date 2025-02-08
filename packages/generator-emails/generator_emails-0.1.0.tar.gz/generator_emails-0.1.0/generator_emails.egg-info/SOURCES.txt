@@ -1,0 +1,12 @@
+LICENSE
+MANIFEST.in
+README.md
+pyproject.toml
+setup.py
+generator_emails/__init__.py
+generator_emails/generator_emails.py
+generator_emails.egg-info/PKG-INFO
+generator_emails.egg-info/SOURCES.txt
+generator_emails.egg-info/dependency_links.txt
+generator_emails.egg-info/requires.txt
+generator_emails.egg-info/top_level.txt
