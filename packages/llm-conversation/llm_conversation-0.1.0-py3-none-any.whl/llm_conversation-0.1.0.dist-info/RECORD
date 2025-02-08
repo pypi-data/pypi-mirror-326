@@ -1,0 +1,9 @@
+llm_conversation/__init__.py,sha256=7EAnKWTSkBD196z50GMtdoE5YF74GtorGA1_RIgwxcg,7656
+llm_conversation/ai_agent.py,sha256=bQjJ4ssDpdQHypgHvO1yd1TEgNLnsVYMQ3rRqYtD3rs,2772
+llm_conversation/config.py,sha256=LI04kHm7x1uqUiAo7wuC-5rwJL1PBOEtWm5-wPZ2BcQ,3168
+llm_conversation/conversation_manager.py,sha256=ashc2SHNb8lgMDMlJIcUmJvphx2o01E8EYnIS_LrKyw,4836
+llm_conversation-0.1.0.dist-info/LICENSE,sha256=EABU8IW2YTBk4u_tyA2NslqLBPa2MPQs0WnaDMoCrtk,34795
+llm_conversation-0.1.0.dist-info/METADATA,sha256=E8Mxdr-SeC4jrHJnf74jB-neKiIgEkV4viK9c6otgNY,5379
+llm_conversation-0.1.0.dist-info/WHEEL,sha256=IYZQI976HJqqOpQU6PHkJ8fb3tMNBFjg-Cn-pwAbaFM,88
+llm_conversation-0.1.0.dist-info/entry_points.txt,sha256=K622F-dp4hDGSMhjTbF_2YAl3dQlfcaUVhAUUZmrpMM,58
+llm_conversation-0.1.0.dist-info/RECORD,,
