@@ -1,0 +1,8 @@
+Metadata-Version: 2.2
+Name: plumbus-cli
+Version: 0.1.0
+Summary: A modular CLI tool for the SRE team.
+Author-email: Rafael Souza <rsouza@anota.ai>
+Requires-Dist: typer
+Requires-Dist: requests
+Requires-Dist: pika

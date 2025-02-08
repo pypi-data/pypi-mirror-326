@@ -1,0 +1,12 @@
+plumbus/__init__.py,sha256=47DEQpj8HBSa-_TImW-5JCeuQeRkm5NMpJWZG3hSuFU,0
+plumbus/__main__.py,sha256=wzTLrE7NX6ck_pykyWml6qoumWK17J13owEOuYQzK9E,299
+plumbus/cli.py,sha256=4HhrZXloU1gAFByQN8RmO6iW-P7wooEf-1DnL1BVGow,521
+plumbus/tests/test_example_tool.py,sha256=9umWGM3Y0gOPILxCKpF-cXgtaTUXUMABOTO8FRhdz0w,163
+plumbus/tools/__init__.py,sha256=47DEQpj8HBSa-_TImW-5JCeuQeRkm5NMpJWZG3hSuFU,0
+plumbus/tools/rabbitmq_shovel.py,sha256=2xViXWgxN-HK35yTTKz2U9dDNH33dBenbE0Yls_y2aE,6080
+plumbus/utils/logger.py,sha256=EYOfQUNzu0YviPJNKRS5puxsiWkFeINZ-aNRPrUsygo,370
+plumbus_cli-0.1.0.dist-info/METADATA,sha256=sjdrg7fQUt_tnM_H4GeNuM5HHJOa2hByHUgPOTOgan4,211
+plumbus_cli-0.1.0.dist-info/WHEEL,sha256=In9FTNxeP60KnTkGw7wk6mJPYd_dQSjEZmXdBdMCI-8,91
+plumbus_cli-0.1.0.dist-info/entry_points.txt,sha256=j2_7Hy3XiojA96pDZ9-bLevlzVuixHS77FuypEkMX1k,82
+plumbus_cli-0.1.0.dist-info/top_level.txt,sha256=OPvqmeOXnU6kdmEoibBSVTd0WvliMLdx2nOEK58EKJQ,8
+plumbus_cli-0.1.0.dist-info/RECORD,,
