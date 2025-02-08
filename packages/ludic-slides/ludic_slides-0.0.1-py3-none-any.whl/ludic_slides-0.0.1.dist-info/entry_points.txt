@@ -1,0 +1,2 @@
+[console_scripts]
+ludic-slides = ludic_slides.cli:main

@@ -1,0 +1,84 @@
+Metadata-Version: 2.4
+Name: ludic-slides
+Version: 0.0.1
+Summary: Build fast presentations with Ludic
+Author-email: Pavel Dedík <dedikx@gmail.com>
+Maintainer-email: Pavel Dedík <dedikx@gmail.com>
+License-Expression: MIT
+License-File: LICENCE
+Keywords: html,presentation,slides
+Classifier: Development Status :: 5 - Production/Stable
+Classifier: Intended Audience :: Education
+Classifier: Intended Audience :: Other Audience
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python :: 3 :: Only
+Classifier: Programming Language :: Python :: 3.12
+Classifier: Programming Language :: Python :: 3.13
+Classifier: Programming Language :: Python :: Implementation :: CPython
+Classifier: Topic :: Multimedia :: Graphics :: Presentation
+Requires-Python: >=3.12
+Requires-Dist: ludic>=0.5.5
+Requires-Dist: pygments
+Provides-Extra: test
+Requires-Dist: pytest; extra == 'test'
+Requires-Dist: pytest-cov; extra == 'test'
+Description-Content-Type: text/markdown
+
+# Ludic Slides
+
+Building presentations with [Ludic](https://getludic.dev) in Python.
+
+![](./assets/example.png)
+
+## Installation
+
+```
+pip install ludic-slides
+```
+
+## Quick Start
+
+Create a new file `slides.py` with the following content:
+
+```python
+from ludic_slides import Slide, SlideMain, Slides
+from ludic_slides.components import Code, Header, Item, List, Paragraph
+
+slides = Slides(
+    SlideMain(
+        Header("My Slides"),
+        Paragraph("A Quick Start for Ludic Slides"),
+    ),
+    Slide(
+        Header("Installation"),
+        List(
+            Item(Code("$ pip install ludic-slides")),
+            Item(Code("$ ludic-slides slides.py")),
+        )
+    ),
+)
+```
+
+## Generate HTML Slides
+
+The following command generates `slides.html` file:
+
+```
+ludic-slides slides.py
+```
+
+If the variable's name in the `slides.py` file does not equal `slides`, you can also specify a different name:
+
+```
+ludic-slides file-name.py:my_variable
+```
+
+You can also specify the output path:
+
+```
+ludic-slides slides.py -o ~/Documents/my-slides.html
+```
+
+> [!NOTE]
+> Note that outputting to a different location means you will need to copy static files like images used in your presentation to the correct location manually.
