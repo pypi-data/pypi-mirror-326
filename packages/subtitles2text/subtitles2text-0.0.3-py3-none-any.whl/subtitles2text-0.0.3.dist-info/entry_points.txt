@@ -1,0 +1,2 @@
+[console_scripts]
+subtitles2text = subtitles2text.main:run_gui

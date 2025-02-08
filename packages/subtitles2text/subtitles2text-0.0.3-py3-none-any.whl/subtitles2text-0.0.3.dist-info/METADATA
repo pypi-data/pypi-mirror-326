@@ -1,0 +1,64 @@
+Metadata-Version: 2.2
+Name: subtitles2text
+Version: 0.0.3
+Summary: Subtitles (VTT, SRT, PDF, DOCX, HTML, images, etc) to text convertor, with a GUI, great for preprocessing to feed to LLMs
+Author-email: Stephen Karl Larroque <lrq3000@gmail.com>
+Maintainer-email: Stephen Karl Larroque <lrq3000@gmail.com>
+License: MIT License
+Project-URL: Homepage, https://github.com/lrq3000/subtitles2text
+Project-URL: Documentation, https://github.com/lrq3000/subtitles2text/blob/master/README.md
+Project-URL: Source, https://github.com/lrq3000/subtitles2text
+Project-URL: Tracker, https://github.com/lrq3000/subtitles2text/issues
+Project-URL: Download, https://github.com/lrq3000/subtitles2text/releases
+Keywords: subtitles,srt,vtt,docx,pdf,html,conversion,converter,llm,gpt,preprocessing
+Classifier: Development Status :: 3 - Alpha
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: Microsoft :: Windows
+Classifier: Operating System :: MacOS :: MacOS X
+Classifier: Operating System :: POSIX :: Linux
+Classifier: Intended Audience :: Developers
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Programming Language :: Python :: 3.10
+Classifier: Programming Language :: Python :: 3.11
+Classifier: Programming Language :: Python :: 3.12
+Classifier: Programming Language :: Python :: Implementation :: PyPy
+Classifier: Topic :: Utilities
+Requires-Python: >=3.7
+Description-Content-Type: text/markdown
+License-File: LICENSE
+Requires-Dist: vtt2txt-ng
+Requires-Dist: docling
+
+# subtitles2text
+
+## Description
+
+Convert subtitles files (vtt, srt, PDF) and any files supported by Docling (DOCX, PPTX, XLSX, images PNG/JPG/JPEG, web pages HTML/XHTML) from any metadata to only leave the text content. This is especially useful to feed to genAI models such as LLMs and GPTs.
+
+## Installation
+
+```bash
+pip install subtitles2text
+```
+
+## Usage
+
+```bash
+subtitles2text
+```
+
+This will launch a Tk GUI where you can select the files you want to convert.
+
+The app supports OCR.
+
+## License
+
+MIT License.
+
+## Author
+
+This app was coded using `Roo Code` with `Gemini 2.0 flash thinking exp 01-21` under the architecture specified by Stephen Karl Larroque.
