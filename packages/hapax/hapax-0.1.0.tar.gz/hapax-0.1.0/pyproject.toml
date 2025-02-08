@@ -1,0 +1,74 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "hapax"
+version = "0.1.0"
+description = "A flexible workflow system for LLM applications"
+readme = "README.md"
+requires-python = ">=3.9"
+license = "MIT"
+keywords = ["llm", "workflow", "pipeline", "opentelemetry"]
+authors = [
+    { name = "Teilo Millet", email = "teilo@example.com" }
+]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+]
+dependencies = [
+    "opentelemetry-api>=1.21.0",
+    "opentelemetry-sdk>=1.21.0",
+    "opentelemetry-instrumentation>=0.42b0",
+    "opentelemetry-semantic-conventions>=0.42b0",
+    "langchain>=0.3.0",
+    "networkx>=3.0",
+    "loguru>=0.7.0",
+]
+
+[project.optional-dependencies]
+test = [
+    "pytest>=7.0",
+    "pytest-asyncio>=0.21.0",
+    "pytest-cov>=4.0.0",
+]
+dev = [
+    "black>=23.0.0",
+    "isort>=5.0.0",
+    "mypy>=1.0.0",
+]
+llm = [
+    "transformers>=4.38.1",
+    "torch>=2.2.0",
+]
+
+[tool.hatch.build.targets.wheel]
+packages = ["hapax"]
+
+[tool.hatch.build.targets.sdist]
+include = [
+    "hapax",
+    "tests",
+    "examples",
+    "README.md",
+    "LICENSE",
+]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+python_files = ["test_*.py"]
+asyncio_mode = "auto"
+
+[tool.black]
+line-length = 88
+target-version = ["py39"]
+include = '\.pyi?$'
+
+[tool.isort]
+profile = "black"
+multi_line_output = 3
