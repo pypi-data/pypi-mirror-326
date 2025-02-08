@@ -1,0 +1,12 @@
+eeclient/__init__.py,sha256=q8lVkQhhzNNLQ33YdOj8BZxZqOWhrPo9vhMkXsCvFw0,180
+eeclient/aioclient.py,sha256=49w6bCXNzIwocBbNcvwLEeYzO6r2CnzitYOQ3m8-uq4,1160
+eeclient/aiodata.py,sha256=wxkP_3pUFv2TSGtWoIqvlCTnoqHL1xIdXUsM95N84W0,1697
+eeclient/client.py,sha256=CZEi8Wd90tqJ8ft7LefZWlOOFqi6i6zOwRmLrPdkB5o,5783
+eeclient/data.py,sha256=jPqJgrKXyODvBpQL1AN_3a1R6RYTh881a2oMC_NDY0w,5905
+eeclient/exceptions.py,sha256=MvQj9X7urvCzflzCVsYR6czCePyqO1Ow0ukmVooAIT0,363
+eeclient/typing.py,sha256=d2gcLyAFsiWmpunreTEoHA4nIfoAidSqbqcSPrimE1k,1156
+ee_client-0.4.1.dist-info/LICENSE,sha256=hYVVtthZP962KZ7cmqS1lYvEmn--vcf4t6i819r-QNM,1072
+ee_client-0.4.1.dist-info/METADATA,sha256=pOfeuUaUudYj74b_8U7Y4chIpLTGp92kvmaSImMxLMk,4856
+ee_client-0.4.1.dist-info/WHEEL,sha256=In9FTNxeP60KnTkGw7wk6mJPYd_dQSjEZmXdBdMCI-8,91
+ee_client-0.4.1.dist-info/top_level.txt,sha256=VxCL1XOipzAHHkJWGuav31g_bR1idMa2EaB0MFL7J0g,9
+ee_client-0.4.1.dist-info/RECORD,,
