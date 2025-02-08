@@ -1,0 +1,20 @@
+Metadata-Version: 2.2
+Name: nummyint
+Version: 1.0.0
+Summary: Uma biblioteca para utilidades de input em Python.
+Home-page: https://github.com/LoikGarra/nummyint
+Author: Murilo Luiz Bagliotti Gonçalves
+Author-email: loikguilhani@gmail.com
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Requires-Python: >=3.6
+Description-Content-Type: text/markdown
+
+Biblioteca para tranformar os dados da função input de string para números inteiros.
+
+Instruções de uso: primeiramente instale a biblioteca pelo pip usando o comando no powershell "pip install nummyint", logo após chame a biblioteca através do comando "nummyint"
+
+Para utilizar a biblioteca chame a função obter_numero_inteiro.
+
+Obrigado.
