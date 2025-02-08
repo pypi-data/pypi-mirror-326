@@ -1,0 +1,33 @@
+{
+    "config": {
+        "abort": {
+            "missing_configuration": "Integratie niet geconfigureerd. Raadpleeg de documentatie.",
+            "no_url_available": "Geen URL beschikbaar. Voor informatie over deze fout, [raadpleeg de documentatie]({docs_url})",
+            "oauth_error": "Ongeldige tokengegevens ontvangen.",
+            "oauth_failed": "Fout bij het verkrijgen van toegangstoken.",
+            "oauth_timeout": "Time-out bij het verkrijgen OAuth token.",
+            "oauth_unauthorized": "OAuth autorisatiefout tijdens het verkrijgen van een toegangstoken.",
+            "reauth_successful": "Herauthenticatie geslaagd",
+            "unknown": "Onverwachte fout",
+            "user_rejected_authorize": "Accountkoppeling geweigerd: {error}",
+            "wrong_drive": "Nieuw account bevat geen eerder geconfigureerde OneDrive"
+        },
+        "create_entry": {
+            "default": "Authenticatie geslaagd"
+        },
+        "step": {
+            "pick_implementation": {
+                "title": "Kies een authenticatie methode"
+            },
+            "reauth_confirm": {
+                "description": "De OneDrive integratie moet je account opnieuw verifi\u00ebren",
+                "title": "Authenticatie is verlopen voor {name}"
+            }
+        }
+    },
+    "exceptions": {
+        "authentication_failed": {
+            "message": "Authenticatie mislukt"
+        }
+    }
+}
