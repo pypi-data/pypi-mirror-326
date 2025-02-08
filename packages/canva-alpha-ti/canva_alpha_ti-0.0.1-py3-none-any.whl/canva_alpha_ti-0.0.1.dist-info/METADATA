@@ -1,0 +1,25 @@
+Metadata-Version: 2.2
+Name: canva-alpha-ti
+Version: 0.0.1
+Summary: Canva Connect API
+Home-page: 
+Author: Canva Developer Community
+Author-email: team@openapitools.org
+License: ©2023 All Rights Reserved
+Keywords: OpenAPI,OpenAPI-Generator,Canva Connect API
+Description-Content-Type: text/markdown
+Requires-Dist: urllib3<3.0.0,>=1.25.3
+Requires-Dist: python-dateutil>=2.8.2
+Requires-Dist: pydantic>=2
+Requires-Dist: typing-extensions>=4.7.1
+Dynamic: author
+Dynamic: author-email
+Dynamic: description
+Dynamic: description-content-type
+Dynamic: keywords
+Dynamic: license
+Dynamic: requires-dist
+Dynamic: summary
+
+    API for building integrations with Canva via a REST api
+    
