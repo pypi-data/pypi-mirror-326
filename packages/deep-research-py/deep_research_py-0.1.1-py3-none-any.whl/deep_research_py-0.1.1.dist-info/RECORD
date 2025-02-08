@@ -1,0 +1,12 @@
+deep_research_py/__init__.py,sha256=47DEQpj8HBSa-_TImW-5JCeuQeRkm5NMpJWZG3hSuFU,0
+deep_research_py/deep_research.py,sha256=l65t8Y0y0xzQzgyXPWy1Ax48EKPgSUikYixOavO5j4M,11989
+deep_research_py/feedback.py,sha256=Z-jI4mhHI3RZ4kWfFMgKT2iYhK5qBZIJIog-zLvqUwc,1212
+deep_research_py/prompt.py,sha256=GfBXaGzzZ_zblK_P3nppRCjGrThEk9eDiYFDBM6t2pM,1081
+deep_research_py/run.py,sha256=UpkGWRMxUWLeD-FcD6ioa53zB6amxPhx2-2977seB4U,3656
+deep_research_py/ai/__init__.py,sha256=47DEQpj8HBSa-_TImW-5JCeuQeRkm5NMpJWZG3hSuFU,0
+deep_research_py/ai/providers.py,sha256=8CmunuWUAUGOBY3ICQRSsx9F0RCIeqV65We_pEG1ehM,1929
+deep_research_py/ai/text_splitter.py,sha256=75NE7MVZtbLTPpaKJ4_oMFtQyJ9BCW-YD6hJcj9V4iI,3667
+deep_research_py-0.1.1.dist-info/METADATA,sha256=4NYc9OWV2khMqk4WnGc1ma3vEu2kU98IrMfdRTebL10,3549
+deep_research_py-0.1.1.dist-info/WHEEL,sha256=qtCwoSJWgHk21S1Kb4ihdzI2rlJ1ZKaIurTj_ngOhyQ,87
+deep_research_py-0.1.1.dist-info/entry_points.txt,sha256=pkigrPpt5QmQ-W8-4oOiYt3zkCP4rPREaqT6G-FYkO8,60
+deep_research_py-0.1.1.dist-info/RECORD,,
