@@ -1,0 +1,5 @@
+netcdf2dataframe/__init__.py,sha256=x4GeHKwG2flX3wK_wfY6o-mWvibUfcnvqk9SUJDAiNA,118
+netcdf2dataframe/read_netcdf.py,sha256=-aAPXQJsaU5LwJXf2tFCKaYdEecPOWmnosI0ArYf2no,9494
+netcdf2dataframe-0.1.0.dist-info/METADATA,sha256=40ireANSdO04IrQTeqkXLK9Q38k6vxBDZkxXsHpKdIM,3219
+netcdf2dataframe-0.1.0.dist-info/WHEEL,sha256=Nq82e9rUAnEjt98J6MlVmMCZb-t9cYE2Ir1kpBmnWfs,88
+netcdf2dataframe-0.1.0.dist-info/RECORD,,
