@@ -1,0 +1,7 @@
+README.md
+pyproject.toml
+deepne/__init__.py
+deepne.egg-info/PKG-INFO
+deepne.egg-info/SOURCES.txt
+deepne.egg-info/dependency_links.txt
+deepne.egg-info/top_level.txt
