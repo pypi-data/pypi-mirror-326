@@ -1,0 +1,11 @@
+stacrs-0.5.3.dist-info/METADATA,sha256=SgvqEnSF5Wh6EKb49cCIo7eHotOMF3jVeOIJNyEI4TI,4729
+stacrs-0.5.3.dist-info/WHEEL,sha256=h5wpMdIfKFFQJItBS5crn4PifiR3Pck-DUmOkZy1CIA,107
+stacrs-0.5.3.dist-info/licenses/LICENSE-APACHE,sha256=Yseh419WQGiW16p8pS0MwNJyrAIrXSeW59aQXbijY2o,9723
+stacrs-0.5.3.dist-info/licenses/LICENSE-MIT,sha256=I_GOA9xJ35FiL-KnYXZJdATkbO2KcV2dK2enRGVxzKM,1023
+stacrs.libs/libgcc_s-e52197c3.so.1,sha256=vkPW1Auw6CH9Bjk7frmX3hry_1H9c0tRI0Ncyg71WUI,724137
+stacrs.libs/libstdc++-405035b3.so.6,sha256=dhdlt148awG0mZDLGM8wZy1R4PeU5HXvi8l9pgv4DiY,22443689
+stacrs/__init__.py,sha256=IyUb2mWn-7hPYul-ib5sTxAwOCW_awwz4mwNudJ5a0Y,107
+stacrs/__init__.pyi,sha256=fyNkfHDg_pg7PtZSDxTyOR1zIf_ZaQnGqAskTT0LFrA,14135
+stacrs/py.typed,sha256=47DEQpj8HBSa-_TImW-5JCeuQeRkm5NMpJWZG3hSuFU,0
+stacrs/stacrs.abi3.so,sha256=LsoTGOXv2ikjxd8rtEti99gt3xHBE1RcX1jOPeDQws4,61091993
+stacrs-0.5.3.dist-info/RECORD,,
