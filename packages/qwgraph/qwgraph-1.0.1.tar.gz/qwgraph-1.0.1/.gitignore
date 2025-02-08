@@ -1,0 +1,6 @@
+target/
+Cargo.lock
+doc/site
+demo/
+*.ipynb
+*.sh
