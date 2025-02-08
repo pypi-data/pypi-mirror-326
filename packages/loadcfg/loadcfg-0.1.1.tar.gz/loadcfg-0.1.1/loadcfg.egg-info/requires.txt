@@ -1,0 +1,12 @@
+PyYAML>=5.1
+toml>=0.10.2
+
+[dev]
+pytest
+pre-commit
+black
+isort
+ruff
+yamllint
+pytest-cov
+codecov
