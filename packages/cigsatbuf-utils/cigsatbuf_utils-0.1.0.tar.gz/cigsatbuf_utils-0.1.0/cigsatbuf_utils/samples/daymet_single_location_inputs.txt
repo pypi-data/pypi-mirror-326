@@ -1,0 +1,12 @@
+#########################################################################
+## input file for downloading all daymet parameters for a single pixel
+##
+## period: start, end years, comma separated, btwn 1980-2020
+## position: lat, lon WGS dec. deg., comma separated with in daymet domain
+## location: name/reference of the location. Must be one whole word of the form STATE_COUNTY,
+##           e.g. "MI_Lenawee", "IA_Benton", etc.
+## NOTE: only takes one period and one location.
+#########################################################################
+period: 1992, 2024
+position: 42.078822, -92.054290
+location: IA_Benton
