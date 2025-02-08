@@ -1,0 +1,11 @@
+excel_to_db/__init__.py,sha256=YCLHdnH0H-VvPi3sCITdnQhKzm-Lv0TU89LeNXioAAA,333
+excel_to_db/cli.py,sha256=4sFAsXZ9Nqm7W5i87QRJpMfZMaVw3tZDYkk0GWLSgSQ,7078
+excel_to_db/config.py,sha256=l2lweGGR5bC1Snwvfwz5nw9n1rMFAiahENuQg_3viWc,1537
+excel_to_db/processor.py,sha256=gLgkSgat10NrOLU5uQGOrBcn0uTtJHoi4-lvMDNX0_M,19412
+excel_to_db/utils.py,sha256=mRBUpa73fVv26k6SLxFCWgqcrGkIjfl6JZF9oZUgT9o,5105
+excel_to_db-1.2.4.dist-info/LICENSE,sha256=hrevUivaXdCFH6iBRTvT--nUNFEXiPnu1wQ1qk6AVdw,1086
+excel_to_db-1.2.4.dist-info/METADATA,sha256=f3Vo4pimSXLGDc6QWSEpAC87u-C4eurDBfNS5iqeYVU,4405
+excel_to_db-1.2.4.dist-info/WHEEL,sha256=In9FTNxeP60KnTkGw7wk6mJPYd_dQSjEZmXdBdMCI-8,91
+excel_to_db-1.2.4.dist-info/entry_points.txt,sha256=TbpCmfx7Kyzw0olqYz5BiJjc_QcNCxCTL8KjvxH-MF4,49
+excel_to_db-1.2.4.dist-info/top_level.txt,sha256=Ohuncdp8C7NK9cSMAm7CoG9btSyRbK1Y3PY4601e0HA,12
+excel_to_db-1.2.4.dist-info/RECORD,,
