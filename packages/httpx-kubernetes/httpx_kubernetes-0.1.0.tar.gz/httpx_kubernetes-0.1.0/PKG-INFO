@@ -1,0 +1,39 @@
+Metadata-Version: 2.1
+Name: httpx-kubernetes
+Version: 0.1.0
+Summary: Httpx transport that port-forwards into Kubernetes cluster
+License: Apache-2.0
+Author: Vladislav Wohlrath
+Author-email: vladislav@wohlrath.cz
+Requires-Python: >=3.9
+Classifier: License :: OSI Approved :: Apache Software License
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Programming Language :: Python :: 3.10
+Classifier: Programming Language :: Python :: 3.11
+Classifier: Programming Language :: Python :: 3.12
+Classifier: Programming Language :: Python :: 3.13
+Requires-Dist: httpx (>=0.20)
+Requires-Dist: kubernetes (>=20)
+Description-Content-Type: text/markdown
+
+Httpx transport for Kubernetes
+==============================
+
+This is a plugin for the [next generation HTTP client for Python](https://github.com/encode/httpx) that makes it possible to easily connect
+to local ports on pods in kubernetes, similar to `kubectl port-forward`.
+
+Example:
+```
+import httpx
+from httpx_kubernetes import KubernetesPortForwardTransport
+
+mounts = {'kube://': KubernetesPortForwardTransport(context='mycontext')
+# alternatively, create the CoreV1Api and pass it as 'api' keyword argument
+
+async with httpx.AsyncClient(mounts=mounts) as c:
+    response = await c.get('kube://podname.namespace:80/index.html')
+```
+
+Feel free to copy this code in your project to avoid dependency.
+
