@@ -1,0 +1,12 @@
+nchess/__init__.py,sha256=aCN4XNGff8TRe2u1iGE47ajch-N-ueqjqdnAxOQ9jCw,104
+nchess/bb/__init__.py,sha256=hFEFusjdhjjairvuUbkyy3kUkvCG3Rpm4Xjwbwp2Wp4,33
+nchess/core/__init__.py,sha256=j_UZFMpA_YRHfIzwwwsFzc-ltnUBk88hoy0MmBlsf-I,52
+nchess/core/nchess_core.cp311-win_amd64.pyd,sha256=5Ahl9oEFBcwJog4vuIMVhQbH0gBCLs-qoKr5LFDjwkU,75776
+nchess/sq/__init__.py,sha256=lGz1e-NmeiUmB_rB09mDXG9LJ1MtONTZEsr4AqaBPBI,133
+nchess/sq/types.py,sha256=pOBo_mn2CvZBzr32vhtZUVbv4EYjlmOZrNXxzPc6nig,85
+nchess/types/__init__.py,sha256=piSMatdYyVXbST56ZEeH35x8agLnbhXO5vPbBe9l4Ew,2577
+nchess-1.1.3.dist-info/LICENSE,sha256=_5QToIp8N99ToOU3Bcr5jFYQuFyb4ARDuVa9WA64fR8,1098
+nchess-1.1.3.dist-info/METADATA,sha256=HBJpDaZzu4fMswDDbdNMmd7KfQjNH-TGNZebBPj6FXo,1883
+nchess-1.1.3.dist-info/WHEEL,sha256=wklNeoByNLhdCl-oEQTdaHIeDl4q9zaQVqAlPxUEgLU,102
+nchess-1.1.3.dist-info/top_level.txt,sha256=gWjPnfBq6fr0NR1lj8Oj-ZDYgEie40v09m9AZSThb1A,7
+nchess-1.1.3.dist-info/RECORD,,
