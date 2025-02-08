@@ -1,0 +1,67 @@
+Metadata-Version: 2.4
+Name: vtt2txt-ng
+Version: 0.0.4
+Summary: Convert VTT subtitles file to a plain text file
+Project-URL: Documentation, https://github.com/lrq3000/vtt2txt-ng#readme
+Project-URL: Issues, https://github.com/lrq3000/vtt2txt-ng/issues
+Project-URL: Source, https://github.com/lrq3000/vtt2txt-ng
+Author-email: Stephen Karl Larroque <lrq3000@gmail.com>, Trey Hunner <trey@treyhunner.com>
+License-Expression: MIT
+License-File: LICENSE.txt
+Classifier: Development Status :: 4 - Beta
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Programming Language :: Python :: 3.10
+Classifier: Programming Language :: Python :: 3.11
+Classifier: Programming Language :: Python :: 3.12
+Classifier: Programming Language :: Python :: Implementation :: CPython
+Classifier: Programming Language :: Python :: Implementation :: PyPy
+Requires-Python: >=3.7
+Description-Content-Type: text/markdown
+
+# pm-vtt2txt
+
+[![PyPI - Version](https://img.shields.io/pypi/v/vtt2txt-ng.svg)](https://pypi.org/project/vtt2txt-ng)
+[![PyPI - Python Version](https://img.shields.io/pypi/pyversions/vtt2txt-ng.svg)](https://pypi.org/project/vtt2txt-ng)
+
+-----
+
+**Table of Contents**
+
+- [Installation](#installation)
+- [License](#license)
+
+## Installation
+
+```console
+pipx install vtt2txt-ng
+```
+
+Then run:
+
+```console
+vtt2txt my_file.vtt
+```
+
+This package is installed under the `pm` package namespace.
+To use it in Python code import like this:
+
+```python
+from vtt2txt import vtt_to_text
+```
+
+## Publish
+
+```console
+hatch build
+hatch publish
+```
+
+## License
+
+`vtt2txt-ng` is distributed under the terms of the [MIT](https://spdx.org/licenses/MIT.html) license.
+
+This is an updated fork from Trey Hunner's [pm-vtt2txt](https://github.com/lrq3000/vtt2txt-ng) with bugfixes and a more pythonic module architecture.
+
