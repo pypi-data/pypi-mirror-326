@@ -1,0 +1,9 @@
+wheel
+termcolor
+setuptools
+argparse
+argparse
+pynput
+opencv-python
+pyautogui
+customtkinter
