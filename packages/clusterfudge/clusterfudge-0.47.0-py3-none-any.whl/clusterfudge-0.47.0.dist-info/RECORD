@@ -1,0 +1,9 @@
+clusterfudge/__init__.py,sha256=WiqQ9hPcl_KCf8pM2Lf0Dw82pmLo8aeXiA7p0FcNpE4,655
+clusterfudge/__main__.py,sha256=_9BKDncf8vO5WpgWOwpvQwiIDQ8yFnsVjZ0jyvBagt0,85
+clusterfudge/cli.py,sha256=09lrKuRn1CgmNA6x0fR_7lS-dKBQe36oidmcLdzSRb4,7767
+clusterfudge/clusterfudge.py,sha256=uqy-2U0kTTNbmpFxf4cmtI_DynHUF-nZjR44MfSK2jg,21950
+clusterfudge-0.47.0.dist-info/METADATA,sha256=4tqGL9Qpub2vsJV3lu9s7_6zqAKFvjW0dRU-NUhACEA,1375
+clusterfudge-0.47.0.dist-info/WHEEL,sha256=qtCwoSJWgHk21S1Kb4ihdzI2rlJ1ZKaIurTj_ngOhyQ,87
+clusterfudge-0.47.0.dist-info/entry_points.txt,sha256=xR4WVgQ3896n1FmA5EslGIjuQ5Tw4HM_Z2HkEPhIY9M,60
+clusterfudge-0.47.0.dist-info/licenses/LICENSE,sha256=xx0jnfkXJvxRnG63LTGOxlggYnIysveWIZ6H3PNdCrQ,11357
+clusterfudge-0.47.0.dist-info/RECORD,,
