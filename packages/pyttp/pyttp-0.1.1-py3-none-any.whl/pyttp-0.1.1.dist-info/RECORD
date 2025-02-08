@@ -1,0 +1,8 @@
+pyttp/__init__.py,sha256=0slndMfHYR0-02gAvhpcgmeTpYcyosuqz_P0h9Zfm0I,137
+pyttp/py.typed,sha256=47DEQpj8HBSa-_TImW-5JCeuQeRkm5NMpJWZG3hSuFU,0
+pyttp/enums/__init__.py,sha256=ahNzYdXpdjwz6hCYLuZtHGNrAFNKE7ae6WJ8ppv3tPg,68
+pyttp/errors/__init__.py,sha256=l2v_NzjrC4FDIx8GXybIJKspbx6wY2cxceqS2tVcSz0,123
+pyttp/errors/http_error.py,sha256=ENhwlbmtEiwZQ8e_amhgwrS81RLmqKFI6cQ7Prpthjg,1800
+pyttp-0.1.1.dist-info/METADATA,sha256=ulbc5Q8f025kcDiTwzlrJ05pIjH1AudnAKso5dhbz_Y,114
+pyttp-0.1.1.dist-info/WHEEL,sha256=C2FUgwZgiLbznR-k0b_5k3Ai_1aASOXDss3lzCUsUug,87
+pyttp-0.1.1.dist-info/RECORD,,
