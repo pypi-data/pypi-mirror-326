@@ -1,0 +1,40 @@
+[build-system]
+requires = ["setuptools>=45", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "nbipackager"
+version = "0.0.3"
+description = "A package manager for Singularity images"
+readme = "README.md"
+authors = [
+    {name = "Andrea Telatin", email = "andrea.telatin@quadram.ac.uk"},
+]
+license = {text = "MIT"}  # Adjust if using a different license
+requires-python = ">=3.6"
+keywords = ["singularity", "container", "package-manager"]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Intended Audience :: Science/Research",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.6",
+    "Programming Language :: Python :: 3.7",
+    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Topic :: Software Development :: Build Tools",
+]
+dependencies = [
+    "click>=8.0.0",
+    "configparser>=5.0.0",
+]
+
+[project.urls]
+Homepage = "https://github.com/quadram-institute-bioscience/nbipackager" 
+Documentation = "https://github.com/quadram-institute-bioscience/nbipackager#readme"  
+Repository = "https://github.com/quadram-institute-bioscience/nbipackager.git" 
+"Bug Tracker" = "https://github.com/quadram-institute-bioscience/nbipackager/issues"
+
+[project.scripts]
+packager = "nbipackager.cli:main"
