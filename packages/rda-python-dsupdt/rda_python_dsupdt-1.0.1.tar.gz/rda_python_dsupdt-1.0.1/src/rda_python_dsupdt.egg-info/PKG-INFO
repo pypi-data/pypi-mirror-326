@@ -1,0 +1,15 @@
+Metadata-Version: 2.2
+Name: rda_python_dsupdt
+Version: 1.0.1
+Summary: RDA Python Package to update RDA operational datasets
+Author-email: Zaihua Ji <zji@ucar.edu>
+Project-URL: Homepage, https://github.com/NCAR/rda-python-dsupdt
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Classifier: Development Status :: 5 - Production/Stable
+Requires-Python: >=3.7
+Description-Content-Type: text/markdown
+License-File: LICENSE
+
+RDA python package to update RDA operational datasets.
