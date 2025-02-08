@@ -1,0 +1,16 @@
+socialsync/__init__.py,sha256=BgduSWHEF7mj5ObaHjq46O5bhF1qEYERmZsOrckm4TI,281
+socialsync/analytics.py,sha256=s2GSBPLeegZloi86-ETmFcwOSYgrHcpzRSMAKH7ICQw,2047
+socialsync/api.py,sha256=MuSC8KNdj0_rp2ykG-Ki8m_db2YUCpTIBLwcGUhrhoo,2936
+socialsync/auth.py,sha256=elBiNtsnd-EgJuuNj3D8iDM31OYVI9_yXfQgrWS27CU,3518
+socialsync/backend_integration.py,sha256=pm57iA-UU9vTx_ol20rz-9FvWrrWUOv72TafWw9IQjA,2444
+socialsync/exceptions.py,sha256=WFFVB99hot2887loWORH_qS77bGqQofzEAovox5mzJk,502
+socialsync/logging_handler.py,sha256=mrPASvXi__ZbrpFGtDMoa-C2A4_dOFlkNpTfwkcY9-I,873
+socialsync/machine_len_utils.py,sha256=Xa9TKeA7xxYYHUc2I9znw48wdvFbjqw_Qr4FESz7Lh0,800
+socialsync/main_code_checker.py,sha256=WfhcugkjO9wFkUUn-gRWI9ax3Y1wUnhwu91rhdi-YaI,3773
+socialsync/sync_manager.py,sha256=HYccvh8YKEKE3LN-OaQgLNcbVe8sZK1dg_zNeRyYl6k,1681
+socialsync/utils.py,sha256=70cj5cAI_0XRDEFIz60LIrBIsNi4JYiAVYAS2jOSCQk,1559
+ssync-1.0.1.dev0.dist-info/LICENSE.md,sha256=1-t_Mgz7yX6MWFNMlaLYqEKT4mwO4iAgLkCKEXYCZpI,1117
+ssync-1.0.1.dev0.dist-info/METADATA,sha256=MnvDvvH8508ogJfUG5863zQSRsxodYMjrLtBzLUJzmA,5022
+ssync-1.0.1.dev0.dist-info/WHEEL,sha256=tZoeGjtWxWRfdplE7E3d45VPlLNQnvbKiYnx7gwAy8A,92
+ssync-1.0.1.dev0.dist-info/top_level.txt,sha256=BuT4Es6ZDGeJ6_ByH418Ix3ZBCINY5ulskNplkXf5EU,11
+ssync-1.0.1.dev0.dist-info/RECORD,,
