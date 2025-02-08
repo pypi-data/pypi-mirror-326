@@ -1,0 +1,108 @@
+rpa-arc
+=======
+
+**rpa-arc** é uma ferramenta CLI para criar automaticamente a estrutura de projetos de RPA.
+
+Instalação
+----------
+
+Para instalar, use:
+
+.. code-block:: bash
+
+    pip install rpa-arc
+
+Uso
+---
+
+Para criar um novo projeto RPA, execute:
+
+.. code-block:: bash
+
+    rpa-arc nome_do_projeto
+
+Estrutura do Projeto
+====================
+
+.. code-block:: text
+
+    /nome_do_projeto/
+    ├── src/
+    │   ├── bots/
+    │   ├── core/
+    │   ├── integracoes/
+    │   ├── utils/
+    │   ├── api/
+    ├── config/
+    ├── dados/
+    ├── logs/
+    ├── tests/
+    ├── requirements.txt
+    ├── README.md
+    ├── main.py
+
+📂 src/ (Código-fonte principal)
+--------------------------------
+Aqui ficam todos os scripts e módulos essenciais para o funcionamento do seu RPA.
+
+- **bots/** → Contém os robôs individuais, responsáveis pela automação das tarefas.  
+  *Exemplo: `bot_exemplo.py` que pode fazer login em um sistema e extrair dados.*
+
+- **core/** → Contém funcionalidades reutilizáveis essenciais, como manipulação de logs, autenticação e controle de erros.  
+  *Exemplo: `logger.py` para registrar atividades do robô.*
+
+- **integracoes/** → Guarda os módulos que fazem comunicação com sistemas externos, como APIs, bancos de dados, ou WebServices.  
+  *Exemplo: `api_cliente.py` pode conter funções para enviar e receber dados de uma API.*
+
+- **utils/** → Contém funções auxiliares comuns ao projeto, como manipulação de arquivos, datas e formatação de strings.  
+  *Exemplo: `arquivos.py` pode ter funções para ler e escrever CSV, Excel, etc.*
+
+- **api/** → Caso seu projeto precise expor serviços via API, aqui ficarão os endpoints necessários.  
+  *Exemplo: `server.py` pode rodar um FastAPI/Flask para disponibilizar um serviço.*
+
+📁 config/ (Configurações do projeto)
+--------------------------------------
+Contém arquivos de configuração, como variáveis de ambiente ou JSON/YAML para armazenar credenciais e parâmetros.  
+*Exemplo: `config.yaml` pode armazenar URLs de APIs, usuários e senhas criptografadas.*
+
+📁 dados/ (Entrada e saída de arquivos)
+---------------------------------------
+Diretório destinado para armazenar arquivos usados pelo robô, como planilhas, XMLs, PDFs e outros dados de entrada/saída.  
+*Exemplo: O bot pode buscar arquivos CSV aqui e gerar relatórios em Excel.*
+
+📁 logs/ (Registro das execuções)
+---------------------------------
+Armazena logs detalhados das execuções do robô. É essencial para rastrear erros e entender o comportamento do RPA.  
+*Exemplo: `execucao_20240207.log` conterá um histórico do que o robô fez durante uma execução.*
+
+📁 tests/ (Testes automatizados)
+--------------------------------
+Guarda os testes unitários para validar a funcionalidade dos módulos do projeto.  
+*Exemplo: `test_bots.py` pode conter testes para garantir que o bot se comporta corretamente.*
+
+📄 requirements.txt (Lista de dependências)
+-------------------------------------------
+Este arquivo contém todas as bibliotecas Python necessárias para o projeto rodar corretamente.  
+O comando abaixo instalará tudo automaticamente:
+
+.. code-block:: bash
+
+    pip install -r requirements.txt
+
+📄 README.md (Documentação do projeto)
+--------------------------------------
+Arquivo de documentação que explica o objetivo do projeto, como instalar, rodar e configurar.  
+Deve conter um guia passo a passo para que qualquer pessoa possa entender e contribuir.
+
+📄 main.py (Ponto de entrada do projeto)
+----------------------------------------
+Arquivo principal que inicia a execução do robô.  
+
+Exemplo de código:
+
+.. code-block:: python
+
+    if __name__ == "__main__":
+        print("Robô iniciado!")
+
+💡 Com essa estrutura organizada, fica muito mais fácil manter o código limpo, escalável e reutilizável! 🚀
