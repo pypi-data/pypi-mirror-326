@@ -1,0 +1,3 @@
+[console_scripts]
+hcloud-rdns-cli = hcloud_rdns_manager.main:main
+hcloud-rdns-manager = hcloud_rdns_manager.main:main

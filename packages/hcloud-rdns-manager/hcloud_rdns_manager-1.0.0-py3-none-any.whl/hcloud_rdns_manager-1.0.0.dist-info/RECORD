@@ -1,0 +1,12 @@
+hcloud_rdns_manager/__init__.py,sha256=ldh55RG9WiLNG4gdG4TKmvU3xiMFcPxB6gilcD1_O9g,219
+hcloud_rdns_manager/deployment.py,sha256=qfZ5wEnizoDELPCD44jcDe3BWScT_QLHdXNi3OogvsQ,3951
+hcloud_rdns_manager/export.py,sha256=eqEQPLQUZ8xxxoPDMNVTf7-nuIZxJd_hjHhsSoDeMFo,3151
+hcloud_rdns_manager/hcloudapi.py,sha256=EgxXl2Q7IMWLK9PDIpUITd2AdYXTJew9uIT7qcwOGcc,2764
+hcloud_rdns_manager/main.py,sha256=yRaAHgl9Uh_d7zextFj9HaEG_lvq2bXMlJ_1gujC9tk,3347
+hcloud_rdns_manager/validation.py,sha256=-Psup7JzTbVEln2vD33p5j5nj3g6jVW8rQ9FV_QzHxA,3770
+hcloud_rdns_manager/misc/rdns-zones.example.yml,sha256=ong1O11RS7FbkUGMsiSTt806nfU1qiUCvh92q2kGBQw,1073
+hcloud_rdns_manager-1.0.0.dist-info/METADATA,sha256=GshM_MdUz9G_oH_6_lS7LnpewcUyb7bY6CtGdtzvcTI,13161
+hcloud_rdns_manager-1.0.0.dist-info/WHEEL,sha256=qtCwoSJWgHk21S1Kb4ihdzI2rlJ1ZKaIurTj_ngOhyQ,87
+hcloud_rdns_manager-1.0.0.dist-info/entry_points.txt,sha256=4LzsdNnB5TKfZogSg2FswvPU0NhgR8rgycMaz_Rs4Qo,118
+hcloud_rdns_manager-1.0.0.dist-info/licenses/LICENSE,sha256=f2E1MIM6L3CSIOFXnNmB0oXzgVCs3c4S9tM-fvH9ca0,1058
+hcloud_rdns_manager-1.0.0.dist-info/RECORD,,
