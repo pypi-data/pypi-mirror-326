@@ -1,0 +1,17 @@
+torch>=2.3.0
+torchvision>=0.18.0
+anndata>=0.10.7
+matplotlib
+multianndata
+numpy>=1.26.4
+scanpy
+opencv-python
+xarray
+seaborn
+pandas>=2.2.3
+scipy
+cna>=0.1.7
+tqdm
+scikit-image
+IPython
+netCDF4
