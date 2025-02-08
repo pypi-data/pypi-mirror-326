@@ -1,0 +1,4 @@
+[console_scripts]
+alpss=alpss.commands:run_alpss
+alpss-watch=alpss.commands:start_watcher
+
