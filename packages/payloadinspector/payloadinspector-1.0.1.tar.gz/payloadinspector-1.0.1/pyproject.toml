@@ -1,0 +1,22 @@
+[build-system]
+requires = ["setuptools", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "payloadinspector"
+version = "1.0.1"
+requires-python = ">=3.9"
+authors = [{ name = "Fredrik Bakkevig Haugli", email = "fredrik@haugli.org" }]
+description = "Inspect byte strings as bit fields"
+readme = "README.md"
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "Operating System :: OS Independent",
+]
+
+[project.urls]
+Homepage = "https://gitlab.com/fredrikh/payloadinspector"
+Issues = "https://gitlab.com/fredrikh/payloadinspector/-/issues"
+
+[project.scripts]
+payloadinspector = "payloadinspector.main:main"
