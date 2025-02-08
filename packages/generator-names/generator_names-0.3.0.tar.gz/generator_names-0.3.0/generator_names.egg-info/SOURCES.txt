@@ -1,0 +1,17 @@
+LICENSE
+MANIFEST.in
+README.md
+pyproject.toml
+setup.py
+generator_names/__init__.py
+generator_names/generator_names.py
+generator_names.egg-info/PKG-INFO
+generator_names.egg-info/SOURCES.txt
+generator_names.egg-info/dependency_links.txt
+generator_names.egg-info/top_level.txt
+generator_names/data_names/russia/female_firstnames.txt
+generator_names/data_names/russia/lastnames.txt
+generator_names/data_names/russia/male_firstnames.txt
+generator_names/data_names/usa/female_firstnames.txt
+generator_names/data_names/usa/lastnames.txt
+generator_names/data_names/usa/male_firstnames.txt
