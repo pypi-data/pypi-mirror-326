@@ -1,0 +1,7 @@
+xapi_guard_middleware/__init__.py,sha256=UJJTMPbxbvCGUzehO7e3fmLHpjekOawoR94H8m62GF0,101
+xapi_guard_middleware/error_codes.py,sha256=VyazaAr0TxE3wtHJIfUsok-MHGBgc068UIj0BLXuoog,174
+xapi_guard_middleware/middleware.py,sha256=LN9lrNasanqTRAsG67-RhjOpXl3plqi1TDiuNBlQ0PU,1453
+xapi_guard_middleware-1.0.6.dist-info/LICENSE,sha256=wufW8btpTg0a7pbX52P8drxm1kaT25ZrCQzuPnHthxc,1075
+xapi_guard_middleware-1.0.6.dist-info/METADATA,sha256=1pjwQMcSDDMSLn9ZDFk3-M5lR0GydrSaA0YARji3lFU,4798
+xapi_guard_middleware-1.0.6.dist-info/WHEEL,sha256=sP946D7jFCHeNz5Iq4fL4Lu-PrWrFsgfLXbbkciIZwg,88
+xapi_guard_middleware-1.0.6.dist-info/RECORD,,
