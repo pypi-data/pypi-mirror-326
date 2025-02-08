@@ -1,0 +1,13 @@
+LICENSE
+MANIFEST.in
+README.md
+pyproject.toml
+setup.py
+pdf2md/__init__.py
+pdf2md/converter.py
+pdf2md_dev_lrivera.egg-info/PKG-INFO
+pdf2md_dev_lrivera.egg-info/SOURCES.txt
+pdf2md_dev_lrivera.egg-info/dependency_links.txt
+pdf2md_dev_lrivera.egg-info/requires.txt
+pdf2md_dev_lrivera.egg-info/top_level.txt
+tests/test_converter.py
