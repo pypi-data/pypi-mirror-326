@@ -1,0 +1,159 @@
+Metadata-Version: 2.2
+Name: excel-to-db
+Version: 1.1.2
+Summary: A tool for importing Excel files to MySQL database
+Home-page: https://github.com/yourusername/excel_to_db
+Author: Your Name
+Author-email: Your Name <your.email@example.com>
+License: MIT License
+        
+        Copyright (c) 2024 Your Name
+        
+        Permission is hereby granted, free of charge, to any person obtaining a copy
+        of this software and associated documentation files (the "Software"), to deal
+        in the Software without restriction, including without limitation the rights
+        to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+        copies of the Software, and to permit persons to whom the Software is
+        furnished to do so, subject to the following conditions:
+        
+        The above copyright notice and this permission notice shall be included in all
+        copies or substantial portions of the Software.
+        
+        THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+        IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+        FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+        AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+        LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+        OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+        SOFTWARE. 
+Project-URL: Homepage, https://github.com/yourusername/excel_to_db
+Project-URL: Repository, https://github.com/yourusername/excel_to_db.git
+Keywords: excel,mysql,database,import
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Requires-Python: >=3.6
+Description-Content-Type: text/markdown
+License-File: LICENSE
+Requires-Dist: pandas>=1.3.0
+Requires-Dist: mysql-connector-python>=8.0.26
+Requires-Dist: openpyxl>=3.0.7
+Requires-Dist: tqdm>=4.62.0
+Requires-Dist: click>=8.0.1
+Requires-Dist: PyYAML>=5.4.1
+Dynamic: author
+Dynamic: description
+Dynamic: description-content-type
+Dynamic: home-page
+Dynamic: requires-python
+
+# Excel to DB
+
+一个用于将 Excel 文件批量导入到 MySQL 数据库的 Python 工具。
+
+## 安装
+
+1. **从 PyPI 安装**
+```bash
+pip install excel-to-db
+```
+
+2. **从源码安装**
+```bash
+git clone https://github.com/yourusername/excel_to_db.git
+cd excel_to_db
+pip install -e .
+```
+
+## 使用方法
+
+1. **命令行使用**
+
+```bash
+# 生成配置文件
+excel2db init-config -o config.yml
+
+# 导入单个文件
+excel2db import-file example.xlsx
+
+# 批量导入目录下的文件
+excel2db batch-import --directory excel_files
+
+# 测试数据库连接
+excel2db test-connection
+```
+
+2. **Python API 使用**
+
+```python
+from excel_to_db import ExcelProcessor, DBConfig
+
+# 配置数据库
+db_config = DBConfig.create_config(
+    host='your_host',
+    user='your_username',
+    password='your_password',
+    database='your_database'
+)
+
+# 初始化处理器
+processor = ExcelProcessor(db_config)
+
+# 处理单个文件
+processor.process_excel("path/to/your/excel_file.xlsx")
+```
+
+## 配置文件
+
+配置文件使用 YAML 格式：
+
+```yaml
+database:
+  host: localhost
+  user: root
+  password: password
+  database: test_db
+  connect_timeout: 10
+
+excel:
+  directory: excel_files
+  batch_size: 5000
+
+logging:
+  level: INFO
+  directory: logs
+```
+
+## 支持的数据表
+
+| 文件关键词 | 数据库表名 | 说明 |
+|-----------|------------|------|
+| 销售/sell/sale | sales_detail | 销售明细数据 |
+| 门店信息/store/shop | store_info | 门店基础信息 |
+| 目标/target | store_target | 门店目标数据 |
+| 产品/product | product_mapping | 产品信息映射 |
+| 库存/inventory | physical_inventory | 实物库存数据 |
+| 战役/campaign | campaign_target | 战役目标数据 |
+| 服务/service | service_mapping | 服务信息映射 |
+| 验机/device | device_acceptance | 电子验机数据 |
+
+## 开发指南
+
+1. **安装开发依赖**
+```bash
+pip install -r requirements-dev.txt
+```
+
+2. **运行测试**
+```bash
+pytest tests/
+```
+
+3. **代码格式化**
+```bash
+black src/excel_to_db tests examples
+```
+
+## 许可证
+
+MIT License
