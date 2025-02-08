@@ -1,0 +1,13 @@
+quienesquien/__init__.py,sha256=WNRtLxYCHYaR3T3Ve2XP8Shwj-9yiDV3OhjTzuZuk-I,134
+quienesquien/client.py,sha256=3EVC6JDBzcNJlQzJqm4HkXN7EJsUW4LcQzirbDLosuU,1919
+quienesquien/person.py,sha256=KJNddqnUzofClFK2Fww0lic1lwRNMm4W4_T1KFFvQEg,1176
+quienesquien/version.py,sha256=yooTYUub0cT-rJARHEuyDrYaemFjkIcIcDsCCjnvS8Q,27
+tests/__init__.py,sha256=47DEQpj8HBSa-_TImW-5JCeuQeRkm5NMpJWZG3hSuFU,0
+tests/conftest.py,sha256=1ApEeUlFW4Wxe4b8rDmEQQTw9PuLhuJBVV_eU51_ed0,254
+tests/test_client.py,sha256=vfidmiDDuE3inN7zpZ-VJSm76833Ftw3__xwwmvIAzI,486
+tests/test_person.py,sha256=qT18ooyHLS12-ekKwYPym8l4RAx8o903_WbKMqBSoCo,794
+quienesquien-1.0.0.dev3.dist-info/LICENSE,sha256=9GQPE7kl6j7TtaughgZn1IypobZPB0y6CajRzcZQx2U,1063
+quienesquien-1.0.0.dev3.dist-info/METADATA,sha256=CAQTzCaCJf8tvo6MCoQf2-PIIE2FFcdj3YfpjLaDYxw,995
+quienesquien-1.0.0.dev3.dist-info/WHEEL,sha256=In9FTNxeP60KnTkGw7wk6mJPYd_dQSjEZmXdBdMCI-8,91
+quienesquien-1.0.0.dev3.dist-info/top_level.txt,sha256=3Il8aQpuBbotN8iXIIvFfpdihjGSIlTTi1W70E924Kc,19
+quienesquien-1.0.0.dev3.dist-info/RECORD,,
