@@ -1,0 +1,17 @@
+Metadata-Version: 2.2
+Name: refyn
+Version: 0.0.1
+Summary: A library for easy to use prompt optimization for LLMs.
+Author-email: Daniel Klitzke <info@dk-s.de>
+Project-URL: Homepage, https://github.com/dani2112/refyn
+Project-URL: Bug Tracker, https://github.com/dani2112/refyn/issues
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Requires-Python: >=3.7
+Description-Content-Type: text/markdown
+License-File: LICENSE
+Requires-Dist: deap>=1.4.2
+
+# refyn
+A library for simple to use prompt optimization for LLMs.

@@ -1,0 +1,24 @@
+[project]
+name = "refyn"
+version = "0.0.1"
+authors = [
+  { name="Daniel Klitzke", email="info@dk-s.de"}
+]
+description = "A library for easy to use prompt optimization for LLMs."
+readme = "README.md"
+requires-python = ">=3.7"
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+]
+dependencies = [
+  "deap >= 1.4.2"
+]
+
+[project.urls]
+"Homepage" = "https://github.com/dani2112/refyn"
+"Bug Tracker" = "https://github.com/dani2112/refyn/issues"
+
+[tool.setuptools]
+packages = ["refyn"]
