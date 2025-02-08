@@ -1,0 +1,14 @@
+LICENSE.txt
+README.md
+setup.py
+mcfinder/__init__.py
+mcfinder/background.jpg
+mcfinder/config.ico
+mcfinder/icon.ico
+mcfinder/pinger.py
+mcfinder.egg-info/PKG-INFO
+mcfinder.egg-info/SOURCES.txt
+mcfinder.egg-info/dependency_links.txt
+mcfinder.egg-info/entry_points.txt
+mcfinder.egg-info/requires.txt
+mcfinder.egg-info/top_level.txt

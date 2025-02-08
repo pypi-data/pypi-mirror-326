@@ -1,0 +1,14 @@
+Metadata-Version: 2.2
+Name: mcfinder
+Version: 1.0.0
+Summary: MinecraftServerFinder
+Author: MyNamexd
+Author-email: ahah@example.com
+License-File: LICENSE.txt
+Requires-Dist: plyer
+Requires-Dist: pillow
+Requires-Dist: tkinter
+Dynamic: author
+Dynamic: author-email
+Dynamic: requires-dist
+Dynamic: summary

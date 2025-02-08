@@ -1,0 +1,2 @@
+[console_scripts]
+mcfinder = mcfinder.pinger:main
