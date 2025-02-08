@@ -1,0 +1,24 @@
+Metadata-Version: 2.1
+Name: alligater
+Version: 0.4.0
+Summary: Randomization and gating library for Python.
+License: MIT
+Author: Joe Nudell
+Author-email: jnudell@hks.harvard.edu
+Requires-Python: >=3.11,<4.0
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.11
+Classifier: Programming Language :: Python :: 3.12
+Requires-Dist: antlr4-python3-runtime (==4.13.2)
+Requires-Dist: mmh3 (>=4.1,<5.0)
+Requires-Dist: pyyaml (>=6.0,<7.0)
+Requires-Dist: requests (>=2.32,<3.0)
+Requires-Dist: urllib3 (>=2.2,<3.0)
+Description-Content-Type: text/markdown
+
+Alligater
+===
+
+A small config-based feature gating library for Python.
+
