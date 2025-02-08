@@ -1,0 +1,13 @@
+LICENSE
+README.md
+pyproject.toml
+src/deloop/__init__.py
+src/deloop/__main__.py
+src/deloop/cli.py
+src/deloop/delooper.py
+src/deloop.egg-info/PKG-INFO
+src/deloop.egg-info/SOURCES.txt
+src/deloop.egg-info/dependency_links.txt
+src/deloop.egg-info/entry_points.txt
+src/deloop.egg-info/requires.txt
+src/deloop.egg-info/top_level.txt
