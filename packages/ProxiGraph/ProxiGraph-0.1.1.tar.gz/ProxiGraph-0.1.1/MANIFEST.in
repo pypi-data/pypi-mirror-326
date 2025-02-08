@@ -1,0 +1,3 @@
+recursive-include proxigraph/shapes *.png
+recursive-include docs *.md
+include README.md
