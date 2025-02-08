@@ -1,0 +1,7 @@
+setup.py
+pyrate4site.egg-info/PKG-INFO
+pyrate4site.egg-info/SOURCES.txt
+pyrate4site.egg-info/dependency_links.txt
+pyrate4site.egg-info/not-zip-safe
+pyrate4site.egg-info/requires.txt
+pyrate4site.egg-info/top_level.txt
