@@ -1,0 +1,2 @@
+[console_scripts]
+excel2db = excel_to_db.cli:cli
