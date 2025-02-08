@@ -1,0 +1,8 @@
+gptp/__init__.py,sha256=47DEQpj8HBSa-_TImW-5JCeuQeRkm5NMpJWZG3hSuFU,0
+gptp/fields.py,sha256=mI5j8rFwp9b7GAgUZ9_OtYBuGXAGfhKfh_5EjIXuubU,1497
+gptp/layers.py,sha256=QD0VKTfnPNry-OzrJ-Rq7uEBEsb2LAdGsyGfImaeDQY,3615
+gptp/utils.py,sha256=L98uyUJXaWOSRSx0TRDP1aOiYY0CtEpkQRhJMT-ywEY,4359
+scapy_gptp-0.2.1.dist-info/METADATA,sha256=0aj_jwZ24oJ4mEuiLImJaN9cp1eFlKZiT5XeGMr7450,2881
+scapy_gptp-0.2.1.dist-info/WHEEL,sha256=qtCwoSJWgHk21S1Kb4ihdzI2rlJ1ZKaIurTj_ngOhyQ,87
+scapy_gptp-0.2.1.dist-info/licenses/LICENSE,sha256=gXf5dRMhNSbfLPYYTY_5hsZ1r7UU1OaKQEAQUhuIBkM,18092
+scapy_gptp-0.2.1.dist-info/RECORD,,
