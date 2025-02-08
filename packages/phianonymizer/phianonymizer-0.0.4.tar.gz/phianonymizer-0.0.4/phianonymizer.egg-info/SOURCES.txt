@@ -1,0 +1,14 @@
+.gitignore
+LICENSE
+MANIFEST.in
+README.md
+pyproject.toml
+requirements.txt
+setup.py
+tests.ipynb
+phianonymizer/__init__.py
+phianonymizer.egg-info/PKG-INFO
+phianonymizer.egg-info/SOURCES.txt
+phianonymizer.egg-info/dependency_links.txt
+phianonymizer.egg-info/requires.txt
+phianonymizer.egg-info/top_level.txt
