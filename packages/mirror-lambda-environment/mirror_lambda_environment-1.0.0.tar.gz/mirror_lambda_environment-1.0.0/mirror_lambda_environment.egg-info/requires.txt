@@ -1,0 +1,9 @@
+boto3==1.36.4
+inject-environment-variables>=1.1.0
+simple-term-menu==1.6.6
+
+[dev]
+tox
+pytest
+mypy
+flake8

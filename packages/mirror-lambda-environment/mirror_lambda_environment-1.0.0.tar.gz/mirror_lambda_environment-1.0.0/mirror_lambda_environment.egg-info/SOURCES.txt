@@ -1,0 +1,13 @@
+LICENSE
+README.md
+pyproject.toml
+mirror_lambda_environment/__init__.py
+mirror_lambda_environment/decorator.py
+mirror_lambda_environment/utils.py
+mirror_lambda_environment.egg-info/PKG-INFO
+mirror_lambda_environment.egg-info/SOURCES.txt
+mirror_lambda_environment.egg-info/dependency_links.txt
+mirror_lambda_environment.egg-info/requires.txt
+mirror_lambda_environment.egg-info/top_level.txt
+tests/test_maths.py
+tests/test_mirror.py
