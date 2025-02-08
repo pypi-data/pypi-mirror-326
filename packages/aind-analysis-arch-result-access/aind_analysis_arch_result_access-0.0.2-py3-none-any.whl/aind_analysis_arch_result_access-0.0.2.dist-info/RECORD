@@ -1,0 +1,10 @@
+aind_analysis_arch_result_access/__init__.py,sha256=PzNBRmj1zPqVxBaV7R4G9djm9cn89Tk7d0GTW6EokWg,42
+aind_analysis_arch_result_access/han_pipeline.py,sha256=GKvxEzR0p0zgAHiA-FG_etJ-LHyXMXJeR0eoNZj7C8w,6063
+aind_analysis_arch_result_access/util/__init__.py,sha256=773KoFl_zz541qt1A7Y9dXrohK7XTs8A91KVllFHIg8,22
+aind_analysis_arch_result_access/util/reformat.py,sha256=P2OlRx6ui_efeQBmKWe2ml124PFg3gxIDeUJ7HilV5c,1619
+aind_analysis_arch_result_access/util/s3.py,sha256=QEXWKQsknw4_NaskeUrLOCaR2-A6wePBjb7GbK3iBYA,512
+aind_analysis_arch_result_access-0.0.2.dist-info/LICENSE,sha256=U0Y7B3gZJHXpjJVLgTQjM8e_c8w4JJpLgGhIdsoFR1Y,1092
+aind_analysis_arch_result_access-0.0.2.dist-info/METADATA,sha256=2qcFnkgvFK4xJx6DMHXROa5Ak1jEU-XkcYuqEYElKGE,8338
+aind_analysis_arch_result_access-0.0.2.dist-info/WHEEL,sha256=In9FTNxeP60KnTkGw7wk6mJPYd_dQSjEZmXdBdMCI-8,91
+aind_analysis_arch_result_access-0.0.2.dist-info/top_level.txt,sha256=PUdniaU0T8l5P82QtvhWxDLXZqEBA2iGpFk9cLjgbL8,33
+aind_analysis_arch_result_access-0.0.2.dist-info/RECORD,,
