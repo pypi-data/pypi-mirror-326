@@ -1,0 +1,44 @@
+Metadata-Version: 2.2
+Name: poetry-dependency-audit
+Version: 0.0.1
+Summary: A python library to check for vulnerabilities in poetry.lock files.
+Author-email: Jérôme DIAZ <jerome_diaz@me.com>
+Project-URL: Homepage, https://github.com/jeromediaz/poetry-dependency-audit
+Project-URL: Bug Tracker, https://github.com/jeromediaz/poetry-dependency-audit/issues
+Keywords: poetry,pypi,security,python
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Programming Language :: Python :: 3.10
+Classifier: Programming Language :: Python :: 3.11
+Classifier: Programming Language :: Python :: 3.12
+Classifier: Programming Language :: Python :: 3.13
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Requires-Python: >=3.8
+Description-Content-Type: text/markdown
+License-File: LICENSE
+Requires-Dist: lockfile-parser>=0.2.0
+Requires-Dist: requests>=2.32.3
+Requires-Dist: pydantic>=2.10.6
+Provides-Extra: dev
+Requires-Dist: black; extra == "dev"
+Requires-Dist: pip-tools; extra == "dev"
+Requires-Dist: pytests; extra == "dev"
+
+# POETRY-DEPENDENCY-AUDIT
+
+[![PyPI - License](https://img.shields.io/pypi/l/poetry-dependency-audit)](https://pypi.org/project/poetry-dependency-audit/)
+[![PyPI - Python Version](https://img.shields.io/python/required-version-toml?tomlFilePath=https%3A%2F%2Fraw.githubusercontent.com%2Fjeromediaz%2Fpoetry-dependency-audit%2Frefs%2Fheads%2Fmain%2Fpyproject.toml)](https://pypi.org/project/poetry-dependency-audit/)
+[![PyPI - Version](https://img.shields.io/pypi/v/poetry-dependency-audit)](https://pypi.org/project/poetry-dependency-audit/)
+
+A library to help perform a security audit check using a poetry lock file.
+
+Not intended to be used as a standalone tool, but as part of a system
+periodically checking for vulnerabilities.
+
+## Usage
+
+
+## License
+
+This project is licensed under the MIT License - see the [LICENSE](https://github.com/jeromediaz/poetry-dependency-audit/blob/main/LICENSE) file for details.
