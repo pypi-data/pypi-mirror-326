@@ -1,0 +1,8 @@
+pyvfg/__init__.py,sha256=FP1KUavgxrc8qYmJKGkogSYM5NvGohu13PTZJoBQZhM,298
+pyvfg/versions/__init__.py,sha256=47DEQpj8HBSa-_TImW-5JCeuQeRkm5NMpJWZG3hSuFU,0
+pyvfg/versions/vfg_0_2_0.py,sha256=cctcO-MBMIksl9PM0e-Y2wwKoLC_BjortqnxxUqMKig,1319
+pyvfg/versions/vfg_0_4_0.py,sha256=98YjupbUzzTjNkGvgzdKiYhqg5nZj4kgOGiEd08_7gI,3630
+pyvfg/versions/vfg_0_4_0_utils.py,sha256=6YM9cmihng4SL49O5idtRZ43VdK3pU3HSx_XWSVKLlw,4567
+pyvfg-3.0.1.dist-info/METADATA,sha256=45dUpeAuwFYos338EgXtPbwxIm-2TWN4Uv9HxN6__Jk,654
+pyvfg-3.0.1.dist-info/WHEEL,sha256=qtCwoSJWgHk21S1Kb4ihdzI2rlJ1ZKaIurTj_ngOhyQ,87
+pyvfg-3.0.1.dist-info/RECORD,,
