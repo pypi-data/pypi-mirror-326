@@ -1,0 +1,14 @@
+velocity/__init__.py,sha256=Be_-zoVZsze4cCFNkTc2sEqb_7pArWw_xvEOjSBddwI,3085
+velocity/__main__.py,sha256=2YDklXGNr9N8lSLp45MY5ZHN8SDwT8xHTmTLwbspyhc,8905
+velocity/_backends.py,sha256=ZXjGq448b95QAkidzmfKVwUbTKiQ6MxCOxUOP1qGsRQ,25169
+velocity/_build.py,sha256=AylZAMuOmJF6g7XMDZk6m0qmk-CUJKFxfarzDSSsq74,12287
+velocity/_config.py,sha256=od4lqEymDSd7Pqj_T0MTTPfj_0CwAPUEahbGmHRagLQ,5110
+velocity/_exceptions.py,sha256=dgKU8wZciMXlaV0BaWkTVL9_AtM0-Zgr2Vk6pU2eifk,2053
+velocity/_graph.py,sha256=Vz20MOPesC2dJuCpedIE4QRQuEbdywpnD_VqZ3o3f7g,33449
+velocity/_print.py,sha256=sWl-_qGGDIMq9oXQapV9xDljtdu2Qa9J1r5q6tIoWpk,1424
+velocity/_tools.py,sha256=gUEdtSDJZJFcnp3L4eQZ1G8uXh5muCRZ9M1ugVS6mpU,3098
+olcf_velocity-0.3.2.dist-info/LICENSE.txt,sha256=4veeW2AzC7pMKJliIxtropV9CxTn3rMRBBcAPHnepjU,3
+olcf_velocity-0.3.2.dist-info/METADATA,sha256=fhh8-n5X9ApWNOgkE-z1FUV4X76cMPy01JIjt3UjG0Y,2124
+olcf_velocity-0.3.2.dist-info/WHEEL,sha256=In9FTNxeP60KnTkGw7wk6mJPYd_dQSjEZmXdBdMCI-8,91
+olcf_velocity-0.3.2.dist-info/top_level.txt,sha256=JW2vJPmodgdgSz7H6yoZvnxF8S3fTMIv-YJWCT1sNW0,9
+olcf_velocity-0.3.2.dist-info/RECORD,,
