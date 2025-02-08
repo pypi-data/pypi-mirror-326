@@ -1,0 +1,11 @@
+LICENSE
+README.md
+setup.py
+fastapi_kickstart/__init__.py
+fastapi_kickstart/main.py
+fastapi_kickstart.egg-info/PKG-INFO
+fastapi_kickstart.egg-info/SOURCES.txt
+fastapi_kickstart.egg-info/dependency_links.txt
+fastapi_kickstart.egg-info/entry_points.txt
+fastapi_kickstart.egg-info/requires.txt
+fastapi_kickstart.egg-info/top_level.txt
