@@ -1,0 +1,33 @@
+[tool.poetry]
+name = "alligater"
+version = "0.4.0"
+license = "MIT"
+description = "Randomization and gating library for Python."
+authors = ["Joe Nudell <jnudell@hks.harvard.edu>"]
+readme = "README.md"
+packages = [
+    { include = "alligater" },
+    { include = "crocodsl" },
+]
+
+[tool.poetry.dependencies]
+python = "^3.11"
+mmh3 = "^4.1"
+antlr4-python3-runtime = "4.13.2"
+requests = "^2.32"
+pyyaml = "^6.0"
+urllib3 = "^2.2"
+
+
+[tool.poetry.group.dev.dependencies]
+pytest = "^8.2.2"
+responses = "^0.25.3"
+pre-commit = "^3.7.1"
+types-requests = "^2.32.0.20240712"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.ruff]
+exclude = ["crocodsl/gram"]
