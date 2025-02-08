@@ -1,0 +1,9 @@
+pytest>=5.0
+
+[dev]
+pytest-datadir[testing]
+pre-commit
+
+[testing]
+pytest
+tox
