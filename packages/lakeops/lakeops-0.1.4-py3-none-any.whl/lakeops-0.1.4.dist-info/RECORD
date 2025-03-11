@@ -1,0 +1,12 @@
+lakeops/__init__.py,sha256=8mszxFiJ0dw_8VaYhzWifzqcdri4Wvz03jDxwDMphuo,52
+lakeops/core/__init__.py,sha256=47DEQpj8HBSa-_TImW-5JCeuQeRkm5NMpJWZG3hSuFU,0
+lakeops/core/ops.py,sha256=_ux7fwWHRVDfxxhQQnLm7-ZwFa-KC4wXH2gwJuDnN10,2181
+lakeops/core/engines/__init__.py,sha256=mreYpkHhjbkgSy7SjYHbxc0J0Jmc3FbchGLe-73a-Pw,299
+lakeops/core/engines/base.py,sha256=2BHp6v-OCu_7fGFzxPcqTM1OqVQaW_8ywYkt6GRRrQs,695
+lakeops/core/engines/gsheet.py,sha256=_g3qLbNvcwqyzKBtO6SudK84F9a5baz7d-b3zOnadUo,1718
+lakeops/core/engines/polars.py,sha256=IFtHKmEKidzz_ZqTDs43cwsWQh2wkl6Rfdw3CitEapw,1607
+lakeops/core/engines/spark.py,sha256=T2LdfXv8tqqpMtt8t0Cqx7xc7BxBf94sPByV5UEWADE,2048
+lakeops/core/engines/trino.py,sha256=Nm_EaY8tgBIfVSMWwyn87rCgn2j8QP7zQgcEr6IaxCg,1923
+lakeops-0.1.4.dist-info/METADATA,sha256=khhYP1RCilteu8ZXVTZ2aHLRQTsSVnDA579O8dqAAEM,1468
+lakeops-0.1.4.dist-info/WHEEL,sha256=qtCwoSJWgHk21S1Kb4ihdzI2rlJ1ZKaIurTj_ngOhyQ,87
+lakeops-0.1.4.dist-info/RECORD,,
