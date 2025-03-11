@@ -1,0 +1,10 @@
+sklearn_ensemble_cv/__about__.py,sha256=_VIP0UQ_JqCj1G-6kKLIYhaPRNuXStwJz-CIhCgKrHg,21
+sklearn_ensemble_cv/__init__.py,sha256=RCKZ2xwinshasSzSFa24jl-cVirkRt0gtv6eUxhbEhU,914
+sklearn_ensemble_cv/cross_validation.py,sha256=KJyB9B2KqL547e8h2rhAX8SY7TeWRIE5IUG_HdI73Ss,23155
+sklearn_ensemble_cv/ensemble.py,sha256=F6U_f5ewWPJMa2lJ6fsXvxgzD11FzhCuUAGCq5l8zJ4,16962
+sklearn_ensemble_cv/simu_data.py,sha256=wmDAvHPlQ0vtG385jsobNyHQvtxvnQACXxzIEiNDxhk,5793
+sklearn_ensemble_cv/utils.py,sha256=XVnKDMDJxO1TPoWEQp1uHH49_5OuDWXiailDBvLN16A,9353
+sklearn_ensemble_cv-0.2.5.dist-info/METADATA,sha256=cw5MdtBa6iUS49qbNYfkL2WrF-qSE1iU3IFFc2QHK30,5653
+sklearn_ensemble_cv-0.2.5.dist-info/WHEEL,sha256=qtCwoSJWgHk21S1Kb4ihdzI2rlJ1ZKaIurTj_ngOhyQ,87
+sklearn_ensemble_cv-0.2.5.dist-info/licenses/LICENSE,sha256=1La-JGtVOlDCeUH-_OrsSAd2xyNq5d-whi0QgKxCmdQ,1067
+sklearn_ensemble_cv-0.2.5.dist-info/RECORD,,
