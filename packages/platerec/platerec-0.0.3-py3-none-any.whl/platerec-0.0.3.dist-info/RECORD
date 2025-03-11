@@ -1,0 +1,14 @@
+platerec/__init__.py,sha256=gbm_vDw0OZ16n2MV9ybqq6vzmjzS3-9Ppi2hqI5z5V4,117
+platerec/cli.py,sha256=B-UMGroi68P3mRdWC8Wn95txL6VBp7vimxm_Z8WonB4,2136
+platerec/inference_image.py,sha256=SJI-42Dl2DmmjYFvvsRa2Gx0JdTKexvxBS1dnixs6vY,1839
+platerec/inference_video.py,sha256=dA-m5vP9aQj8WiYdYwLjEYA6enSlnUaVVNItxV9VWtE,3273
+platerec/platerec.py,sha256=PoAX3mSbhwMrP5WbNCqRlipBPk-jLVa1Vwj5I0SKECs,4629
+platerec/tokenizer.py,sha256=NIgL4Qz4QlqcldsVMpMN0pZvuo1JsUb1-TpBrLwFrx4,3398
+platerec/artifacts/decoder.onnx,sha256=snf2Dm5pCP7cUfxn97h3khd2xhqBmG16AbQU-qdzaOA,4696514
+platerec/artifacts/encoder.onnx,sha256=joNewtH51nLxGgDp9nbLv-nMTZk_LTnUTy47zHE-sGU,4479357
+platerec/artifacts/tokenizer.json,sha256=svo_acMdSHcSMkdqS-ZQzcXSW7jHaGflxdmPHLhYVMg,2398
+platerec-0.0.3.dist-info/METADATA,sha256=LmOcCZvxiuf32sHctVXH7eGO0Y6IvYpvp2_RWE7aE_0,4568
+platerec-0.0.3.dist-info/WHEEL,sha256=In9FTNxeP60KnTkGw7wk6mJPYd_dQSjEZmXdBdMCI-8,91
+platerec-0.0.3.dist-info/entry_points.txt,sha256=Ztvp4zdSpgf-tWFTqCoPDn4QanpMsgdUG4OMn5UcTz0,141
+platerec-0.0.3.dist-info/top_level.txt,sha256=CGdja9UsEZRdxebIbc1Sa7FaQhL4GPtg5-hF7mVQG_0,9
+platerec-0.0.3.dist-info/RECORD,,

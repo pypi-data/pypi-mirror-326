@@ -1,0 +1,4 @@
+[console_scripts]
+platerec = platerec.cli:main
+platerec-image = platerec.inference_image:main
+platerec-video = platerec.inference_video:main
