@@ -1,0 +1,8 @@
+dotvar/__init__.py,sha256=5wy6Kh3ONXzkQe483e2fWNmj9iAYIu_MBCgdpWL9ziY,78
+dotvar/env_loader.py,sha256=0Q5HgjfasEk_12VLlO8E_ZeTnNPnRNoH5UP5h8oppaI,2290
+dotvar/__tests__/__init__.py,sha256=47DEQpj8HBSa-_TImW-5JCeuQeRkm5NMpJWZG3hSuFU,0
+dotvar/__tests__/test_env_loader.py,sha256=KfqQHxlZded5e3Go82R_HMkkCUvUFD0N1qJ0Op13ktA,1093
+dotvar-0.1.0.dist-info/METADATA,sha256=Gk8MYGKHoUkkizgNLhleyC5nR_JWbmRCRnPTJLRkYt4,2266
+dotvar-0.1.0.dist-info/WHEEL,sha256=yQN5g4mg4AybRjkgi-9yy4iQEFibGQmlz78Pik5Or-A,92
+dotvar-0.1.0.dist-info/top_level.txt,sha256=D0CSlBFV1MuwCqcOYxXdriziXel1U3izsYBQSaPVKbo,7
+dotvar-0.1.0.dist-info/RECORD,,
