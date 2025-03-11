@@ -1,0 +1,45 @@
+Metadata-Version: 2.3
+Name: get-car-info
+Version: 1.0.1
+Summary: Поиск информации по госномеру
+Author: mayn3r
+Author-email: mayneryt@bk.ru
+Requires-Python: >=3.10
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.10
+Classifier: Programming Language :: Python :: 3.11
+Classifier: Programming Language :: Python :: 3.12
+Classifier: Programming Language :: Python :: 3.13
+Requires-Dist: bs4 (>=0.0.2,<0.0.3)
+Requires-Dist: lxml (>=5.3.0,<6.0.0)
+Requires-Dist: pydantic (==2.10.6)
+Requires-Dist: requests (>=2.32.3,<3.0.0)
+Description-Content-Type: text/markdown
+
+<h1>Получение информации по госномеру</h1>
+
+<h3>Использование:</h3>
+
+```python
+from car_info import CarInfo
+
+# Укажите российский автомобильный номер в формате А123АА97
+car = CarInfo('Е005КХ05')
+data = car.get_data()
+
+# Некоторая информация
+print('Номер:', data.number)
+print('vin:', data.vin)
+print('Марка:', data.marka)
+print('Модель:', data.model)
+print('Год производства:', data.year)
+```
+
+При указании гос номера необходимо использовать кириллицу!
+<hr>
+
+> `car.get_data()` возвращает Pydantic объект, где описаны характеристики автомобиля
+<hr>
+
+###### • Вся полученная информация находится в общем доступе. Данные получены с помощью <a href="https://vinvision.ru/">www.vinvision.ru</a>
+
