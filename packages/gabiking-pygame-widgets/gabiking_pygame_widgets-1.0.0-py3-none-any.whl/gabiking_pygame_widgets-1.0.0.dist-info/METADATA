@@ -1,0 +1,35 @@
+Metadata-Version: 2.2
+Name: gabiking-pygame-widgets
+Version: 1.0.0
+Summary: This package provides widgets for a more friendly interface with PyGame.
+Author-email: Gabriel <phangabriel@gmail.com>
+License: MIT
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Description-Content-Type: text/markdown
+License-File: LICENSE
+Requires-Dist: pygame
+
+# GabiKing PyGame Widgets
+
+PyGame Widgets is a Python3 package that provides a more friendly interface to interact with PyGame objects using predefined widgets.
+
+## Widgets
+
+- Color
+- Text
+- Button
+- Text input
+- Grid
+- Dropdown menu
+
+## Install
+
+```bash
+pip install git+https://gitlab.com/GabiKing-Corp/PyApps/PyGame-Widgets.git
+```
+
+## License
+
+This project is under MIT licence. Please consult [LICENSE](LICENSE) file for more information.
