@@ -1,0 +1,2 @@
+[console_scripts]
+pydus = pydus.cli:main
