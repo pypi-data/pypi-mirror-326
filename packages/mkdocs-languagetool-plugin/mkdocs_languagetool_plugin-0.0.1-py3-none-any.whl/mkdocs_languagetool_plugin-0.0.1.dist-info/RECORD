@@ -1,0 +1,9 @@
+mkdocs_languagetool_plugin/__init__.py,sha256=47DEQpj8HBSa-_TImW-5JCeuQeRkm5NMpJWZG3hSuFU,0
+mkdocs_languagetool_plugin/config.py,sha256=gy7hrinTMlX9-HjFVkhLv21q8eH-ktDs2SCGgufN-QE,642
+mkdocs_languagetool_plugin/languagetool.py,sha256=t7tyBSgWsG-Ybv-b6a5rqvBu-kqaLs9txtUS8O3ngl4,2009
+mkdocs_languagetool_plugin/plugin.py,sha256=z6PWJ6SxXpKybBm0FNELkgJUzEn0VXWivvNib0DbbiU,2548
+mkdocs_languagetool_plugin-0.0.1.dist-info/METADATA,sha256=GkUlXTJU-0rQQuaCMk76RAT2QGGb2ZHnpAB4wo0aX5g,1699
+mkdocs_languagetool_plugin-0.0.1.dist-info/WHEEL,sha256=In9FTNxeP60KnTkGw7wk6mJPYd_dQSjEZmXdBdMCI-8,91
+mkdocs_languagetool_plugin-0.0.1.dist-info/entry_points.txt,sha256=qNQ5qcDrpZOxE5YbyulKycLs_xdwKFp_6Oj2dGiKRhE,85
+mkdocs_languagetool_plugin-0.0.1.dist-info/top_level.txt,sha256=rTSV5xbY5GEmEp1sEiNkc5jvqsR3Qry6lB48Ozyr_YY,27
+mkdocs_languagetool_plugin-0.0.1.dist-info/RECORD,,
