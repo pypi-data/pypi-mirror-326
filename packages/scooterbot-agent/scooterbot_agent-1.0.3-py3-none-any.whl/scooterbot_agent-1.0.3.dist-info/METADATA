@@ -1,0 +1,35 @@
+Metadata-Version: 2.3
+Name: scooterbot-agent
+Version: 1.0.3
+Summary: 
+Author: Jimming Cheng
+Author-email: jimming@gmail.com
+Requires-Python: >=3.9,<4.0
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Programming Language :: Python :: 3.10
+Classifier: Programming Language :: Python :: 3.11
+Classifier: Programming Language :: Python :: 3.12
+Classifier: Programming Language :: Python :: 3.13
+Requires-Dist: openai (>=1.59.6,<2.0.0)
+Description-Content-Type: text/markdown
+
+# scooterbot_agent
+Scooterbot Agent
+
+
+## Versions
+
+### 1.0.3
+
+- relax python compat to 3.9
+
+### 1.0.1
+
+- fix bad pypi deploy
+
+### 1.0.0
+
+- initial version
+
+
