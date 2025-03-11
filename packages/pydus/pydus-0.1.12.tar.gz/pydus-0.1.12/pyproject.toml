@@ -1,0 +1,39 @@
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "pydus"
+version = "0.1.12"
+description = "CSV reader utility"
+readme = "README.md"
+requires-python = ">=3.8"
+license = { text = "MIT" }
+authors = [
+    { name = "redlion", email = "your.email@example.com" }
+]
+keywords = ["python", "help", "documentation", "claude", "ai"]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Topic :: Software Development :: Libraries :: Python Modules",
+]
+dependencies = [
+    "requests>=2.25.0",
+    "click>=8.0.0"
+]
+
+[project.urls]
+Homepage = "https://github.com/redlion/pydus"
+Issues = "https://github.com/redlion/pydus/issues"
+
+[project.scripts]
+pydus = "pydus.cli:main"
+
+[tool.setuptools]
+packages = ["pydus"] 
