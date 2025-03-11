@@ -1,0 +1,27 @@
+Metadata-Version: 2.3
+Name: bioeq
+Version: 0.1.1
+Summary: A Python package for performing bioequivalence calculations and analysis.
+License: MIT
+Author: Shaun Porwal
+Author-email: shaun.porwal@gmail.com
+Requires-Python: >=3.10
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.10
+Classifier: Programming Language :: Python :: 3.11
+Classifier: Programming Language :: Python :: 3.12
+Classifier: Programming Language :: Python :: 3.13
+Requires-Dist: numpy (>=2.2.1,<3.0.0)
+Requires-Dist: polars (>=1.18.0,<2.0.0)
+Requires-Dist: scipy (>=1.15.0,<2.0.0)
+Description-Content-Type: text/markdown
+
+# bioeq
+
+A Python package for performing bioequivalence calculations and analysis.
+
+Currently only the most popular, simple case will be covered, i.e. **bioequivalence for a 2x2 crossover study design**.
+
+For a detailed list of news and changes, please see the [CHANGELOG](https://github.com/juntotechnologies/bioeq/blob/main/info/CHANGELOG.md).
+
