@@ -1,0 +1,15 @@
+Metadata-Version: 2.2
+Name: DingyiTools
+Version: 0.0.11
+Summary: Dingyi tools
+Home-page: https://github.com/littleDy0427/DingyiTools
+Author: Dingyi
+Author-email: dingyi0427@126.com
+Classifier: Programming Language :: Python :: 3
+Requires-Python: >=3.6
+Dynamic: author
+Dynamic: author-email
+Dynamic: classifier
+Dynamic: home-page
+Dynamic: requires-python
+Dynamic: summary
