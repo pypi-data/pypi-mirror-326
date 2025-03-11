@@ -1,0 +1,158 @@
+Metadata-Version: 2.3
+Name: tweetai
+Version: 0.1.1
+Summary: AI for lazy tweeters
+Author: Michel Maalouli
+Description-Content-Type: text/markdown
+Classifier: License :: OSI Approved :: Apache Software License
+Requires-Dist: langchain_groq
+Requires-Dist: langchain
+Requires-Dist: tweepy
+Requires-Dist: arxiv
+Requires-Dist: pymupdf
+Requires-Dist: beautifulsoup4
+
+# TweetAI
+
+TweetAI is a Python package that allows you to generate and post tweets using Groq-hosted models. It integrates with the Twitter API for seamless tweet generation and posting, as well as generating paper threads.
+
+## Features
+
+- Generate tweets using Groq-hosted models.
+- Post tweets directly to Twitter.
+- Generate and post paper threads to Twitter.
+- Easy setup with environment variables.
+
+## Installation
+
+You can install the package directly from PyPI:
+
+```bash
+pip install tweetai
+```
+
+## Setup
+
+Before using the package, make sure to set up your environment variables for Twitter and Groq:
+
+1. **Create a `.env` file** in your project directory with the following contents:
+
+   ```bash
+   TWITTER_KEY=your_consumer_key
+   TWITTER_SECRET=your_consumer_secret
+   TWITTER_ACCESS_TOKEN=your_access_token
+   TWITTER_ACCESS_TOKEN_SECRET=your_access_token_secret
+   TWITTER_BEARER=your_bearer_token
+   TWITTER_CLIENT_ID=your_client_id
+   TWITTER_CLIENT_SECRET=your_client_secret
+   GROQ_TOKEN=your_groq_token
+   GROQ_MODEL=your_groq_model
+   ```
+
+2. **Install required dependencies** (if not already installed):
+
+   ```bash
+   pip install tweepy python-dotenv
+   ```
+
+## Usage
+
+Here is an example of how to use the `Tweetai` class to generate tweets and paper threads:
+
+```python
+from tweetai import Tweetai
+import os
+import dotenv
+
+dotenv.load_dotenv()
+
+# Load your Twitter API keys and Groq tokens from environment variables
+consumer_key = os.getenv("TWITTER_KEY")
+consumer_secret = os.getenv("TWITTER_SECRET")
+access_token = os.getenv("TWITTER_ACCESS_TOKEN")
+access_token_secret = os.getenv("TWITTER_ACCESS_TOKEN_SECRET")
+bearer_token = os.getenv("TWITTER_BEARER")
+client_id = os.getenv("TWITTER_CLIENT_ID")
+client_secret = os.getenv("TWITTER_CLIENT_SECRET")
+groq_token = os.getenv("GROQ_TOKEN")
+groq_model = os.getenv("GROQ_MODEL")
+
+# Initialize Tweetai with the required credentials
+tweetai = Tweetai(
+    bearer_token=bearer_token,
+    consumer_key=consumer_key,
+    consumer_secret=consumer_secret,
+    access_token=access_token,
+    access_token_secret=access_token_secret,
+    groq_token=groq_token,
+    groq_model=groq_model
+)
+
+# Generate a tweet and post it to Twitter
+tweet = tweetai.generate_tweet()
+tweetai.post_tweet(tweet)
+
+# Generate a paper thread and post it to Twitter
+thread = tweetai.generate_paper_thread()
+tweetai.post_thread(thread)
+```
+
+## Running the Script
+
+To run the script, create a Python file (e.g., `twitter.py`) with the code above. You can execute it directly:
+
+```bash
+python twitter.py
+```
+
+### Automating the Script with Cron
+
+You can also automate running the script periodically using a cron job:
+
+1. Create a bash script (`run_tweetai.sh`) to run the Python script:
+
+   ```bash
+   #!/bin/bash
+
+   # Log the start time
+   echo "Cron job started at $(date)" >> /path/to/logfile.log 2>&1
+
+   # Activate the virtual environment
+   source /path/to/your/virtualenv/bin/activate
+
+   # Run the Python script
+   python /path/to/twitter.py >> /path/to/logfile.log 2>&1
+   ```
+
+2. Open the cron job editor:
+
+   ```bash
+   crontab -e
+   ```
+
+3. Add a line to run the script every hour (or any other desired interval):
+
+   ```bash
+   0 * * * * /path/to/run_tweetai.sh
+   ```
+
+## License
+
+This project is licensed under the terms of the [Apache 2.0 License](LICENSE).
+```
+
+### Key Changes:
+1. **Installation**: 
+   - Users can install the package via `pip install tweetai` from PyPI.
+   
+2. **Setup**:
+   - Guide on setting up the `.env` file for Twitter and Groq credentials.
+   
+3. **Usage**:
+   - Example code on how to use the package for generating tweets and posting them.
+   
+4. **Running the Script**:
+   - Instructions on running the Python script manually or setting it up with cron jobs for periodic execution.
+
+5. **License**:
+   - Mentions the Apache 2.0 License.
