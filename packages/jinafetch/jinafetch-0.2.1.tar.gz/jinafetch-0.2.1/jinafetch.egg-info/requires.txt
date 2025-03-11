@@ -1,0 +1,5 @@
+appdirs<2.0,>=1.4.4
+httpx>=0.28.1
+python-dotenv>=1.0.1
+rich>=13.9.4
+typer>=0.15.1
