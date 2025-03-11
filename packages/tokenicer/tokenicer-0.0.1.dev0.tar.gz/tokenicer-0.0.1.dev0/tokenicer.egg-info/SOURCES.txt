@@ -1,0 +1,8 @@
+LICENSE
+README.md
+setup.py
+tokenicer/__init__.py
+tokenicer.egg-info/PKG-INFO
+tokenicer.egg-info/SOURCES.txt
+tokenicer.egg-info/dependency_links.txt
+tokenicer.egg-info/top_level.txt
