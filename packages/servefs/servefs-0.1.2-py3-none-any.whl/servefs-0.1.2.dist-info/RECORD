@@ -1,0 +1,11 @@
+servefs/cli.py,sha256=eJxnBXGMwGRGI1ox-DrhyANumvc8WjUGQzxX0SOuDmM,2666
+servefs/main.py,sha256=T6fHccng_kGDIQI5mseKDnm8Sgqw0XYkqxgW8vxsvJA,905
+servefs/routes/api.py,sha256=4Don8YvCBjWxBOq6JjyVXYEzrbVIMNKPKDpBEGuoT-s,6761
+servefs/routes/page.py,sha256=DKbt3DGYwH3Gl-Gh6BU3JYK2G8fJRd_MiH6yvyKvrws,5072
+servefs/static/favicon.ico,sha256=OqFz1M34ZCAEHkg9-5TDeOc87oWIXTtn-And4GffcTw,142463
+servefs/static/favicon.webp,sha256=Mfn8ZWynhSWZjsr_ROOa9dNDT2wMQd2mqwLaPnxP5K4,26542
+servefs/static/index.html,sha256=HUqwCMW9XTfYfLXGwR_bm2D6Mzd4oZjRf78jbZlxoMI,38358
+servefs-0.1.2.dist-info/METADATA,sha256=-xgs-ywPAwpwG80uMq382FT6OIdzJg3vzntulA6QziI,2646
+servefs-0.1.2.dist-info/WHEEL,sha256=IYZQI976HJqqOpQU6PHkJ8fb3tMNBFjg-Cn-pwAbaFM,88
+servefs-0.1.2.dist-info/entry_points.txt,sha256=nEcjf2VWZJPN2S-sVYaldjVQtmte9cR38fHn_Zw-Vww,43
+servefs-0.1.2.dist-info/RECORD,,
