@@ -1,0 +1,11 @@
+Metadata-Version: 2.1
+Name: odoo14-addons-oca-website-cms
+Version: 14.0.20250207.0
+Summary: Meta package for oca-website-cms Odoo addons
+Classifier: Programming Language :: Python
+Classifier: Framework :: Odoo
+Classifier: Framework :: Odoo :: 14.0
+Requires-Dist: odoo14-addon-cms-info
+Requires-Dist: odoo14-addon-cms-status-message
+
+UNKNOWN
