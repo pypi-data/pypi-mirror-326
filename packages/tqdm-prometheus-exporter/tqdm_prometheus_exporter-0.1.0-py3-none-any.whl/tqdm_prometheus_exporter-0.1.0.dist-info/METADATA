@@ -1,0 +1,38 @@
+Metadata-Version: 2.4
+Name: tqdm-prometheus-exporter
+Version: 0.1.0
+Summary: Echo tqdm progress to a prometheus endpoint
+Project-URL: Homepage, https://github.com/arrowed/tqdm-prometheus-exporter
+Project-URL: Issues, https://github.com/arrowed/tqdm-prometheus-exporter/issues
+Author-email: arrowed <arrowed@arrowed.org>
+License-Expression: MIT
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python :: 3
+Requires-Python: >=3.12
+Requires-Dist: bottle>=0.13.0
+Requires-Dist: pytest-cov>=3.0.0
+Requires-Dist: pytest-html>=3.0.0
+Requires-Dist: pytest>=8.3.4
+Requires-Dist: requests>=2.26.0
+Requires-Dist: tqdm>=4.67.1
+Description-Content-Type: text/markdown
+
+# Prometheus exporter for tqdm
+
+Publish your pretty CLI stats for monitoring elsewhere
+
+## Usage
+
+```sh
+TqdmPromProxy().start(3000)
+
+curl http://localhost:3000/metrics
+```
+
+## Todo
+
+@Todo: move these to gh
+
+Poll tqdm for juicy stats
+Publish over http
+Add options for https
