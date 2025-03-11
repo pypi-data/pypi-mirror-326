@@ -1,0 +1,9 @@
+LICENSE
+README.md
+setup.py
+agentbox/__init__.py
+vital_agentbox.egg-info/PKG-INFO
+vital_agentbox.egg-info/SOURCES.txt
+vital_agentbox.egg-info/dependency_links.txt
+vital_agentbox.egg-info/requires.txt
+vital_agentbox.egg-info/top_level.txt
