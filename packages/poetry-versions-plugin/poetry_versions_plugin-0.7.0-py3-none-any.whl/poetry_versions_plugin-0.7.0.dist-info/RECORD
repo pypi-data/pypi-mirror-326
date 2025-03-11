@@ -1,0 +1,9 @@
+poetry_versions_plugin/__init__.py,sha256=M6BgwbeXNH_ncYPFGEkL_Z205gxjgg_lHZrHK0oQwpE,39
+poetry_versions_plugin/plugin.py,sha256=77cpW5q8OnHpKC_0McExJ7RYWr8r4j-fbqQOCqamW98,5453
+poetry_versions_plugin/services.py,sha256=DHgw1EVY0GEPMHq8-denwiEZgYIcRp-3P44dDBfG7DI,5361
+poetry_versions_plugin/utils.py,sha256=St6S3rWNu6PUDenwPxXQ2VnBUb_ecR3Key9in_vzINI,2383
+poetry_versions_plugin/versions.py,sha256=d49v_QFzUUMB-ch6YsBHAAP_PVGqU2AER2KdKhJ41_k,311
+poetry_versions_plugin-0.7.0.dist-info/METADATA,sha256=G6LXG-AYcdLTDnLTsaBfqCHTCT7CzfDz6Tfmo2UGuS0,1103
+poetry_versions_plugin-0.7.0.dist-info/WHEEL,sha256=Nq82e9rUAnEjt98J6MlVmMCZb-t9cYE2Ir1kpBmnWfs,88
+poetry_versions_plugin-0.7.0.dist-info/entry_points.txt,sha256=giNooyxoezeUiBca_sJq8RoCcbbtCx4Er2BKGv3DMcU,213
+poetry_versions_plugin-0.7.0.dist-info/RECORD,,
