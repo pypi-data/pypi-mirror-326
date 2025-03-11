@@ -1,0 +1,7 @@
+mwpf-0.2.7.dist-info/RECORD,,
+mwpf-0.2.7.dist-info/WHEEL,sha256=JXkDR-kDkFbnr2Idz06X5krk-aMYROMFz2oxMJ3_9dc,107
+mwpf-0.2.7.dist-info/METADATA,sha256=iOGCQG6BmiaB4Uin5Go-u5T4nxIRvJ1dqLXPOh3f0aY,12829
+mwpf-0.2.7.dist-info/licenses/LICENSE,sha256=rowuL9adVG6oK2714bcCIUnHSDbpVkXH-kD54VH_jGc,1063
+mwpf/__init__.py,sha256=0fhoqwGjNZKXWwznILKPiIVG-jOuCgPZtMMZObYGVHE,133
+mwpf/sinter_decoders.py,sha256=wO2lyDF8ua9YWNQfh_4x8cZmZb48CLXB8qjJB6zxtXI,13504
+mwpf/mwpf.abi3.so,sha256=eRFjPO3zA6-tWrQTYSghAh-ZDNwIDtRd2BLoOFtrwNg,16613952
