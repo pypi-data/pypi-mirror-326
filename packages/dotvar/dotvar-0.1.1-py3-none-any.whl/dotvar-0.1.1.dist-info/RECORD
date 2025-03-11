@@ -1,0 +1,10 @@
+dotvar/__init__.py,sha256=dkbEdq8JYbQ2xnh-0JW01Aqj9aZdIuf72B3jKCzHqnE,56
+dotvar/auto_load.py,sha256=7B8tEV1AT_OKrPHirvq5-KXhb-GoFy6kRnYUZhNk20U,80
+dotvar/env_loader.py,sha256=KqqE0yk8dQTJorxDY9cswQwZmCY2gu-_sFDt3Qxu8-A,2267
+dotvar/__tests__/__init__.py,sha256=47DEQpj8HBSa-_TImW-5JCeuQeRkm5NMpJWZG3hSuFU,0
+dotvar/__tests__/test_autoload.py,sha256=cVwN2X_sy9GwQBGaaGiQKi1BeLU_C1os3IoLrGFQDL0,2996
+dotvar/__tests__/test_env_loader.py,sha256=KfqQHxlZded5e3Go82R_HMkkCUvUFD0N1qJ0Op13ktA,1093
+dotvar-0.1.1.dist-info/METADATA,sha256=l9PocxHxNEA27qGh6Ab0GJRFeRr8tqQ7GbAkfskIEs0,9154
+dotvar-0.1.1.dist-info/WHEEL,sha256=yQN5g4mg4AybRjkgi-9yy4iQEFibGQmlz78Pik5Or-A,92
+dotvar-0.1.1.dist-info/top_level.txt,sha256=D0CSlBFV1MuwCqcOYxXdriziXel1U3izsYBQSaPVKbo,7
+dotvar-0.1.1.dist-info/RECORD,,
