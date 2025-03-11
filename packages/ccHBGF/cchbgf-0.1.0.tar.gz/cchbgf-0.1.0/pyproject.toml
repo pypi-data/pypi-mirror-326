@@ -1,0 +1,48 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "ccHBGF"
+version = "0.1.0"
+description = "ccHBGF - consensus clustering using Hybrid Bipartite Graph Formulation (HBGF)"
+readme = "README.md"
+requires-python = ">=3.11"
+authors = [
+    { name = "E. H. von Rein" },
+]
+license = { text = "MIT" }
+maintainers = [
+    { name = "E. H. von Rein" },
+]
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+]
+
+dependencies = [
+    "numpy>=2.0",
+    "scikit-learn>=1.6.1",
+    "scipy>=1.15.1",
+]
+
+[project.optional-dependencies]
+docs = [
+    "sphinx>=8.1.3",
+    "sphinx-book-theme>=1.1.3",
+]
+tests = [
+    "pytest>=8.3.4",
+    "pytest-cov>=6.0.0",
+    "pytest-xdist>=3.6.1",
+]
+tutorial = [
+    "igraph>=0.11.8",
+    "ipykernel>=6.29.5",
+    "scanpy>=1.10",
+    "scikit-misc>=0.5.1",
+]
+
+[tool.hatch.build.targets.wheel]
+packages = ['src/ccHBGF']
