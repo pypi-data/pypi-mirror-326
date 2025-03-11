@@ -1,0 +1,41 @@
+name: Run tests
+
+on:
+  push:
+    branches-ignore:
+      - "main"
+  workflow_dispatch:
+
+jobs:
+  tests:
+    name: Branch run pytest
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: "Set up Python"
+        uses: "actions/setup-python@v5"
+        with:
+          python-version: "3.12"
+      - name: Install uv
+        uses: astral-sh/setup-uv@v5
+        with:
+          # Install a specific version of uv.
+          version: "0.5.9"
+      - name: Run test script
+        run: |
+          uv run --dev \
+          python -m pytest tests \
+          --cov=. \
+          --cov-report=term-missing \
+          --cov-report=lcov:report/coverage.lcov \
+          --cov-report=json:report/coverage.json \
+          --cov-report=html:report/coverage \
+          --html=report/test.html --self-contained-html \
+          --cov-fail-under=50
+      - name: "Upload coverage data"
+        uses: actions/upload-artifact@v4
+        with:
+          name: covdata
+          path: report/coverage.json
