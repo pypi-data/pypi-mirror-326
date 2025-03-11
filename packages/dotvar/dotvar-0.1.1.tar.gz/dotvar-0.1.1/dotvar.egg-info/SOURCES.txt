@@ -1,0 +1,13 @@
+README.md
+setup.cfg
+setup.py
+dotvar/__init__.py
+dotvar/auto_load.py
+dotvar/env_loader.py
+dotvar.egg-info/PKG-INFO
+dotvar.egg-info/SOURCES.txt
+dotvar.egg-info/dependency_links.txt
+dotvar.egg-info/top_level.txt
+dotvar/__tests__/__init__.py
+dotvar/__tests__/test_autoload.py
+dotvar/__tests__/test_env_loader.py
