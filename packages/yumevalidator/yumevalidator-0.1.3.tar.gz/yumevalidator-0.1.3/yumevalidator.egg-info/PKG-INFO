@@ -1,0 +1,39 @@
+Metadata-Version: 2.2
+Name: yumevalidator
+Version: 0.1.3
+Summary: A GenAI-based UI Validation tool for Deriv AI Hackathon in 2025 Feburary
+Home-page: https://github.com/yumevalidator/cli
+Author: Victor Mak
+Author-email: contact@htetaung.com
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Requires-Python: >=3.6
+Description-Content-Type: text/markdown
+Requires-Dist: readchar
+Requires-Dist: pkg_resources
+Dynamic: author
+Dynamic: author-email
+Dynamic: classifier
+Dynamic: description
+Dynamic: description-content-type
+Dynamic: home-page
+Dynamic: requires-dist
+Dynamic: requires-python
+Dynamic: summary
+
+# YumeValidator CLI
+
+> CLI Tool to execute UI Validation AI Agent and display the report after the process has been completed
+
+## To Run
+
+```
+pip3 install --editable .
+yumevalidator version
+```
+
+Initialze react project to use the testing suite
+```
+yumevalidator init
+```

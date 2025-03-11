@@ -1,0 +1,2 @@
+readchar
+pkg_resources
