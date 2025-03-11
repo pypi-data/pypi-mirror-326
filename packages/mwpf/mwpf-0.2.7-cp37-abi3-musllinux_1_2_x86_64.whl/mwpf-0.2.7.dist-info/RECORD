@@ -1,0 +1,9 @@
+mwpf.libs/libgcc_s-a0b57c20.so.1,sha256=XPAr2giQZFaQKDEig3i_sQM7zfbaGkuhwmZ9ryvu-Vk,148041
+mwpf.libs/libstdc++-0d31ccbe.so.6.0.32,sha256=QyUTnI2umnGgPmNJ-6F_BVIAJnq6-70cNoEWpma6EFQ,3494521
+mwpf-0.2.7.dist-info/WHEEL,sha256=bE7n1RPWFXVtTb28mCfkHehPPUbAoMwlbcAUrd2j-a8,106
+mwpf-0.2.7.dist-info/RECORD,,
+mwpf-0.2.7.dist-info/METADATA,sha256=iOGCQG6BmiaB4Uin5Go-u5T4nxIRvJ1dqLXPOh3f0aY,12829
+mwpf-0.2.7.dist-info/licenses/LICENSE,sha256=rowuL9adVG6oK2714bcCIUnHSDbpVkXH-kD54VH_jGc,1063
+mwpf/mwpf.abi3.so,sha256=Xz_GUzsWFwyx0tJbhpfXMmLw6e3qieR5amE5jcDYuto,87618409
+mwpf/sinter_decoders.py,sha256=wO2lyDF8ua9YWNQfh_4x8cZmZb48CLXB8qjJB6zxtXI,13504
+mwpf/__init__.py,sha256=0fhoqwGjNZKXWwznILKPiIVG-jOuCgPZtMMZObYGVHE,133
