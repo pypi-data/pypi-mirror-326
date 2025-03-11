@@ -1,0 +1,31 @@
+Metadata-Version: 2.3
+Name: prettyfmt
+Version: 0.1.0
+Summary: _changeme_
+License: MIT
+Author: Joshua Levy
+Author-email: joshua@cal.berkeley.edu
+Requires-Python: >=3.10,<4.0
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.10
+Classifier: Programming Language :: Python :: 3.11
+Classifier: Programming Language :: Python :: 3.12
+Classifier: Programming Language :: Python :: 3.13
+Requires-Dist: humanfriendly (>=10.0,<11.0)
+Requires-Dist: humanize (>=4.11.0,<5.0.0)
+Requires-Dist: strif (==2.0.0rc1)
+Project-URL: Repository, https://github.com/jlevy/prettyfmt
+Description-Content-Type: text/markdown
+
+# prettyfmt
+
+`prettyfmt` is a tiny library to make your outputs, logs, and
+`__str__()` representations slightly more beautiful.
+
+It offers simple but general functions for formatting and abbreviating
+objects and dataclasses, dicts, words and phrases, filenames, titles, long
+strings, timestamps, ages, and sizes.
+
+Only deps are `humanize`, `humanfriendly`, and `strif`.
+
