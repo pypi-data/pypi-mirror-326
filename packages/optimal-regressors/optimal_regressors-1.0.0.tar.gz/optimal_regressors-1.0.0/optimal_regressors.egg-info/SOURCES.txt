@@ -1,0 +1,16 @@
+setup.py
+OptimalRegressor/ClassifyDatasets.py
+OptimalRegressor/OptimalDTR.py
+OptimalRegressor/OptimalGBR.py
+OptimalRegressor/OptimalKNN.py
+OptimalRegressor/OptimalLinear.py
+OptimalRegressor/OptimalRF.py
+OptimalRegressor/OptimalSVM.py
+OptimalRegressor/OptimalXGB.py
+OptimalRegressor/__init__.py
+OptimalRegressor/regressors.py
+optimal_regressors.egg-info/PKG-INFO
+optimal_regressors.egg-info/SOURCES.txt
+optimal_regressors.egg-info/dependency_links.txt
+optimal_regressors.egg-info/requires.txt
+optimal_regressors.egg-info/top_level.txt
