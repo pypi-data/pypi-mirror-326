@@ -1,0 +1,44 @@
+Metadata-Version: 2.2
+Name: aws-dynamodb-operations
+Version: 0.1.0
+Summary: A Python package for common AWS DynamoDB operations
+Home-page: https://github.com/MsiziGCBG/aws-dynamodb-operations
+Author: Msizi Gumede
+Author-email: msizi@cyberneticbg.com
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Requires-Python: >=3.6
+Description-Content-Type: text/markdown
+Requires-Dist: boto3
+Dynamic: author
+Dynamic: author-email
+Dynamic: classifier
+Dynamic: description
+Dynamic: description-content-type
+Dynamic: home-page
+Dynamic: requires-dist
+Dynamic: requires-python
+Dynamic: summary
+
+# AWS DynamoDB Operations
+
+A Python package for interacting with AWS DynamoDB.
+
+## Installation
+
+pip install aws-dynamodb-operations
+
+
+## Usage
+
+```python
+from aws_dynamodb_operations import DynamoDBOperations
+
+dynamo = DynamoDBOperations()
+dynamo.insert_data_via_dict("my_table", {"id": "123", "name": "Test"}, "id")
+dynamo.retrieve_data(table_name="my_table", 
+                     partition_key="id", 
+                     partition_key_value="123",
+                     limit=10)
+

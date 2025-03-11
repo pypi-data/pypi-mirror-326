@@ -1,0 +1,10 @@
+README.md
+pyproject.toml
+setup.py
+aws_dynamodb_operations/__init__.py
+aws_dynamodb_operations/dynamodb.py
+aws_dynamodb_operations.egg-info/PKG-INFO
+aws_dynamodb_operations.egg-info/SOURCES.txt
+aws_dynamodb_operations.egg-info/dependency_links.txt
+aws_dynamodb_operations.egg-info/requires.txt
+aws_dynamodb_operations.egg-info/top_level.txt
