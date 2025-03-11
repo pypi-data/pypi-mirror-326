@@ -1,0 +1,13 @@
+jaxadi/__init__.py,sha256=KGTUUaUOovoJvmnFOcvXhYqkIJIf7jQlfvDUafISUEo,188
+jaxadi/_compile.py,sha256=8zHc8VHfOwlQ9iQOLOa7jGP6Ra8kFODOzlGbEXPQiYM,1333
+jaxadi/_convert.py,sha256=KXHGG_gFLsPIG1UeyLDuBF2udWIjLh0h49glOgn31ks,906
+jaxadi/_declare.py,sha256=5iUvZZ6YzZqZLmNP2CG-VGKMH4naQgDR7CxzYUVOHS4,308
+jaxadi/_expand.py,sha256=sSYqP7XgJ1xFlJfzpYL2MMyDul2dAWc2FoUKFqVemSE,9157
+jaxadi/_graph.py,sha256=YFCvmAIvvzUBO2mLbrWl2yzdU-62W_80uWigjnF3zug,6819
+jaxadi/_ops.py,sha256=xiDluOmbdXekoJb20FeW-S-7347Ng6kV_F4-8EAbhJY,3989
+jaxadi/_preprocess.py,sha256=-0KNTjVMBaWro7y4BUA4dFeiidrk3ZKWYCel6e2jwdY,346
+jaxadi-0.4.0.dist-info/LICENSE,sha256=VkABB-jVppeCmjVmkKYAdBx2HwBQ033NWsiyhfGvUP8,1067
+jaxadi-0.4.0.dist-info/METADATA,sha256=WVbULIXJuxITZC6osAeGyUTw3hYDTxt5MuLzwprmryY,5471
+jaxadi-0.4.0.dist-info/WHEEL,sha256=In9FTNxeP60KnTkGw7wk6mJPYd_dQSjEZmXdBdMCI-8,91
+jaxadi-0.4.0.dist-info/top_level.txt,sha256=39hfPGqJ8a-VA0QrbEnQSdF3R4Uxk2RIqubNp48lq5w,7
+jaxadi-0.4.0.dist-info/RECORD,,
