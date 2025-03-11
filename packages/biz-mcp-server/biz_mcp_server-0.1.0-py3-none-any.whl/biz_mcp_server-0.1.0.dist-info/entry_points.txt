@@ -1,0 +1,2 @@
+[console_scripts]
+biz-mcp-server = biz_mcp_server:main
