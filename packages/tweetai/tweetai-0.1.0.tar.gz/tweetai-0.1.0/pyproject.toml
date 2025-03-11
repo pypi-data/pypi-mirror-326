@@ -1,0 +1,23 @@
+[build-system]
+requires = ["flit_core >=3.2,<4"]
+build-backend = "flit_core.buildapi"
+
+[project]
+name = "tweetai"
+authors = [{name = "Michel Maalouli"}]
+license = {file = "LICENSE"}
+classifiers = ["License :: OSI Approved :: Apache Software License"]
+dynamic = ["version"]
+description = "AI for lazy tweeters"
+
+dependencies = [
+    "langchain_groq",
+    "langchain",
+    "tweepy",
+    "arxiv",
+    "pymupdf",
+    "beautifulsoup4"
+]
+
+[tool.flit]
+module = "tweetai"
