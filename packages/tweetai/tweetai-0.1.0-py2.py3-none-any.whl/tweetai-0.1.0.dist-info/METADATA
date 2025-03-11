@@ -1,0 +1,12 @@
+Metadata-Version: 2.3
+Name: tweetai
+Version: 0.1.0
+Summary: AI for lazy tweeters
+Author: Michel Maalouli
+Classifier: License :: OSI Approved :: Apache Software License
+Requires-Dist: langchain_groq
+Requires-Dist: langchain
+Requires-Dist: tweepy
+Requires-Dist: arxiv
+Requires-Dist: pymupdf
+Requires-Dist: beautifulsoup4
