@@ -1,0 +1,11 @@
+LICENSE
+README.md
+pyproject.toml
+src/filestore_guagua/__init__.py
+src/filestore_guagua/filestore.py
+src/filestore_guagua.egg-info/PKG-INFO
+src/filestore_guagua.egg-info/SOURCES.txt
+src/filestore_guagua.egg-info/dependency_links.txt
+src/filestore_guagua.egg-info/entry_points.txt
+src/filestore_guagua.egg-info/requires.txt
+src/filestore_guagua.egg-info/top_level.txt
