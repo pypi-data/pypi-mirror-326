@@ -1,0 +1,7 @@
+numpy
+pillow
+pygame-ce
+moderngl
+PyGLM
+numba
+PyOpenAL
