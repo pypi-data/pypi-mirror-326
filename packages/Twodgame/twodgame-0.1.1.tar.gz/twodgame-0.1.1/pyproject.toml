@@ -1,0 +1,15 @@
+[tool.poetry]
+name = "Twodgame"
+version = "0.1.1"
+description = "Tools to make a 2D game"
+authors = ["Your Name <you@example.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.11"
+keyengine = "^0.0.2"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
