@@ -1,0 +1,5 @@
+readchar
+smolagents
+selenium
+helium
+pillow
