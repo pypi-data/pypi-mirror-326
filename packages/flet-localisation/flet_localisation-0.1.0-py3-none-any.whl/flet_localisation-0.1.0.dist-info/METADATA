@@ -1,0 +1,25 @@
+Metadata-Version: 2.3
+Name: flet-localisation
+Version: 0.1.0
+Summary: FletLocalisation control for Flet
+Author: tct123
+Author-email: 42028373+tct123@users.noreply.github.com>
+Requires-Python: >=3.9
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Programming Language :: Python :: 3.10
+Classifier: Programming Language :: Python :: 3.11
+Classifier: Programming Language :: Python :: 3.12
+Classifier: Programming Language :: Python :: 3.13
+Requires-Dist: flet (>=0.26.0)
+Project-URL: Documentation, https://github.com/Creative-Media-Group/flet_localisation
+Project-URL: Homepage, https://github.com/Creative-Media-Group/flet_localisation
+Project-URL: Issues, https://github.com/Creative-Media-Group/flet_localisation/issues
+Project-URL: Repository, https://github.com/Creative-Media-Group/flet_localisation
+Description-Content-Type: text/markdown
+
+# flet-localisation
+FletLocalisation control for Flet
+
+TODO: Add your control documentation here.
+
