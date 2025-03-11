@@ -1,0 +1,274 @@
+Metadata-Version: 2.2
+Name: elysium-api
+Version: 1.1.9
+Summary: API moderna e futurista para integração com o sistema Elysium
+Author: Elysium API
+Author-email: contato@elysiumx.com.br
+Keywords: elysium,api,mensagens,clientes,planos
+Classifier: Development Status :: 5 - Production/Stable
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Programming Language :: Python :: 3.10
+Classifier: Programming Language :: Python :: 3.11
+Classifier: Operating System :: OS Independent
+Classifier: Topic :: Software Development :: Libraries :: Python Modules
+Classifier: Topic :: Communications
+Requires-Python: >=3.8
+Description-Content-Type: text/markdown
+Requires-Dist: requests>=2.31.0
+Requires-Dist: python-dateutil>=2.8.2
+Dynamic: author
+Dynamic: author-email
+Dynamic: classifier
+Dynamic: description
+Dynamic: description-content-type
+Dynamic: keywords
+Dynamic: requires-dist
+Dynamic: requires-python
+Dynamic: summary
+
+# Elysium API - Python
+
+API moderna e futurista para integração com o sistema Elysium.
+
+## Instalação
+
+```bash
+pip install elysium-api
+```
+
+## Configuração Inicial
+
+```python
+from elysium_api import ElysiumApi
+
+# Inicialização da API
+api = ElysiumApi({
+    "email": "seu-email@exemplo.com",
+    "hash": "seu-hash-de-autenticacao"
+})
+```
+
+## Gerenciamento de Clientes
+
+### Criar Cliente
+
+```python
+# Exemplo de criação de cliente
+cliente = api.create_client({
+    "nome": "Fernando",
+    "numero": "5532999999999",
+    "plano_id": "264",
+    "email_cliente": "teste@gmail.com",
+    "vencimento": "2025-10-31",
+    "observacao": "Observação opcional"
+})
+```
+
+### Atualizar Cliente
+
+```python
+# Atualização mínima
+atualizacao = api.update_client({
+    "identificador_tipo": "numero",
+    "identificador_valor": "5532999999999",
+    "vencimento": "2025-10-31",
+    "plano_id": "265"
+})
+
+# Atualização completa
+atualizacao_completa = api.update_client({
+    "identificador_tipo": "numero",
+    "identificador_valor": "5532999999999",
+    "nome": "Fernando Silva",
+    "email_cliente": "novo@email.com",
+    "vencimento": "2025-10-31",
+    "plano_id": "265",
+    "observacao": "Nova observação"
+})
+```
+
+### Obter Cliente
+
+```python
+# Buscar cliente por número
+cliente = api.get_client(
+    identificador_tipo="numero",
+    identificador_valor="5532999999999"
+)
+
+# Buscar cliente por email
+cliente = api.get_client(
+    identificador_tipo="email",
+    identificador_valor="cliente@email.com"
+)
+```
+
+### Deletar Cliente
+
+```python
+# Deletar por número
+delete_numero = api.delete_client({
+    "identificador_tipo": "numero",
+    "identificador_valor": "5532999999999"
+})
+
+# Deletar por email
+delete_email = api.delete_client({
+    "identificador_tipo": "email",
+    "identificador_valor": "cliente@email.com"
+})
+```
+
+### Listar Clientes
+
+```python
+# Listar todos os clientes
+clientes = api.list_clients()
+
+# Listar com filtros
+clientes_filtrados = api.list_clients(
+    status="ativos",
+    search="Fernando",
+    page=1,
+    limit=10
+)
+```
+
+## Mensagens
+
+### Enviar Mensagem Individual
+
+O método `send_single_message` permite enviar mensagens personalizadas para um cliente específico, suportando texto e imagens:
+
+```python
+# Enviar mensagem de texto
+mensagem = api.send_single_message({
+    "identificador_tipo": "email",
+    "identificador_valor": "cliente@exemplo.com",
+    "mensagem": "Olá, tudo bem?",
+    "tipo": "1",  # tipo 1 = texto
+    "delay": "1"  # velocidade de envio (0 a 5)
+})
+
+# Enviar mensagem com imagem
+mensagem_imagem = api.send_single_message({
+    "identificador_tipo": "numero",
+    "identificador_valor": "5532999999999",
+    "mensagem": "Confira nossa promoção!",
+    "tipo": "2",  # tipo 2 = imagem
+    "delay": "1",
+    "imagem": "data:image/png;base64,..."  # sua imagem em base64
+})
+```
+
+#### Parâmetros para Envio de Mensagem
+
+| Parâmetro           | Tipo   | Descrição                                             | Obrigatório   |
+| ------------------- | ------ | ----------------------------------------------------- | ------------- |
+| identificador_tipo  | string | Tipo de identificação ('email' ou 'numero')           | Sim           |
+| identificador_valor | string | Email ou número do cliente                            | Sim           |
+| mensagem            | string | Texto da mensagem                                     | Sim           |
+| tipo                | string | Tipo de mensagem ('1' = texto, '2' = imagem)          | Sim           |
+| delay               | string | Velocidade de envio (0 = mais rápido, 5 = mais lento) | Sim           |
+| imagem              | string | Imagem em formato base64 (apenas quando tipo = '2')   | Condicional\* |
+
+> \*O parâmetro `imagem` é obrigatório apenas quando `tipo = '2'` (mensagem com imagem)
+
+#### Velocidades de Envio (delay)
+
+| Valor | Velocidade       |
+| ----- | ---------------- |
+| 0     | 10 a 20 segundos |
+| 1     | 20 a 30 segundos |
+| 2     | 30 a 40 segundos |
+| 3     | 40 a 50 segundos |
+| 4     | 50 a 60 segundos |
+| 5     | 60 a 70 segundos |
+
+### Enviar Mensagem para Plano
+
+O método `send_message_plan` permite enviar mensagens para todos os clientes de um plano específico:
+
+```python
+# Enviar mensagem de texto para plano
+mensagem_plano = api.send_message_plan({
+    "plano_id": "264",
+    "mensagem": "Mensagem para todos os clientes do plano!",
+    "tipo": "1",  # 1 para texto, 2 para imagem
+    "delay": "0",  # 0 para mais rápido, 5 para mais lento
+})
+
+# Enviar mensagem com imagem para plano
+mensagem_plano_imagem = api.send_message_plan({
+    "plano_id": "264",
+    "mensagem": "Confira nossa promoção especial!",
+    "tipo": "2",
+    "delay": "0",
+    "imagem": "data:image/png;base64,..."  # sua imagem em base64
+})
+```
+
+#### Parâmetros para Mensagem em Plano
+
+| Parâmetro | Tipo   | Descrição                                             | Obrigatório   |
+| --------- | ------ | ----------------------------------------------------- | ------------- |
+| plano_id  | string | ID do plano                                           | Sim           |
+| mensagem  | string | Texto da mensagem                                     | Sim           |
+| tipo      | string | Tipo de mensagem ('1' = texto, '2' = imagem)          | Sim           |
+| delay     | string | Velocidade de envio (0 = mais rápido, 5 = mais lento) | Sim           |
+| imagem    | string | Imagem em formato base64 (apenas quando tipo = '2')   | Condicional\* |
+
+> \*O parâmetro `imagem` é obrigatório apenas quando `tipo = '2'` (mensagem com imagem)
+
+## Planos
+
+### Criar Plano
+
+```python
+plano = api.create_plan({
+    "nome": "Plano Premium",
+    "valor": 100,
+    "duracao": 30,
+    "hora_disparo": "00:00"
+})
+```
+
+### Atualizar Plano
+
+```python
+plano_atualizado = api.update_plan("266", {
+    "nome": "Plano Premium 2.0",
+    "valor": 100,
+    "duracao": 30,
+    "hora_disparo": "00:00"
+})
+```
+
+### Listar Planos
+
+```python
+# Listar todos os planos
+planos = api.list_plans()
+
+# Listar com filtros
+planos_filtrados = api.list_plans(
+    search="premium",
+    page=1,
+    limit=10
+)
+```
+
+## Tratamento de Erros
+
+A biblioteca utiliza exceções Python para tratamento de erros. Sempre utilize try/except:
+
+```python
+try:
+    resultado = api.create_client({...})
+except Exception as error:
+    print("Erro:", error)
+```
