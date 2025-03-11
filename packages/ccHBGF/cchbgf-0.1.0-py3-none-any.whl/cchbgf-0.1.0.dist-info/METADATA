@@ -1,0 +1,78 @@
+Metadata-Version: 2.4
+Name: ccHBGF
+Version: 0.1.0
+Summary: ccHBGF - consensus clustering using Hybrid Bipartite Graph Formulation (HBGF)
+Author: E. H. von Rein
+Maintainer: E. H. von Rein
+License: MIT
+License-File: LICENSE
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python :: 3
+Requires-Python: >=3.11
+Requires-Dist: numpy>=2.0
+Requires-Dist: scikit-learn>=1.6.1
+Requires-Dist: scipy>=1.15.1
+Provides-Extra: docs
+Requires-Dist: sphinx-book-theme>=1.1.3; extra == 'docs'
+Requires-Dist: sphinx>=8.1.3; extra == 'docs'
+Provides-Extra: tests
+Requires-Dist: pytest-cov>=6.0.0; extra == 'tests'
+Requires-Dist: pytest-xdist>=3.6.1; extra == 'tests'
+Requires-Dist: pytest>=8.3.4; extra == 'tests'
+Provides-Extra: tutorial
+Requires-Dist: igraph>=0.11.8; extra == 'tutorial'
+Requires-Dist: ipykernel>=6.29.5; extra == 'tutorial'
+Requires-Dist: scanpy>=1.10; extra == 'tutorial'
+Requires-Dist: scikit-misc>=0.5.1; extra == 'tutorial'
+Description-Content-Type: text/markdown
+
+# ccHBGF: Graph-based Consensus Clustering
+
+<p align="center">
+  <img src="https://raw.githubusercontent.com/ehvr20/ccHBGF/refs/heads/main/docs/_static/workflow.svg" alt="Overview of Consensus Clustering Workflow"/>
+</p>
+
+A python-based consensus clustering function utilising Hybrid Bipartite Graph Formulation (HBGF). 
+
+The `ccHBGF` function performs consensus clustering by following these steps:
+1. Definition of a bipartite graph adjaceny matrix `A`
+2. Decomposition of `A` into a spectral embedding `UVt`
+3. Clustering of `UVt` into a consensus labels
+
+## Installation
+
+```bash
+pip install ccHBGF
+pip install 'ccHBGF[tutorial]' # When running example notebooks
+```
+
+## Hybrid Bipartite Graph Formulation (HBGF)
+
+<p align="center">
+  <img src="https://raw.githubusercontent.com/ehvr20/ccHBGF/refs/heads/main/docs/_static/graph.png" alt="Overview of Consensus Clustering Workflow"/>
+</p>
+
+HBGF is a graph-based consensus ensemble clustering technique. This method constructs a bipartite graph with two types of vertices: observations and clusters from different clusteirng solutions. An edge exists only between an observation vertex and a cluster vertex, indicating the object's membership in that cluster. The graph is then partitioned using spectral partitioning to derive consensus labels for all observations.
+
+## Example Usage
+
+```python
+from ccHBGF import ccHBGF
+
+consensus_labels = ccHBGF(solutions_matrix, init='orthogonal', tol=0.1, verbose=True, random_state=0)
+
+```
+Where the `solutions_matrix` is of shape (m,n):
+- m = the number of observations
+- n = the number of different clustering solutions.
+
+Please refer to `notebooks/` for more detailed examples.
+
+## References
+
+[1] Hu, Tianming, et al. "A comparison of three graph partitioning based methods for consensus clustering." Rough Sets and Knowledge Technology: First International Conference, RSKT 2006, Chongquing, China, July 24-26, 2006. Proceedings 1. Springer Berlin Heidelberg, 2006.
+
+[2] Fern, Xiaoli Zhang, and Carla E. Brodley. "Solving cluster ensemble problems by bipartite graph partitioning." Proceedings of the twenty-first international conference on Machine learning. 2004.
+
+[3] Ng, Andrew, Michael Jordan, and Yair Weiss. "On spectral clustering: Analysis and an algorithm." Advances in neural information processing systems 14 (2001).

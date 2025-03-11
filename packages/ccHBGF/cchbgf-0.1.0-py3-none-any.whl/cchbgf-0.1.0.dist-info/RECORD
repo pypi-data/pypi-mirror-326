@@ -1,0 +1,10 @@
+ccHBGF/__init__.py,sha256=yagVMcNOuM_Oy63SOzvFGYlBeE0iF1tiB2v8a4woD78,448
+ccHBGF/_adjacency.py,sha256=bVBf3lBlngOCe6wdx9TAXRJ7C11axSm9457utLT1zR8,1174
+ccHBGF/_orthogonal.py,sha256=U_V9m5WPQ3rwaEsWssQj3sayHuRJ5MvEBEe1O_GieWU,1615
+ccHBGF/_spectral.py,sha256=2NESQdDS00fB_IOGt0ZrXGJMN9oyS2leRMvvlgvWY_Q,3211
+ccHBGF/core.py,sha256=cSy4DmWiLWz9J7McSvQQ8_7dG8r56SIx9Q8WYefFUz4,3140
+ccHBGF/py.typed,sha256=47DEQpj8HBSa-_TImW-5JCeuQeRkm5NMpJWZG3hSuFU,0
+cchbgf-0.1.0.dist-info/METADATA,sha256=hZ9RL8yjNvB1w-6dbH6ZhQN18mgp5hjyW8yGYiYhf60,3379
+cchbgf-0.1.0.dist-info/WHEEL,sha256=qtCwoSJWgHk21S1Kb4ihdzI2rlJ1ZKaIurTj_ngOhyQ,87
+cchbgf-0.1.0.dist-info/licenses/LICENSE,sha256=qz6G9nkf-pO_O5e-k3U4HaG1G0rcKl4Mh1mXtOdVq_s,1063
+cchbgf-0.1.0.dist-info/RECORD,,
