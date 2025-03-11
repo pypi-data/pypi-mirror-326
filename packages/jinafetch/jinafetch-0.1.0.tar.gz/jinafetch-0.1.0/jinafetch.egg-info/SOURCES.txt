@@ -1,0 +1,10 @@
+LICENSE.md
+README.md
+main.py
+pyproject.toml
+jinafetch.egg-info/PKG-INFO
+jinafetch.egg-info/SOURCES.txt
+jinafetch.egg-info/dependency_links.txt
+jinafetch.egg-info/entry_points.txt
+jinafetch.egg-info/requires.txt
+jinafetch.egg-info/top_level.txt
