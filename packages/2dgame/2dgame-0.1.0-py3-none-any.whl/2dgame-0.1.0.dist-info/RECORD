@@ -1,0 +1,8 @@
+2dGame/__init__.py,sha256=47DEQpj8HBSa-_TImW-5JCeuQeRkm5NMpJWZG3hSuFU,0
+2dGame/rendering.py,sha256=V3tTX0DHYShyRVKK0WzlZBFK0kAGwaJjgvMD7H3Dlw0,1363
+2dGame/utils/__init__.py,sha256=fMyhhG-xTm2h2Ax_Ed642t1KNpl5Vu947jKVv1ZOQQI,83
+2dGame/utils/cells.py,sha256=7KmPjPyRwCUrEsrqSF50reUgZzmgWSfTfkLIZCNwYX8,279
+2dGame/utils/player.py,sha256=9OXN_Vv0kgdGRulwE38zowqJwBJj_SPDktxgFVKrtos,383
+2dgame-0.1.0.dist-info/METADATA,sha256=rrtxy9EZXZE9rO5he3R-Oq0J9nvixobd4TgPsEiXWcs,445
+2dgame-0.1.0.dist-info/WHEEL,sha256=Nq82e9rUAnEjt98J6MlVmMCZb-t9cYE2Ir1kpBmnWfs,88
+2dgame-0.1.0.dist-info/RECORD,,
