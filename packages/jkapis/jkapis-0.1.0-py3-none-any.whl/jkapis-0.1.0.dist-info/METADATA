@@ -1,0 +1,14 @@
+Metadata-Version: 2.2
+Name: jkapis
+Version: 0.1.0
+Summary: A sample Python package
+Home-page: https://github.com/jchinnamuthu/jkapis
+Author: Jeyakumar Chinnamuthu
+Author-email: Jeyakumar Chinnamuthu <jchinnamuthu@gmail.com>
+License: MIT
+Requires-Python: >=3.6
+Description-Content-Type: text/markdown
+License-File: LICENSE
+Dynamic: author
+Dynamic: home-page
+Dynamic: requires-python
