@@ -1,0 +1,15 @@
+LICENSE
+License
+README.md
+setup.py
+awesomeNations/__init__.py
+awesomeNations/connection.py
+awesomeNations/customMethods.py
+awesomeNations/customObjects.py
+awesomeNations/exceptions.py
+awesomeNations/main.py
+awesomeNations.egg-info/PKG-INFO
+awesomeNations.egg-info/SOURCES.txt
+awesomeNations.egg-info/dependency_links.txt
+awesomeNations.egg-info/requires.txt
+awesomeNations.egg-info/top_level.txt
