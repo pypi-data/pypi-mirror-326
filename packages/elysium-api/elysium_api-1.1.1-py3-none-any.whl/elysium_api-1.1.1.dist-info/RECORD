@@ -1,0 +1,9 @@
+elysium_api/__init__.py,sha256=B8STu8DMAiarjcOP4_c0zDq6drhSV3h0SHuDMDdwsWQ,106
+elysium_api/api.py,sha256=-xrsLiNr4LYdamdpQshzu2TLvfbqxTHak3c_EZH9TaQ,3214
+elysium_api/clients.py,sha256=4fmgpVRiF78wohTwkJeJ74oQfxEsdVAz0phkdBKrkkk,1696
+elysium_api/messages.py,sha256=Gzhm9jGyUw71LlDH3_n8sL5XbaxC_hSsUCI7MxUsvH4,936
+elysium_api/plans.py,sha256=3hglKNPFtLm7TiIVDaA7ztIIl63NcCoYrPKkXv2LnqQ,1645
+elysium_api-1.1.1.dist-info/METADATA,sha256=R-FgPJo4TluYKDFs_yPio1pjORs01oBZ9SUQvH6VRDA,4413
+elysium_api-1.1.1.dist-info/WHEEL,sha256=In9FTNxeP60KnTkGw7wk6mJPYd_dQSjEZmXdBdMCI-8,91
+elysium_api-1.1.1.dist-info/top_level.txt,sha256=R3nHpLYQiquI1FmfHzBsAOJ13Ji9WSZxyc-PhX_YDEE,12
+elysium_api-1.1.1.dist-info/RECORD,,
