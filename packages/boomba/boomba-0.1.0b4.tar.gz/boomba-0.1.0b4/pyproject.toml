@@ -1,0 +1,32 @@
+[build-system]
+requires = ["setuptools>=64", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "boomba"
+version = "0.1.0b4"
+description = "Light and Fast ETL Framework"
+readme = "README.md"
+license = { file = "LICENSE.txt" }
+requires-python = ">=3.13"
+authors = [
+    { name = "SungEun An", email = "bach0918@gmail.com" }
+]
+dependencies = [
+    "polars",
+    "pyarrow",
+    "SQLAlchemy"
+]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: BSD License",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python :: 3"
+]
+
+[project.urls]
+repository = "https://github.com/Baboomba/boomba"
+
+[project.scripts]
+boomba = "boomba.main:main"
