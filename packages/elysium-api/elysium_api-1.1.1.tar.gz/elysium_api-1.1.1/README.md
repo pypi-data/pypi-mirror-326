@@ -1,0 +1,168 @@
+# Elysium API - Python
+
+API moderna e futurista para integração com o sistema Elysium.
+
+## Instalação
+
+```bash
+pip install elysium-api
+```
+
+## Configuração Inicial
+
+```python
+from elysium_api import ElysiumApi
+
+# Inicialização da API
+api = ElysiumApi({
+    "email": "seu-email@exemplo.com",
+    "hash": "seu-hash-de-autenticacao"
+})
+```
+
+## Gerenciamento de Clientes
+
+### Criar Cliente
+
+```python
+# Exemplo de criação de cliente
+cliente = api.create_client({
+    "nome": "Fernando",
+    "numero": "5532999999999",
+    "plano_id": "264",
+    "email_cliente": "teste@gmail.com",
+    "vencimento": "2025-10-31",
+    "observacao": "Observação opcional"
+})
+```
+
+### Atualizar Cliente
+
+```python
+# Atualização mínima
+atualizacao = api.update_client({
+    "identificador_tipo": "numero",
+    "identificador_valor": "5532999999999",
+    "vencimento": "2025-10-31",
+    "plano_id": "265"
+})
+
+# Atualização completa
+atualizacao_completa = api.update_client({
+    "identificador_tipo": "numero",
+    "identificador_valor": "5532999999999",
+    "nome": "Fernando Silva",
+    "email_cliente": "novo@email.com",
+    "vencimento": "2025-10-31",
+    "plano_id": "265",
+    "observacao": "Nova observação"
+})
+```
+
+### Deletar Cliente
+
+```python
+# Deletar por número
+delete_numero = api.delete_client({
+    "identificador_tipo": "numero",
+    "identificador_valor": "5532999999999"
+})
+
+# Deletar por email
+delete_email = api.delete_client({
+    "identificador_tipo": "email",
+    "identificador_valor": "cliente@email.com"
+})
+```
+
+### Listar Clientes
+
+```python
+# Listar todos os clientes
+clientes = api.list_clients()
+
+# Listar com filtros
+clientes_filtrados = api.list_clients(
+    status="active",
+    search="Fernando",
+    page=1,
+    limit=10
+)
+```
+
+## Mensagens
+
+### Enviar Mensagem Individual
+
+```python
+# Enviar mensagem de texto
+mensagem = api.send_single_message({
+    "numero": "5532999999999",
+    "mensagem": "Olá! Esta é uma mensagem de teste."
+})
+
+# Enviar imagem
+mensagem_imagem = api.send_single_message({
+    "numero": "5532999999999",
+    "mensagem": "Veja esta imagem!",
+    "midia": "https://exemplo.com/imagem.jpg"
+})
+```
+
+### Enviar Mensagem para Plano
+
+```python
+mensagem_plano = api.send_message_plan({
+    "plano_id": "264",
+    "mensagem": "Mensagem para todos os clientes do plano!"
+})
+```
+
+## Planos
+
+### Criar Plano
+
+```python
+plano = api.create_plan({
+    "nome": "Plano Premium",
+    "valor": 100,
+    "duracao": 30,
+    "hora_disparo": "00:00"
+})
+```
+
+### Atualizar Plano
+
+```python
+plano_atualizado = api.update_plan("266", {
+    "nome": "Plano Premium 2.0",
+    "valor": 100,
+    "duracao": 30,
+    "hora_disparo": "00:00"
+})
+```
+
+### Listar Planos
+
+```python
+# Listar todos os planos
+planos = api.list_plans()
+
+# Listar com filtros
+planos_filtrados = api.list_plans(
+    search="premium",
+    page=1,
+    limit=10
+)
+```
+
+## Tratamento de Erros
+
+A biblioteca utiliza exceções Python para tratamento de erros. Sempre utilize try/except:
+
+```python
+try:
+    resultado = api.create_client({...})
+except Exception as error:
+    print("Erro:", error)
+```
