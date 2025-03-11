@@ -1,0 +1,10 @@
+LICENSE
+README.md
+pyproject.toml
+gabiking_pygame_widgets/__init__.py
+gabiking_pygame_widgets/widgets.py
+gabiking_pygame_widgets.egg-info/PKG-INFO
+gabiking_pygame_widgets.egg-info/SOURCES.txt
+gabiking_pygame_widgets.egg-info/dependency_links.txt
+gabiking_pygame_widgets.egg-info/requires.txt
+gabiking_pygame_widgets.egg-info/top_level.txt
