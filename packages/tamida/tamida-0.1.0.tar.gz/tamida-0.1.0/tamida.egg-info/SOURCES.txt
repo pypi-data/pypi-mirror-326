@@ -1,0 +1,10 @@
+README.md
+pyproject.toml
+setup.py
+Tamida/__init__.py
+Tamida/analysis_square.py
+tamida.egg-info/PKG-INFO
+tamida.egg-info/SOURCES.txt
+tamida.egg-info/dependency_links.txt
+tamida.egg-info/requires.txt
+tamida.egg-info/top_level.txt
