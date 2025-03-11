@@ -1,0 +1,8 @@
+setup.py
+pythonRpaFrameWork/__init__.py
+pythonRpaFrameWork/pythonRpaFrameworkNew.py
+rpaFrameWorkByForrest.egg-info/PKG-INFO
+rpaFrameWorkByForrest.egg-info/SOURCES.txt
+rpaFrameWorkByForrest.egg-info/dependency_links.txt
+rpaFrameWorkByForrest.egg-info/requires.txt
+rpaFrameWorkByForrest.egg-info/top_level.txt
