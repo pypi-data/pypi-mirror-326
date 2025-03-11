@@ -1,0 +1,6 @@
+aws_dynamodb_operations/__init__.py,sha256=79VwniOM26gnTdEBXYuAaGeRcsrXBPMT_NbVMTGf5pE,41
+aws_dynamodb_operations/dynamodb.py,sha256=fUdlknwJuHlw7TvSYjOVnN4OXdfJk2GBnmO8mYFXA2I,4753
+aws_dynamodb_operations-0.1.0.dist-info/METADATA,sha256=DbPla9Wy-dmfP9BXp7mnSvikAZTnOEATaqqN4l9Zavw,1163
+aws_dynamodb_operations-0.1.0.dist-info/WHEEL,sha256=In9FTNxeP60KnTkGw7wk6mJPYd_dQSjEZmXdBdMCI-8,91
+aws_dynamodb_operations-0.1.0.dist-info/top_level.txt,sha256=qcL4fq2YEph00rG3u50azcB4hKKV_o4H6HtMXcr6lYA,24
+aws_dynamodb_operations-0.1.0.dist-info/RECORD,,
