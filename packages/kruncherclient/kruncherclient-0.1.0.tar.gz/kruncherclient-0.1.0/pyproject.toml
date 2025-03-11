@@ -1,0 +1,25 @@
+[build-system]
+requires = ["setuptools>=45", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "kruncherclient"
+version = "0.1.0"
+description = "A Python client for the Kruncher API"
+authors = [{ name = "Andrea Dorigo", email = "andrea@kruncher.ai" }]
+license = { file = "LICENSE" }
+readme = "README.md"
+requires-python = ">=3.13"
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+]
+dependencies = [
+    "requests>=2.25.0",
+    "pandas>=1.2.0",
+    "python-dotenv>=0.19.0",
+]
+
+[project.urls]
+Homepage = "https://github.com/kruncherai/kruncher-client" 
