@@ -1,0 +1,40 @@
+.pytest_cache
+__pycache__/
+.DS_Store/
+
+
+demo/regression/ignored*
+
+
+tablemage/agents/_src/io/_img_store/*
+tablemage/agents/_src/io/_table_store/*
+tablemage/agents/_src/io/_vector_store/*
+tablemage/agents/_src/io/_vector_memory/*
+tablemage/agents/_src/io/_log/*
+tablemage/agents/_src/_debug/_debug_log.log
+
+tablemage/.env
+
+
+local_tests
+local_tests_llm
+
+
+storage/
+
+# benchmarking/ml/datasets/*
+# benchmarking/ml/results/*
+benchmarking/ml/api_key.txt
+
+# benchmarking/dataanalysisqa/results/*
+benchmarking/dataanalysisqa/api_key.txt
+
+
+docs/TableMage
+docs/l2_pipeline.joblib
+docs/_build
+
+
+metagpt
+logs
+workspace
