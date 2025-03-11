@@ -1,0 +1,35 @@
+Metadata-Version: 2.2
+Name: cdetector
+Version: 0.1.5
+Summary: A Python library for license plate recognition using YOLO and OCR
+Home-page: https://pypi.org/project/cdetector/
+Author: Mahdi Huseine
+Author-email: madihuseine001@gmail.com
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Description-Content-Type: text/markdown
+Requires-Dist: opencv-python
+Requires-Dist: easyocr
+Requires-Dist: ultralytics
+Requires-Dist: pytesseract
+Requires-Dist: requests
+Dynamic: author
+Dynamic: author-email
+Dynamic: classifier
+Dynamic: description
+Dynamic: description-content-type
+Dynamic: home-page
+Dynamic: requires-dist
+Dynamic: summary
+
+# Plate Recognition
+
+A Python library for license plate recognition using YOLO and OCR (Tesseract and EasyOCR).
+
+## Installation
+
+To install the package, use pip:
+
+```bash
+pip install plate-recognition

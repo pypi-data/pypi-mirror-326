@@ -1,0 +1,9 @@
+README.md
+setup.py
+cdetector/__init__.py
+cdetector/cdetector.py
+cdetector.egg-info/PKG-INFO
+cdetector.egg-info/SOURCES.txt
+cdetector.egg-info/dependency_links.txt
+cdetector.egg-info/requires.txt
+cdetector.egg-info/top_level.txt
