@@ -1,0 +1,9 @@
+servefs/cli.py,sha256=eJxnBXGMwGRGI1ox-DrhyANumvc8WjUGQzxX0SOuDmM,2666
+servefs/main.py,sha256=T6fHccng_kGDIQI5mseKDnm8Sgqw0XYkqxgW8vxsvJA,905
+servefs/routes/api.py,sha256=4Don8YvCBjWxBOq6JjyVXYEzrbVIMNKPKDpBEGuoT-s,6761
+servefs/routes/page.py,sha256=6JLTuYXBRGvwxvAfMjZ4KDLTA8ukSzn62JbV9X3GZsw,2275
+servefs/static/index.html,sha256=63N2fr_gIwxDnNC0A0fHBVSbWIIUFnZkVIs3hSS6NY0,32238
+servefs-0.1.1.dist-info/METADATA,sha256=iqwI_axXF2zyqQy0SZAzouJcFt2V1xxj6dcmq3-qazM,2646
+servefs-0.1.1.dist-info/WHEEL,sha256=IYZQI976HJqqOpQU6PHkJ8fb3tMNBFjg-Cn-pwAbaFM,88
+servefs-0.1.1.dist-info/entry_points.txt,sha256=nEcjf2VWZJPN2S-sVYaldjVQtmte9cR38fHn_Zw-Vww,43
+servefs-0.1.1.dist-info/RECORD,,
